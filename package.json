@@ -15,11 +15,6 @@
     "*.{js,vue}": "npm run lint",
     "*.{css,vue}": "stylelint"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "dependencies": {
     "@bazzite/nuxt-optimized-images": "^0.3.0",
     "@nuxt/typescript-runtime": "^0.4.0",
