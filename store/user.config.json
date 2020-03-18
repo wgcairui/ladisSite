@@ -1,0 +1,13 @@
+{ 
+    "home":{
+        "product":{
+            "show":true
+        },
+        "support":{
+            "show":true
+        },
+        "buy":{
+            "show":true
+        }
+    }
+}
