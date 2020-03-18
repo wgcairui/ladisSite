@@ -23,6 +23,9 @@
     "@nuxtjs/sitemap": "^2.0.1",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.7.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "imagemin-svgo": "^7.1.0",
     "nuxt": "^2.11.0",
     "nuxt-i18n": "^6.6.1"
   },

@@ -2,7 +2,7 @@ import { Context, Configuration } from '@nuxt/types'
 export default {
   mode: 'universal',
   server: {
-    port: process.env.NODE_ENV === 'production' ? 9005 : 80,
+    port: process.env.NODE_ENV === 'production' ? 80 : 9005,
     host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
   },
   /*
