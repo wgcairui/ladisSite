@@ -1,8 +1,8 @@
-import { Context, Configuration } from '@nuxt/types'
 export default {
   mode: 'universal',
   server: {
-    port: 9005
+    port: process.env.NODE_ENV === 'production' ? 9005 : 80,
+    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
   },
   /*
    ** Headers of the page
