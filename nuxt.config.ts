@@ -1,3 +1,4 @@
+import { Context, Configuration } from '@nuxt/types'
 export default {
   mode: 'universal',
   server: {
