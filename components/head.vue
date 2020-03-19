@@ -196,10 +196,6 @@ export default Vue.extend({
       return locales.filter(i => i.code !== this.$i18n.locale)
     }
   },
-  mounted () {
-    console.log(this.defaults)
-  },
-
   methods: {
     Setlang (lang: string) {
       this.$i18n.setLocaleCookie(lang)

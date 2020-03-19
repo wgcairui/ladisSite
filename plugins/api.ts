@@ -4,10 +4,10 @@ import { params } from '../types/index'
 
 const MyApi:Plugin = (ctx:Context, inject: (key: string, value: any) => void) => {
   class Api {
-        static axios:NuxtAxiosInstance = ctx.$axios.create({ method: 'GET' }) as any
+        static axios:NuxtAxiosInstance = (ctx.$axios.create({ method: 'GET' }) as any)
 
         static async GeneralGetInfo (param:params) {
-          const data = await this.axios.$get('/api/Get_arg', { params: param })
+          const data = await this.axios.$get('/api/Get_arg', { params: { ...param } })
           return data
         }
 
@@ -21,6 +21,12 @@ const MyApi:Plugin = (ctx:Context, inject: (key: string, value: any) => void) =>
           return data
         }
   }
+  Api.axios.onRequest((config) => {
+    const SiteName = ctx.store.state.defaults.name
+    const i18n = ctx.app.i18n.locale
+    config.params = { ...config.params || {}, SiteName, i18n }
+    return config
+  })
   inject('Api', Api)
 }
 
