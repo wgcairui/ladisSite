@@ -67,7 +67,7 @@
             <b-col cols="6" sm="4" md="2">
               <ul>
                 <li>
-                  <strong>{{ $t('section.567cgp') }}{{ defaults.name }}</strong>
+                  <strong>关于{{ defaults.name }}</strong>
                 </li>
                 <li>
                   <a href="/about/公司简介">{{ $t('section.v0otza') }}</a>
