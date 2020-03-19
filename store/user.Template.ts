@@ -29,8 +29,8 @@ export const defaults: userSetup = {
       ]
     },
     contact: {
-      qq: '260338538',
-      tel: ['15337364316蔡先生', '18995829584 李女士']
+      qq: '15713024',
+      tel: ['张先生:18271826065']
     }
   },
   product: {
@@ -45,8 +45,8 @@ export const defaults: userSetup = {
     serverCenter: true,
     Tmall: false,
     jd: false,
-    blue: false,
-    userMall: [{ title: 'test', src: 'ssss' }]
+    blue: false
+    // userMall: [{ title: 'test', src: 'ssss' }]
   },
   vr: true,
   case: true,
