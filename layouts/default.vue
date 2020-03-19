@@ -45,7 +45,7 @@ body,
 #__nuxt,
 #__layout,
 #ladis-body {
-  min-height: 100%;
+  height: 100%;
   display: flex;
   width: 100%;
 }
