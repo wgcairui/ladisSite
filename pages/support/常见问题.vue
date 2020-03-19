@@ -42,7 +42,7 @@
         </b-list-group>
       </b-col>
       <b-col cols="12" md="8">
-        <b-list-group id="support_list" class="list-group1">
+        <b-list-group id="support_list" class="list-group1 pt-3">
           <b-list-group-item variant="dark" />
           <b-list-group-item
             v-for="val in support_list.slice(

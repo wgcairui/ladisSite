@@ -4,29 +4,29 @@
       <b-col>
         <b-container>
           <b-row class="mb-5">
-            <b-col cols="6" sm="4" md="2">
+            <b-col v-if="defaults.product" cols="6" sm="4" md="2">
               <ul>
                 <li>
                   <strong>{{ $t('section.gk11oe') }}</strong>
                 </li>
-                <li>
+                <li v-if="defaults.product.showUps">
                   <a href="/products/UPS电源">{{ $t('section.4t9bzs') }}</a>
                 </li>
-                <li>
+                <li v-if="defaults.product.showDataCenter">
                   <a href="/products/数据中心">{{ $t('section.4r35dn') }}</a>
                 </li>
-                <li>
+                <li v-if="defaults.product.showAir">
                   <a href="/products/机房空调">{{ $t('section.f7h57b') }}</a>
                 </li>
               </ul>
             </b-col>
-            <b-col cols="6" sm="4" md="2">
+            <b-col v-if="defaults.support" cols="6" sm="4" md="2">
               <ul>
                 <li>
                   <strong>{{ $t('section.q5vjss') }}</strong>
                 </li>
-                <li v-if="localSite">
-                  <a v-if="localSite" href="/buy">{{ $t('section.ps0tuh') }}</a>
+                <li v-if="defaults.buy.serverCenter">
+                  <a href="/buy">{{ $t('section.ps0tuh') }}</a>
                 </li>
                 <li>
                   <a href="/support/">{{ $t('section.y2a257') }}</a>
@@ -36,40 +36,43 @@
                 </li>
               </ul>
             </b-col>
-            <b-col cols="6" sm="4" md="3">
+            <b-col v-if="defaults.buy" cols="6" sm="4" md="3">
               <ul>
                 <li>
                   <strong>{{ $t('section.21ws8d') }}</strong>
                 </li>
-                <li v-if="localSite">
+                <li v-if="defaults.buy.serverCenter">
                   <a href="/buy">{{ $t('section.u7wjbw') }}</a>
                 </li>
-                <li v-if="localSite">
+                <li v-if="defaults.buy.blue">
                   <a href="https://lgsm.tmall.com/">{{
                     $t('section.6v39gj')
                   }}</a>
                 </li>
-                <li>
+                <li v-if="defaults.buy.Tmall">
                   <a href="https://leidisi.tmall.com/" target="_bank">{{
                     $t('section.k9mydj')
                   }}</a>
                 </li>
-                <li v-if="localSite">
-                  <a href="https://leidisi.tmall.com/" target="_bank">{{
+                <li v-if="defaults.buy.jd">
+                  <a href="https://mall.jd.com/index-131620.html" target="_bank">{{
                     $t('section.pfuunc')
                   }}</a>
+                </li>
+                <li v-for="(val,key) in defaults.buy.userMall || []" :key="key">
+                  <a :href="val.src || '#'" target="_blank" rel="noopener noreferrer">{{ val.title || '' }}</a>
                 </li>
               </ul>
             </b-col>
             <b-col cols="6" sm="4" md="2">
               <ul>
                 <li>
-                  <strong>{{ $t('section.567cgp') }}</strong>
+                  <strong>{{ $t('section.567cgp') }}{{ defaults.name }}</strong>
                 </li>
                 <li>
                   <a href="/about/公司简介">{{ $t('section.v0otza') }}</a>
                 </li>
-                <li>
+                <li v-if="defaults.news">
                   <a href="/news/">{{ $t('section.qis2vp') }}</a>
                 </li>
               </ul>
@@ -114,10 +117,10 @@
             {{ $t('footer.5d7lkm') }}
           </b-link>
           <span class=" ml-auto">
-            <span> <em>© 2019 All Rights Reserved</em> 雷迪司 </span>
+            <span> <em>© 2019 All Rights Reserved</em> {{ defaults.name }} </span>
             <span>
               <b-link target="_blank" href="http://www.beian.miit.gov.cn">{{
-                ICP[localUrl]
+                defaults.home.beian
               }}</b-link>
             </span>
           </span>
@@ -128,21 +131,12 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { mapState } from 'vuex'
 export default Vue.extend({
   name: 'LadisFooter',
   data () {
     return {
-      ICP: {
-        '116.62.48.175': '浙ICP备09040710号',
-        localhost: '浙ICP备09040710号',
-        'www.ladis.com.cn': '浙ICP备09040710号',
-        'www.ladishb.com': '鄂ICP备19029626号-1'
-      }
+      defaults: this.$store.state.defaults
     }
-  },
-  computed: {
-    ...mapState(['localSite', 'localUrl'])
   }
 })
 </script>

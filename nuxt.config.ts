@@ -1,16 +1,18 @@
 import { Context, Configuration } from '@nuxt/types'
+import { defaults } from './store/user'
+const RemoteServerAddress = 'http://www.ladishb.com:9006'
 export default {
   mode: 'universal',
   server: {
-    port: process.env.NODE_ENV === 'production' ? 80 : 9005,
+    port: process.env.NODE_ENV === 'production' ? (process.env.NUXT_PORT || 80) : 9005,
     host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
   },
   /*
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
-    meta: [
+    title: defaults.home.key?.title,
+    meta: [[
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
@@ -18,9 +20,10 @@ export default {
         name: 'description',
         content: process.env.npm_package_description || ''
       }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    ], defaults.home.key?.meta].flat(),
+    link: [{ rel: 'icon', type: 'image/x-icon', href: defaults.home.ico || '/favicon.ico' }]
   },
+
   /*
    ** Customize the progress-bar color
    */
@@ -119,7 +122,11 @@ export default {
   },
 
   proxy: {
-    '/api': 'http://www.ladishb.com:9006'
+    '/api': RemoteServerAddress,
+    '/_CMS_NEWS_IMG_': RemoteServerAddress,
+    '/a_images': RemoteServerAddress,
+    '/down': RemoteServerAddress,
+    '/upload': RemoteServerAddress
   },
 
   /*

@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-row no-gutters class="min-vh-100 overflow-auto">
+    <b-row no-gutters>
       <b-col cols="12">
         <RouterRoad />
       </b-col>
