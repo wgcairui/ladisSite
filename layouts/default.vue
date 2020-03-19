@@ -40,9 +40,7 @@ export default Vue.extend({
 </script>
 
 <style scss>
-html {
-  height: 100%;
-}
+html,
 body,
 #__nuxt,
 #__layout,

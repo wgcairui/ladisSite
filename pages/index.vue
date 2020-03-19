@@ -61,10 +61,10 @@ export default Vue.extend({
         return el.map(em => em.title)
       })
     const carousel = [
-      'banner/banner01-mobile.jpg',
-      'banner/banner02-mobile.jpg',
-      'banner/banner03-mobile.jpg',
-      'banner/banner04-mobile.jpg'
+      'banner/banner01-pc.jpg',
+      'banner/banner02-pc.jpg',
+      'banner/banner03-pc.jpg',
+      'banner/banner04-pc.jpg'
     ]
     return { GetNews, carousel }
   },
@@ -89,9 +89,9 @@ export default Vue.extend({
   methods: {
     // 生成图像集
     generateImgsString (Img: string) {
-      const Mobile = Img
-      const Pad = Img.replace('mobile', 'pad')
-      const Pc = Img.replace('mobile', 'pc')
+      const Mobile = Img.replace('pc', 'mobile')
+      const Pad = Img.replace('pc', 'pad')
+      const Pc = Img
       return [`${Mobile} 760w`, `${Pad} 1200w`, `${Pc}`]
     },
     swithProblem () {
