@@ -1,4 +1,5 @@
 import { Context, Configuration } from '@nuxt/types'
+import axios from 'axios'
 import { defaults } from './store/user'
 const RemoteServerAddress = 'http://www.ladishb.com:9006'
 export default {
@@ -55,27 +56,28 @@ export default {
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    //
+    // https://nuxt-community.github.io/nuxt-i18n/
     'nuxt-i18n',
     // 优化图像加载
     // https://www.bazzite.com/docs/nuxt-optimized-images/
     '@bazzite/nuxt-optimized-images',
     // 网站地图
+    // https://github.com/nuxt-community/sitemap-module
     '@nuxtjs/sitemap'
   ],
   sitemap: {
     hostname: 'http://www.ladishb.com',
     gzip: true,
-    exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
+    // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
     // eslint-disable-next-line require-await
-    routes: async (ctx:Context) => {
-      // eslint-disable-next-line no-console
-      console.log(ctx)
+    routes: async () => {
+      /* const rout = await ctx.app.$Api.GeneralGetInfo({ table: 'router' })
+      return rout */
 
-      /* const { data } = await axios.get(
-        `${ServerHost}/api/Get_arg?table=router`
+      const data = await axios.get(
+        `${RemoteServerAddress}/api/Get_arg`, { params: { table: 'router' } }
       )
-      return data.map(router => router.rout) */
+      return data.data.map((router: { rout: any }) => router.rout)
     }
   },
   optimizedImages: {

@@ -29,17 +29,10 @@
 import Vue from 'vue'
 export default Vue.extend({
   layout: 'map',
-  async asyncData ({ $axios }) {
-    const routers = await $axios.$get('/api/Get_arg', {
-      params: { table: 'Router' }
-    })
-
+  async asyncData ({ app }) {
+    const routers = await app.$Api.GeneralGetInfo({ table: 'router' })
+    console.log(routers)
     return { routers }
-  },
-  data () {
-    return {
-      router: this.$data.routers || []
-    }
   },
   computed: {
     Rout () {
