@@ -1,7 +1,7 @@
 import { Context, Configuration } from '@nuxt/types'
 import axios from 'axios'
 import { defaults } from './store/user'
-const RemoteServerAddress = 'http://www.ladishb.com:9006'
+const RemoteServerAddress = 'http://localhost:9006'// 'http://www.ladishb.com:9006'
 export default {
   mode: 'universal',
   server: {

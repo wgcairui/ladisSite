@@ -49,15 +49,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import MySection from '../components/MySection.vue'
+import { caseList } from '../types/typing'
 export default Vue.extend({
   components: { MySection },
   async asyncData ({ app }) {
     const GetNews: string[] = await app.$Api
       .GetHomeNews()
-      .then((el: { title: string }[]) => {
-        if (el.length === 0) {
-          return []
-        }
+      .then((el:caseList[]) => {
         return el.map(em => em.title)
       })
     const carousel = [

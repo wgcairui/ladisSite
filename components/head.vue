@@ -55,7 +55,7 @@
                 {{ $t('head.dqsax9') }}
               </b-dropdown-item>
               <b-dropdown-divider />
-              <b-dropdown-item href="/support/常见问题">
+              <b-dropdown-item href="/support/node_25.shtml">
                 {{ $t('head.zqdzou') }}
               </b-dropdown-item>
               <b-dropdown-item href="/support/视频教程">

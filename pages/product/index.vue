@@ -1,6 +1,6 @@
 <template>
   <b-row no-gutters>
-    <b-col v-for="val in all" :key="val.title" cols="12" md="4" class="p-4">
+    <b-col v-for="val in all" :key="val.link" cols="12" md="4" class="p-4">
       <b-card class=" h-100">
         <my-img :src="val.img" :alt="val.title" />
         <!-- <b-card-img :src="val.img" :alt="val.title"></b-card-img> -->
@@ -17,12 +17,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import MyImg from '../../components/MyImg.vue'
-import { productPack } from '../../types/interface'
+import { product } from '../../types/typing'
 export default Vue.extend({
   components: { MyImg },
   async asyncData ({ app }) {
-    const result:productPack = await app.$Api.GeneralGetInfo({ table: 'product', title: 'All' })
-    const all = result.data || []
+    const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product' })
     return { all }
   }
 })

@@ -1,9 +1,10 @@
 import { AxiosInstance } from 'axios'
+import { DbTables } from './typing'
 interface params {
-    table: string
-    title?: string
-    parent?: string
+    table: DbTables
     isNews?: boolean
+    queryKeys?:string[]
+    [t:string]:any
 }
 interface Api {
     axios: AxiosInstance

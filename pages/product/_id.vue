@@ -17,12 +17,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import MyImg from '../../components/MyImg.vue'
-import { productPack } from '../../types/interface'
+import { product } from '../../types/typing'
 export default Vue.extend({
   components: { MyImg },
   async asyncData ({ params, app }) {
-    const result:productPack = await app.$Api.GeneralGetInfo({ table: 'Product', title: params.id })
-    const data = result.data || []
+    const data:product[] = await app.$Api.GeneralGetInfo({ table: 'Product', queryKeys: ['MainTitle', 'MainTitle'], MainTitle: params.id })
     return { data, params }
   },
 

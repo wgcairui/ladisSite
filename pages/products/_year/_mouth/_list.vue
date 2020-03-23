@@ -2,11 +2,11 @@
   <b-container>
     <b-row no-gutters>
       <b-col cols="12">
-        <RouterRoad />
+        <b-breadcrumb :items="items" class=" bg-light" />
       </b-col>
       <b-col cols="12" class="border-bottom">
         <h4 class="text-capitalize">
-          {{ title }}
+          {{ all.title }}
         </h4>
       </b-col>
       <b-col cols="12">
@@ -65,33 +65,31 @@
 
 <script>
 /* eslint-disable vue/no-v-html */
-import RouterRoad from '../../../../components/RouterRoad.vue'
 import MyImg from '../../../../components/MyImg.vue'
 export default {
   components: {
-    RouterRoad,
     MyImg
   },
   async asyncData ({ app, params }) {
-    const title = params.list
-    console.log(params)
+    const link = '/products/' + Object.values(params).join('/')
+
     const result = await app.$Api.GeneralGetInfo({
       table: 'Product_list',
-      title
+      queryKeys: ['link'],
+      link
     })
-    const all = result.data || []
-
-    return { title, all }
-  },
-  data () {
-    return {
-      items: [
-        { text: '主页', href: '/' },
-        { text: '所有产品', href: '/products' }
-      ]
-    }
+    const [all] = result
+    return { title: all.title, all }
   },
   computed: {
+    items () {
+      return [
+        { text: '主页', href: '/' },
+        { text: '产品分类', href: '/product' },
+        { text: this.all.MainParent, href: `/product/${this.all.MainParent}` },
+        { text: this.all.title }
+      ]
+    },
     t1 () {
       return this.$data.all.type === 'html'
     },
@@ -111,7 +109,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scop>
+.breadcrumb-item {
+  a {
+    color: black;
+  }
+}
 img {
   max-width: 100%;
   height: auto;
