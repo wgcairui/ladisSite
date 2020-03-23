@@ -12,18 +12,18 @@
           <b-navbar-toggle target="list-collapse" />
           <b-collapse id="list-collapse" is-nav>
             <b-navbar-nav vertical>
-              <b-nav-item to="/products">
+              <b-nav-item to="/product">
                 <h3>{{ $t("index.j8it8b") }}</h3>
               </b-nav-item>
             </b-navbar-nav>
             <div v-for="(val, key) in list" :key="key">
               <b-navbar-nav variant="dark">
-                <b-nav-item :href="`/products/${val.title}`">
+                <b-nav-item :href="`/product/${val.title}`">
                   {{ val.title }}
                 </b-nav-item>
               </b-navbar-nav>
               <b-navbar-nav v-for="(val1, key1) in val.args" :key="key1">
-                <b-nav-item :href="`/products/${val1.title}`">
+                <b-nav-item :href="`/product/${val1.title}`">
                   {{ val1.title }}
                 </b-nav-item>
               </b-navbar-nav>

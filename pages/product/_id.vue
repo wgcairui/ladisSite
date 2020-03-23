@@ -5,7 +5,7 @@
         <my-img :src="val.img" :alt="val.title" />
         <!-- <b-card-img :src="val.img" :alt="val.title"></b-card-img> -->
         <b-link
-          :to="{ path: `/productsList/${val.title}` }"
+          :to="{ path: val.link }"
           class="text-dark stretched-link text-decoration-none"
         >
           {{ val.title }}
@@ -17,11 +17,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import MyImg from '../../components/MyImg.vue'
+import { productPack } from '../../types/interface'
 export default Vue.extend({
   components: { MyImg },
   async asyncData ({ params, app }) {
-    const data = await app.$Api.GeneralGetInfo({ table: 'Product', title: params.id })
-    return { data: data.data || [], params }
+    const result:productPack = await app.$Api.GeneralGetInfo({ table: 'Product', title: params.id })
+    const data = result.data || []
+    return { data, params }
   },
 
   head () {

@@ -10,13 +10,13 @@
                   <strong>{{ $t('section.gk11oe') }}</strong>
                 </li>
                 <li v-if="defaults.product.showUps">
-                  <a href="/products/UPS电源">{{ $t('section.4t9bzs') }}</a>
+                  <a href="/product/UPS电源">{{ $t('section.4t9bzs') }}</a>
                 </li>
                 <li v-if="defaults.product.showDataCenter">
-                  <a href="/products/数据中心">{{ $t('section.4r35dn') }}</a>
+                  <a href="/product/数据中心">{{ $t('section.4r35dn') }}</a>
                 </li>
                 <li v-if="defaults.product.showAir">
-                  <a href="/products/机房空调">{{ $t('section.f7h57b') }}</a>
+                  <a href="/product/机房空调">{{ $t('section.f7h57b') }}</a>
                 </li>
               </ul>
             </b-col>

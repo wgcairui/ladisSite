@@ -65,8 +65,8 @@
 
 <script>
 /* eslint-disable vue/no-v-html */
-import RouterRoad from '../../components/RouterRoad.vue'
-import MyImg from '../../components/MyImg.vue'
+import RouterRoad from '../../../../components/RouterRoad.vue'
+import MyImg from '../../../../components/MyImg.vue'
 export default {
   components: {
     RouterRoad,
@@ -74,6 +74,7 @@ export default {
   },
   async asyncData ({ app, params }) {
     const title = params.list
+    console.log(params)
     const result = await app.$Api.GeneralGetInfo({
       table: 'Product_list',
       title

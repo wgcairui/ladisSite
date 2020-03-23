@@ -15,24 +15,24 @@
               <template slot="button-content">
                 <em>{{ $t('head.pneaqh') }}</em>
               </template>
-              <b-dropdown-item href="/products">
+              <b-dropdown-item href="/product">
                 {{ $t('head.spa5wv') }}
               </b-dropdown-item>
               <b-dropdown-item
                 v-if="defaults.product.showUps"
-                href="/products/UPS电源"
+                href="/product/UPS电源"
               >
                 {{ $t('head.oa0e4r') }}
               </b-dropdown-item>
               <b-dropdown-item
                 v-if="defaults.product.showDataCenter"
-                href="/products/数据中心"
+                href="/product/数据中心"
               >
                 {{ $t('head.1t6jqi') }}
               </b-dropdown-item>
               <b-dropdown-item
                 v-if="defaults.product.showAir"
-                href="/products/机房空调"
+                href="/product/机房空调"
               >
                 {{ $t('head.odglin') }}
               </b-dropdown-item>
