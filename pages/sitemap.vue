@@ -30,7 +30,7 @@ import Vue from 'vue'
 export default Vue.extend({
   layout: 'map',
   async asyncData ({ app }) {
-    const routers = await app.$Api.GeneralGetInfo({ table: 'router' })
+    const routers = await app.$Api.GeneralGetInfo({ table: 'Router' })
     console.log(routers)
     return { routers }
   },
