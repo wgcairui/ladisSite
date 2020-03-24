@@ -20,7 +20,7 @@
               {{ val.title }}
             </b-nav-item>
           </b-navbar-nav>
-          <b-navbar-nav v-for="(val1, key1) in val.args" :key="key1">
+          <b-navbar-nav v-for="val1 in val.args" :key="val1.href">
             <b-nav-item :href="val1.href">
               {{ val1.title }}
             </b-nav-item>
@@ -33,6 +33,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { product } from './hrefs'
 export default Vue.extend({
   name: 'ProductAsid',
   computed: {
@@ -41,83 +42,83 @@ export default Vue.extend({
       const list = [
         {
           title: 'UPS电源',
-          href: '/products/node_13.shtml',
+          href: product['UPS电源'],
           args: [
             {
               title: '后备式UPS电源',
-              href: '/products/node_81.shtml'
+              href: product['后备式UPS电源']
             },
             {
               title: '高频单相UPS电源',
-              href: '/products/node_82.shtml'
+              href: product['高频单相UPS电源']
             },
             {
               title: '高频三相UPS电源',
-              href: '/products/node_83.shtml'
+              href: product['高频三相UPS电源']
             },
             {
               title: '工频UPS电源',
-              href: '/products/node_85.shtml'
+              href: product['工频UPS电源']
             },
             {
               title: '机架式UPS电源',
-              href: '/products/node_84.shtml'
+              href: product['机架式UPS电源']
             },
             {
               title: '模块化UPS电源',
-              href: '/products/node_86.shtml'
+              href: product['模块化UPS电源']
             },
             {
               title: 'UPS蓄电池',
-              href: '/products/node_87.shtml'
+              href: product['UPS蓄电池']
             }
           ]
         },
         {
           title: '数据中心',
-          href: '/products/node_10.shtml',
+          href: product['数据中心'],
           args: [
             {
               title: '户外一体柜ETC',
-              href: '/products/node_978.shtml'
+              href: product['户外一体柜ETC']
             },
             {
               title: '微模块机房',
-              href: '/products/node_143.shtml'
+              href: product['微模块机房']
             },
             {
               title: '一体化机柜',
-              href: '/products/node_135.shtml'
+              href: product['一体化机柜']
             },
             {
               title: '配电PDU',
-              href: '/products/node_11.shtml'
+              href: product['配电PDU']
             },
             {
               title: '动环监控',
-              href: '/products/node_136.shtml'
+              href: product['动环监控']
             },
             {
               title: '网络机柜',
-              href: '/products/node_138.shtml'
+              href: product['网络机柜']
             }
           ]
         },
         {
           title: '机房空调',
-          href: '/products/node_145.shtml',
+          href: product['机房空调'],
           args: [
             {
               title: '房间空调',
-              href: '/products/node_148.shtml'
+              href: product['房间空调']
             },
             {
               title: '列间空调',
-              href: '/products/node_147.shtml'
+              href: product['列间空调']
             },
             {
               title: '机架空调',
-              href: '/products/node_146.shtml'
+              href: product['机架空调']
             }
           ]
         }

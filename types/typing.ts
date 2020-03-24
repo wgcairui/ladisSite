@@ -27,6 +27,7 @@ type HtmlString = string;
 export type contentType = 'html' | '';
 // 公用包装
 export interface GMpack {
+  MainUrl:string
   MainTitle: string; // 分类
   MainParent: string; // 父类
   date: Date | string; // 日期
@@ -139,11 +140,12 @@ export interface caseList extends GMpack {
 }
 // about
 export interface about extends GMpack {
+  title:string
   body?: string[];
   content?: {
     body: string;
     webSite: AgentName;
-  };
+  }[];
 }
 // page
 export interface pageLink extends GMpack {

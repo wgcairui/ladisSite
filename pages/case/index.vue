@@ -2,42 +2,7 @@
   <b-container>
     <b-row no-gutters>
       <b-col cols="12" md="3">
-        <b-list-group class=" my-4 text-light">
-          <b-list-group-item
-            class=" bg-dark rounded-0  my-1 text-light"
-            button
-          >
-            {{ $t("index.tqie7y") }}
-          </b-list-group-item>
-          <b-list-group-item
-            class=" bg-dark rounded-0  my-1 text-light"
-            button
-            @click="vrFilter('UPS电源')"
-          >
-            {{ $t("index.a89hfi") }}
-          </b-list-group-item>
-          <b-list-group-item
-            class=" bg-dark rounded-0  my-1 text-light"
-            button
-            @click="vrFilter('一体化机柜')"
-          >
-            {{ $t("index.1gcuye") }}
-          </b-list-group-item>
-          <b-list-group-item
-            class=" bg-dark rounded-0  my-1 text-light"
-            button
-            @click="vrFilter('数据中心')"
-          >
-            {{ $t("index.6vnevq") }}
-          </b-list-group-item>
-          <b-list-group-item
-            class=" bg-dark rounded-0  my-1 text-light"
-            button
-            @click="vrFilter('机房空调')"
-          >
-            {{ $t("index.uns46v") }}
-          </b-list-group-item>
-        </b-list-group>
+        <case-asid />
       </b-col>
       <b-col cols="12" md="9" class=" mt-3 mb-5">
         <b-list-group
@@ -50,14 +15,14 @@
               currentPage * 10 - 10,
               currentPage * 10
             )"
-            :key="val.data.text"
+            :key="val.text"
           >
             <card-copy
-              :img="val.data.img"
-              :text="val.data.text"
-              :title="val.data.name"
-              :time="val.data.time"
-              :href="val.data.href"
+              :img="val.img"
+              :text="val.text"
+              :title="val.name"
+              :time="val.time"
+              :href="val.link"
             />
           </b-list-group-item>
         </b-list-group>
@@ -76,6 +41,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import CardCopy from '../../components/CardCopy.vue'
+import CaseAsid from '../../components/CaseAsid.vue'
+import { cases } from '../../types/typing'
 interface caseBody{
   data:{
     img:string
@@ -87,14 +54,12 @@ interface caseBody{
 }
 export default Vue.extend({
   components: {
-    CardCopy
+    CardCopy,
+    CaseAsid
   },
   async asyncData ({ app }) {
-    let listArray = await app.$Api.GeneralGetInfo({ table: 'Case', isNews: true })
-    listArray = Object.values(listArray)
-    const backListArray = Array.from(new Set(listArray))
-
-    return { listArray, backListArray }
+    const listArray:cases[] = await app.$Api.GeneralGetInfo({ table: 'Case', isNews: true })
+    return { listArray }
   },
   data () {
     return {
@@ -112,16 +77,6 @@ export default Vue.extend({
   computed: {
     rows () {
       return this.$data.listArray.length
-    }
-  },
-  mounted () {
-    this.vrFilter()
-  },
-  methods: {
-    vrFilter (type:string = '') {
-      this.$data.listArray = this.$data.backListArray.filter((el:caseBody) => {
-        return el.data.name.includes(type) || !type
-      })
     }
   },
   head () {

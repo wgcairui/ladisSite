@@ -48,6 +48,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .pic-1 {
-  max-height: 230px;
+  max-height: 180px;
 }
 </style>

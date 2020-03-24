@@ -1,46 +1,60 @@
 <template>
   <b-container>
     <b-row no-gutters>
-      <b-col cols="12">
-        <div class="my-4 border-bottom">
-          <h5 class=" text-center">
-            {{ id }}
-          </h5>
-        </div>
-        <div v-if="typeof list === 'string'">
-          <div id="newsText" class="px-5 ctlimg ql-editor" v-html="list" />
-        </div>
-        <div v-else>
-          <div id="newsText" class="px-5 ctlimg">
-            <p v-for="val in list.text || []" :key="val">
-              {{ val }}
-            </p>
-          </div>
-          <div id="pic" class="px-5">
-            <my-img
-              v-for="val in list.pic || []"
-              :key="val"
-              :src="val"
-              :alt="id"
-              class="m-0 p-0 w-75 my-2"
+      <b-col cols="12" md="3">
+        <news-asid />
+      </b-col>
+      <b-col cols="12" md="9" class=" mt-3 mb-5">
+        <b-list-group
+          id="my-table"
+          :per-page="perPage"
+          :current-page="currentPage"
+        >
+          <b-list-group-item
+            v-for="val in listArray.slice(
+              currentPage * 10 - 10,
+              currentPage * 10
+            )"
+            :key="val.text"
+          >
+            <card-copy
+              :img="val.img"
+              :text="val.text"
+              :title="val.name"
+              :time="val.time"
+              :href="val.link"
             />
-          </div>
-        </div>
+          </b-list-group-item>
+        </b-list-group>
+        <b-pagination
+          v-show="rows > 10"
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          aria-controls="my-table"
+          class=" d-flex justify-content-center"
+        />
       </b-col>
     </b-row>
   </b-container>
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import MyImg from '../../components/MyImg.vue'
+import CardCopy from '../../components/CardCopy.vue'
+import NewsAsid from '../../components/NewsAsid.vue'
+import { news, getKey } from '../../components/hrefs'
 export default Vue.extend({
   components: {
-    MyImg
+    CardCopy,
+    NewsAsid
   },
   async asyncData ({ app, params }) {
-    const title = params.id
-    const list = await app.$Api.GeneralGetInfo({ table: 'news_list', title })
-    return { id: title, list: list.data, listNew: list.new }
+    const url = '/news/' + params.id
+    const key = getKey(news, url)
+    const listArray = await app.$Api.GeneralGetInfo({ table: 'News', queryKeys: ['MainTitle'], MainTitle: key })
+    return { listArray }
+    /* const listArray = await app.$Api.GeneralGetInfo({ table: 'News', isNews: true })
+    return { listArray } */
   },
   data () {
     return {
@@ -48,29 +62,36 @@ export default Vue.extend({
         center: true,
         fluidGrow: true,
         blank: true,
-        blankColor: '#bbb'
-      }
+        blankColor: '#bbb',
+        class: 'my-5'
+      },
+      perPage: 10,
+      currentPage: 1
+    }
+  },
+  computed: {
+    rows () {
+      return this.$data.listArray.length
     }
   },
   head () {
     return {
-      title: `${this.$data.id}-雷迪司`,
+      title: '全部新闻-雷迪司',
       meta: [
-        { name: 'keywords', content: this.$data.id },
-        { name: 'description', content: this.$data.id }
+        { name: 'keywords', content: '全部新闻-雷迪司' },
+        { name: 'description', content: '全部新闻-雷迪司' }
       ]
     }
   }
 })
 </script>
 
-<style lang="scss">
-.content-img img {
-  max-width: 100%;
-  margin: 10px;
+<style lang="scss" scoped>
+.list-group-item {
+  border: 0ch;
 }
-#newsText img {
-  max-width: 100% !important;
-  height: auto;
+.lazy-pic {
+  width: 30% !important;
+  margin: 0 !important;
 }
 </style>

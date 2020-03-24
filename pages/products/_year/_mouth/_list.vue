@@ -62,21 +62,21 @@
     </b-row>
   </b-container>
 </template>
-
-<script>
-/* eslint-disable vue/no-v-html */
+<script lang="ts">
+import Vue from 'vue'
 import MyImg from '../../../../components/MyImg.vue'
-export default {
+import { productList } from '../../../../types/typing'
+export default Vue.extend({
   components: {
     MyImg
   },
   async asyncData ({ app, params }) {
-    const link = '/products/' + Object.values(params).join('/')
+    const MainUrl = '/products/' + Object.values(params).join('/')
 
-    const result = await app.$Api.GeneralGetInfo({
+    const result:productList[] = await app.$Api.GeneralGetInfo({
       table: 'Product_list',
-      queryKeys: ['link'],
-      link
+      queryKeys: ['MainUrl'],
+      MainUrl
     })
     const [all] = result
     return { title: all.title, all }
@@ -86,8 +86,8 @@ export default {
       return [
         { text: '主页', href: '/' },
         { text: '产品分类', href: '/product' },
-        { text: this.all.MainParent, href: `/product/${this.all.MainParent}` },
-        { text: this.all.title }
+        { text: this.$data.all.MainParent, href: `/product/${this.$data.all.MainParent}` },
+        { text: this.$data.all.title }
       ]
     },
     t1 () {
@@ -99,14 +99,14 @@ export default {
   },
   head () {
     return {
-      title: this.title,
+      title: this.$data.title,
       meta: [
-        { name: 'keywords', content: this.title },
-        { name: 'description', content: this.title }
+        { name: 'keywords', content: this.$data.title },
+        { name: 'description', content: this.$data.title }
       ]
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scop>
