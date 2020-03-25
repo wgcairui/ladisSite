@@ -27,9 +27,9 @@
 import Vue from 'vue'
 export default Vue.extend({
   async asyncData ({ app, params }) {
-    const title = params.id
-    const arg = await app.$Api.GeneralGetInfo({ table: 'Support_list', title })
-    return { arg, title }
+    const link = '/support/' + Object.values(params).join('/')
+    const [arg] = await app.$Api.GeneralGetInfo({ table: 'Support_list', queryKeys: ['link'], link })
+    return { arg, title: arg.title }
   },
   head () {
     return {

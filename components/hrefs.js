@@ -48,11 +48,22 @@ export const about = {
   服务承诺: '/about/node_39.shtml',
   经营理念: '/about/node_38.shtml',
   经销商列表: '/about/node_53.shtml',
-  销售服务中心: '/about/node_53.shtml',
+  销售服务中心: '/about/node_37.shtml',
   加入我们: '/about/node_34.shtml',
   使用声明: '/about/node_43.shtml',
   联系我们: '/about/node_33.shtml',
   隐私政策: '/about/node_42.shtml'
+}
+
+export const support = {
+  服务支持: '/support/',
+  监控软件下载: '/support/node_27.shtml',
+  产品彩页说明: '/support/node_54.shtml',
+  证书资质: '/support/node_15.shtml',
+  常见问题: '/support/node_25.shtml',
+  视频教程: '/support/node_119.shtml',
+  维修服务: '/support/node_23.shtml'
+
 }
 
 export const getKey = (object, value) => {

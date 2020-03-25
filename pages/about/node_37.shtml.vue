@@ -9,7 +9,7 @@
           <b-row no-gutters>
             <b-col cols="12">
               <h4 class="text-center m-2">
-                经销商列表
+                销售服务中心
               </h4>
               <hr>
             </b-col>
@@ -72,7 +72,7 @@ export default Vue.extend({
     const area = {}
     // dealear经销商信息
     const dealers: buyList[] = await app.$Api
-      .GeneralGetInfo({ table: 'Buy_list', queryKeys: ['MainParent'], MainParent: '经销商列表' })
+      .GeneralGetInfo({ table: 'Buy_list', queryKeys: ['MainParent'], MainParent: '销售服务中心' })
       // 构建销售服务中心列表
     dealers.forEach((element) => {
       /*
@@ -92,7 +92,7 @@ export default Vue.extend({
       (area as any)[parentsUntil].push({ link, href: `/buy/${parent}`, title: parent })
     })
     // 地图停留信息
-    const map = await app.$Api.GeneralGetInfo({ table: 'Buy', queryKeys: ['MainParent'], MainParent: '经销商列表' }).then((el:buy[]) => {
+    const map = await app.$Api.GeneralGetInfo({ table: 'Buy', queryKeys: ['MainParent'], MainParent: '销售服务中心' }).then((el:buy[]) => {
       return el.map((element) => {
         element.link = element.href.replace('shtml/', 'shtml')
         return element
@@ -103,7 +103,7 @@ export default Vue.extend({
 
   head () {
     return {
-      title: '经销商列表-雷迪司'
+      title: '销售服务中心-雷迪司'
     }
   }
 })

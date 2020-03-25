@@ -42,26 +42,26 @@
               <template slot="button-content">
                 <em>{{ $t('head.lcnmgn') }}</em>
               </template>
-              <b-dropdown-item href="/support/">
+              <b-dropdown-item :to="support['服务支持']">
                 {{ $t('head.g4jhzj') }}
               </b-dropdown-item>
-              <b-dropdown-item href="/support/监控软件下载">
+              <b-dropdown-item :to="support['监控软件下载']">
                 {{ $t('head.98cjrs') }}
               </b-dropdown-item>
-              <b-dropdown-item href="/support/产品彩页说明">
+              <b-dropdown-item :to="support['产品彩页说明']">
                 {{ $t('head.7d0ctl') }}
               </b-dropdown-item>
-              <b-dropdown-item href="/support/证书资质">
+              <b-dropdown-item :to="support['证书资质']">
                 {{ $t('head.dqsax9') }}
               </b-dropdown-item>
               <b-dropdown-divider />
-              <b-dropdown-item href="/support/node_25.shtml">
+              <b-dropdown-item :to="support['常见问题']">
                 {{ $t('head.zqdzou') }}
               </b-dropdown-item>
-              <b-dropdown-item href="/support/视频教程">
+              <b-dropdown-item :to="support['视频教程']">
                 {{ $t('head.vq1hew') }}
               </b-dropdown-item>
-              <b-dropdown-item href="/support/维修服务">
+              <b-dropdown-item :to="support['维修服务']">
                 {{ $t('head.z3w3pi') }}
               </b-dropdown-item>
             </b-nav-item-dropdown>
@@ -178,7 +178,7 @@
 import Vue from 'vue'
 import { NuxtVueI18n } from 'nuxt-i18n/types/nuxt-i18n'
 import MyImg from './MyImg.vue'
-import { news, cases, vr, product, about } from './hrefs'
+import { news, cases, vr, product, about, support } from './hrefs'
 export default Vue.extend({
   name: 'LadisHead',
   components: { MyImg },
@@ -189,6 +189,7 @@ export default Vue.extend({
       vr,
       product,
       about,
+      support,
       defaults: this.$store.state.defaults
     }
   },

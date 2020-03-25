@@ -10,13 +10,19 @@
                   <strong>{{ $t('section.gk11oe') }}</strong>
                 </li>
                 <li v-if="defaults.product.showUps">
-                  <a href="/product/UPS电源">{{ $t('section.4t9bzs') }}</a>
+                  <nuxt-link :to="product['UPS电源']">
+                    {{ $t('section.4t9bzs') }}
+                  </nuxt-link>
                 </li>
                 <li v-if="defaults.product.showDataCenter">
-                  <a href="/product/数据中心">{{ $t('section.4r35dn') }}</a>
+                  <nuxt-link :to="product['数据中心']">
+                    {{ $t('section.4r35dn') }}
+                  </nuxt-link>
                 </li>
                 <li v-if="defaults.product.showAir">
-                  <a href="/product/机房空调">{{ $t('section.f7h57b') }}</a>
+                  <nuxt-link :to="product['机房空调']">
+                    {{ $t('section.f7h57b') }}
+                  </nuxt-link>
                 </li>
               </ul>
             </b-col>
@@ -26,13 +32,19 @@
                   <strong>{{ $t('section.q5vjss') }}</strong>
                 </li>
                 <li v-if="defaults.buy.serverCenter">
-                  <a href="/buy">{{ $t('section.ps0tuh') }}</a>
+                  <nuxt-link :to="about['销售服务中心']">
+                    {{ $t('section.ps0tuh') }}
+                  </nuxt-link>
                 </li>
                 <li>
-                  <a href="/support/">{{ $t('section.y2a257') }}</a>
+                  <nuxt-link :to="support['服务支持']">
+                    {{ $t('section.y2a257') }}
+                  </nuxt-link>
                 </li>
                 <li>
-                  <a href="/support/常见问题">{{ $t('section.o5n0th') }}</a>
+                  <nuxt-link :to="support['常见问题']">
+                    {{ $t('section.o5n0th') }}
+                  </nuxt-link>
                 </li>
               </ul>
             </b-col>
@@ -42,7 +54,9 @@
                   <strong>{{ $t('section.21ws8d') }}</strong>
                 </li>
                 <li v-if="defaults.buy.serverCenter">
-                  <a href="/buy">{{ $t('section.u7wjbw') }}</a>
+                  <nuxt-link :to="about['经销商列表']">
+                    {{ $t('section.u7wjbw') }}
+                  </nuxt-link>
                 </li>
                 <li v-if="defaults.buy.blue">
                   <a href="https://lgsm.tmall.com/">{{
@@ -70,10 +84,14 @@
                   <strong>关于{{ defaults.name }}</strong>
                 </li>
                 <li>
-                  <a href="/about/公司简介">{{ $t('section.v0otza') }}</a>
+                  <nuxt-link :to="about['公司简介']">
+                    {{ $t('section.v0otza') }}
+                  </nuxt-link>
                 </li>
                 <li v-if="defaults.news">
-                  <a href="/news/">{{ $t('section.qis2vp') }}</a>
+                  <nuxt-link :to="news['全部新闻']">
+                    {{ $t('section.qis2vp') }}
+                  </nuxt-link>
                 </li>
               </ul>
             </b-col>
@@ -101,21 +119,25 @@
     <b-row>
       <b-col cols="12" class="p-0">
         <div class=" bg-dark p-2 d-flex flex-row flex-wrap">
-          <b-link href="/sitemap" class=" pr-1">
+          <nuxt-link to="/sitemap" class=" px-1">
             {{ $t('footer.9c708c') }}
-          </b-link>
-          <b-link href="/about/联系我们" class=" pr-1">
+          </nuxt-link>
+
+          <nuxt-link :to="about['联系我们']" class=" px-1">
             {{ $t('footer.fp5qvs') }}
-          </b-link>
-          <b-link href="/about/加入我们" class=" pr-1">
+          </nuxt-link>
+
+          <nuxt-link :to="about['加入我们']" class=" px-1">
             {{ $t('footer.ce1e0h') }}
-          </b-link>
-          <b-link href="/about/使用声明" class=" pr-1">
+          </nuxt-link>
+
+          <nuxt-link :to="about['使用声明']" class=" px-1">
             {{ $t('footer.amhzvr') }}
-          </b-link>
-          <b-link href="/about" class=" pr-1">
+          </nuxt-link>
+
+          <nuxt-link :to="about['隐私政策']" class=" px-1">
             {{ $t('footer.5d7lkm') }}
-          </b-link>
+          </nuxt-link>
           <span class=" ml-auto">
             <span> <em>© 2019 All Rights Reserved</em> {{ defaults.name }} </span>
             <span>
@@ -131,10 +153,15 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { product, support, about, news } from './hrefs'
 export default Vue.extend({
   name: 'LadisFooter',
   data () {
     return {
+      product,
+      support,
+      about,
+      news,
       defaults: this.$store.state.defaults
     }
   }

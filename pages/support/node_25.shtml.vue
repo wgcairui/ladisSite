@@ -17,11 +17,11 @@
             >
               +
             </b-button>
-            <b-button variant="link" @click="slic(val.title)">
+            <nuxt-link :to="val.link">
               {{
                 val.title
               }}
-            </b-button>
+            </nuxt-link>
             <b-collapse
               :id="'asid' + key"
               visible
@@ -30,11 +30,11 @@
             >
               <ul>
                 <li v-for="v1 in val.child" :key="v1.title">
-                  <b-button variant="link" @click="slic(v1.title)">
+                  <nuxt-link :to="v1.link">
                     {{
                       v1.title
                     }}
-                  </b-button>
+                  </nuxt-link>
                 </li>
               </ul>
             </b-collapse>
@@ -45,24 +45,27 @@
         <b-list-group id="support_list" class="list-group1 pt-3">
           <b-list-group-item variant="dark" />
           <b-list-group-item
-            v-for="val in support_list.slice(
+            v-for="val in list.slice(
               currentPage * 10 - 10,
               currentPage * 10
             )"
             :key="val.title"
           >
-            <b-link :to="{ path: val.href }">
-              {{ val.title }}
-            </b-link>
+            <nuxt-link :to="val.link">
+              {{
+                val.title
+              }}
+            </nuxt-link>
           </b-list-group-item>
         </b-list-group>
 
         <b-pagination
+          v-if="list.length > 10"
           v-model="currentPage"
           :per-page="perPage"
-          :total-rows="support_list.length"
+          :total-rows="list.length"
           aria-controls="support_list"
-          class="d-flex justify-content-center"
+          class="d-flex justify-content-center mt-2"
         />
       </b-col>
     </b-row>
@@ -78,33 +81,19 @@ interface buyArea {
 export default Vue.extend({
 
   async asyncData ({ app }) {
-    const supportAsid = await app.$Api.GeneralGetInfo({ table: 'Page', title: 'support_problem_asid' }).then(el => el.data)
+    const supportAsid = await app.$Api.GeneralGetInfo({ table: 'Page', queryKeys: ['MainTitle'], MainTitle: 'support_problem_asid' })
     const list = await app.$Api.GeneralGetInfo({ table: 'Support_list' })
+    console.log({ supportAsid, list })
 
     return { supportAsid, list }
   },
   data () {
     return {
       perPage: 10,
-      currentPage: 1,
-      support_list: []
+      currentPage: 1
     }
   },
 
-  created () {
-    this.slic()
-  },
-  methods: {
-    slic (title:string = '') {
-      if (title) {
-        this.support_list = this.$data.list.filter((val:buyArea) => {
-          return val.parentsUntil === title || val.parent === title
-        })
-      } else {
-        this.support_list = this.$data.list
-      }
-    }
-  },
   head: {
     title: '常见问题-雷迪司',
     meta: [
