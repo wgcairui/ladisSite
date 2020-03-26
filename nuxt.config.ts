@@ -20,10 +20,10 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: process.env.npm_package_description ?? ''
       }
     ], defaults.home.key?.meta].flat(),
-    link: [{ rel: 'icon', type: 'image/x-icon', href: defaults.home.ico || '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: defaults.home.ico ?? '/favicon.ico' }]
   },
 
   /*
@@ -73,7 +73,7 @@ export default {
     // eslint-disable-next-line require-await
     routes: async () => {
       const param:params = { table: 'Router' }
-      return await axios.get(
+      const router = await axios.get(
         `${RemoteServerAddress}/api/Get_arg`, { params: param }
       ).then((el) => {
         return el.data.map((router: { rout: any }) => router.rout)
@@ -81,6 +81,7 @@ export default {
         console.log(err)
         return []
       })
+      return router
     }
   },
   optimizedImages: {

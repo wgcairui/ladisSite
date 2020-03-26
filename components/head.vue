@@ -98,10 +98,10 @@
               <b-dropdown-item
                 v-for="(val,key) in defaults.buy.userMall"
                 :key="key+100"
-                :href="val.src || '#'"
+                :href="val.src "
                 target="_blank"
               >
-                {{ val.title || '' }}
+                {{ val.title }}
               </b-dropdown-item>
             </b-nav-item-dropdown>
 
