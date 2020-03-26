@@ -83,7 +83,6 @@ export default Vue.extend({
   async asyncData ({ app }) {
     const supportAsid = await app.$Api.GeneralGetInfo({ table: 'Page', queryKeys: ['MainTitle'], MainTitle: 'support_problem_asid' })
     const list = await app.$Api.GeneralGetInfo({ table: 'Support_list' })
-    console.log({ supportAsid, list })
 
     return { supportAsid, list }
   },

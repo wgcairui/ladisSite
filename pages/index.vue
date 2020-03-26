@@ -57,6 +57,8 @@ export default Vue.extend({
       .GetHomeNews()
       .then((el:caseList[]) => {
         return el.map(em => em.title)
+      }).catch(() => {
+        return []
       })
     const carousel = [
       'banner/banner01-pc.jpg',

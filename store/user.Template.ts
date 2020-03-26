@@ -1,7 +1,7 @@
 import { userSetup } from '../types/myTypes'
-
+const name = '湖北雷迪司'
 export const defaults: userSetup = {
-  name: '湖北雷迪司',
+  name,
   home: {
     ico: '/favicon.ico',
     logo: '/a_images/public/logo.png',
@@ -11,7 +11,7 @@ export const defaults: userSetup = {
     },
     beian: '鄂ICP备19029626号-1',
     key: {
-      title: 'UPS电源_不间断电源_精密空调_机房一体化机柜_数据中心建设-湖北雷迪司',
+      title: `UPS电源_不间断电源_精密空调_机房一体化机柜_数据中心建设-${name}`,
       meta: [
         {
           name: 'keywords', content: `雷迪司,UPS,机房专用空调,UPS电源,不间断电源,机房空调,精密空调,微模块,模块化机房,

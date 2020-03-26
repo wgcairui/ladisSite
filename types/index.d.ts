@@ -11,6 +11,7 @@ interface Api {
     GeneralGetInfo: <T = any>(params: params) => Promise<T>
     GetHomeNews: <T = any>() => Promise<T>
     GetBuyList: <T = any>(city: string) => Promise<T>
+    Down: (fileName: string) => Promise<any>
 }
 
 declare module 'vue/types/vue' {

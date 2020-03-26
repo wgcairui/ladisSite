@@ -7,6 +7,7 @@
       </b-col>
     </b-row>
     <b-row no-gutters>
+      <!-- 常见问题 -->
       <b-col v-if="isProblem" cols="12" class=" px-2">
         <div v-if="!body.movie" v-html="body.html" />
         <div v-else>
@@ -20,8 +21,15 @@
           />
         </div>
       </b-col>
+      <!-- 软件下载 -->
       <b-col v-else class="px-2">
-        <b-table-lite :items="[body]" :fields="fields" stacked />
+        <b-table-lite :items="[body]" :fields="fields" stacked>
+          <template v-slot:cell(down)="row">
+            <b-button @click="down(row.value)">
+              下载文件
+            </b-button>
+          </template>
+        </b-table-lite>
       </b-col>
     </b-row>
   </b-container>
@@ -45,7 +53,7 @@ export default Vue.extend({
       body = down[0]
       title = body.title
     }
-    console.log({ body, title, isProblem })
+    // console.log({ body, title, isProblem })
 
     return { body, title, isProblem }
   },
@@ -59,8 +67,17 @@ export default Vue.extend({
         { key: 'size', label: '文件大小' },
         { key: 'version', label: '版本' },
         { key: 'updateReason', label: '更新缘由' },
-        { key: 'down', label: '下载' }
+        { key: 'down', label: '获取' }
       ]
+    }
+  },
+  methods: {
+    down (fileName:string) {
+      try {
+        window.open(`/api/Down?fileName=${fileName}`, '_self')
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   head () {

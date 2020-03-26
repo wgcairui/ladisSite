@@ -1,6 +1,7 @@
 import { Context, Configuration } from '@nuxt/types'
 import axios from 'axios'
 import { defaults } from './store/user'
+import { params } from './types'
 const RemoteServerAddress = 'http://localhost:9006'// 'http://www.ladishb.com:9006'
 export default {
   mode: 'universal',
@@ -66,18 +67,20 @@ export default {
     '@nuxtjs/sitemap'
   ],
   sitemap: {
-    hostname: 'http://www.ladishb.com',
+    hostname: defaults.name,
     gzip: true,
     // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
     // eslint-disable-next-line require-await
     routes: async () => {
-      /* const rout = await ctx.app.$Api.GeneralGetInfo({ table: 'router' })
-      return rout */
-
-      const data = await axios.get(
-        `${RemoteServerAddress}/api/Get_arg`, { params: { table: 'router' } }
-      )
-      return data.data.map((router: { rout: any }) => router.rout)
+      const param:params = { table: 'Router' }
+      return await axios.get(
+        `${RemoteServerAddress}/api/Get_arg`, { params: param }
+      ).then((el) => {
+        return el.data.map((router: { rout: any }) => router.rout)
+      }).catch((err) => {
+        console.log(err)
+        return []
+      })
     }
   },
   optimizedImages: {
@@ -139,5 +142,8 @@ export default {
      ** You can extend webpack config here
      */
     extend (_config: Configuration, _ctx: Context) { }
+  },
+  router: {
+    // middleware: 'redict'
   }
 }

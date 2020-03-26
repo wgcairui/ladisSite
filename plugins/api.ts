@@ -20,6 +20,11 @@ const MyApi:Plugin = (ctx:Context, inject: (key: string, value: any) => void) =>
           const data = await this.axios.$get('/api/Get_buy_li', { params: { city } })
           return data
         }
+
+        static async Down (fileName:string) {
+          const data = await this.axios.get('/api/Down', { params: { fileName } })
+          return data
+        }
   }
   Api.axios.onRequest((config) => {
     const SiteName = ctx.store.state.defaults.name
