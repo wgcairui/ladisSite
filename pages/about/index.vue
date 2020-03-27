@@ -29,13 +29,13 @@ export default Vue.extend({
     const key = getKey(aboutHrefs, url)
     // 获取body
     const result = await app.$Api.GeneralGetInfo({ table: 'About', queryKeys: ['title'], title: key }).then((el:about[]) => {
-      if (el && el.length > 0) {
+      if (el?.length > 0) {
         const content = el[0].content?.filter(el => el.webSite === webSite)
         if (!content) { return false }
         return content[0].body
       } else { return false }
     })
-    const body = result || aboutData['公司简介'].content.body
+    const body = result || ((aboutData as any)[key].content.body as any)[app.i18n.locale]
     return { body, key }
   },
   head () {

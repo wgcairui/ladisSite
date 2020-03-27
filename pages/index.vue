@@ -39,7 +39,7 @@
     <b-row no-gutters class=" p-4">
       <b-col>
         <h3 class="my-3 text-center text-primary">
-          售后支持
+          {{ $t('shou-hou-zhi-chi') }}
           <my-section />
         </h3>
       </b-col>
@@ -60,13 +60,7 @@ export default Vue.extend({
       }).catch(() => {
         return []
       })
-    const carousel = [
-      'banner/banner01-pc.jpg',
-      'banner/banner02-pc.jpg',
-      'banner/banner03-pc.jpg',
-      'banner/banner04-pc.jpg'
-    ]
-    return { GetNews, carousel }
+    return { GetNews }
   },
   data () {
     return {
@@ -82,6 +76,23 @@ export default Vue.extend({
     }
   },
   computed: {
+    carousel () {
+      const local = this.$i18n.locale
+      if (local === 'zh') {
+        return [
+          '/banner/banner01-pc.jpg',
+          '/banner/banner02-pc.jpg',
+          '/banner/banner03-pc.jpg',
+          '/banner/banner04-pc.jpg'
+        ]
+      } else {
+        return [
+          '/banner/EN-1-pc.jpg',
+          '/banner/EN-2-pc.jpg',
+          '/banner/EN-3-pc.jpg'
+        ]
+      }
+    },
     newsNum () {
       return this.$data.GetNews.length || 0
     }

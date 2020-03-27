@@ -3,7 +3,7 @@
     <b-container>
       <b-navbar toggleable="lg" type="dark" variant="dark">
         <b-navbar-brand href="/">
-          <my-img :src="'/logo.png'" || defaults.home.logo />
+          <b-img src="/logo.png" || defaults.home.logo />
           <!-- <img src="" height="40"> -->
         </b-navbar-brand>
 
@@ -177,11 +177,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import { NuxtVueI18n } from 'nuxt-i18n/types/nuxt-i18n'
-import MyImg from './MyImg.vue'
 import { news, cases, vr, product, about, support } from './hrefs'
 export default Vue.extend({
   name: 'LadisHead',
-  components: { MyImg },
   data () {
     return {
       news,
@@ -207,6 +205,7 @@ export default Vue.extend({
     Setlang (lang: string) {
       this.$i18n.setLocaleCookie(lang)
       this.$router.push(this.switchLocalePath(lang))
+      this.$router.push('/#')
     }
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <b-col cols="12" md="2" class="list">
+  <b-col cols="12" md="3" class="list">
     <b-navbar
       toggleable="lg"
       type="dark"
@@ -38,44 +38,45 @@ export default Vue.extend({
   name: 'ProductAsid',
   computed: {
     list () {
-      // const locale = this.$i18n.locale
+      const locale = this.$i18n.locale
       const list = [
         {
-          title: 'UPS电源',
+          title: this.$t('ups-dian-yuan'),
           href: product['UPS电源'],
+          locale,
           args: [
             {
-              title: '后备式UPS电源',
+              title: this.$t('hou-bei-shi-ups-dian-yuan'),
               href: product['后备式UPS电源']
             },
             {
-              title: '高频单相UPS电源',
+              title: this.$t('gao-pin-dan-xiang-ups-dian-yuan'),
               href: product['高频单相UPS电源']
             },
             {
-              title: '高频三相UPS电源',
+              title: this.$t('gao-pin-san-xiang-ups-dian-yuan'),
               href: product['高频三相UPS电源']
             },
             {
-              title: '工频UPS电源',
+              title: this.$t('gong-pin-ups-dian-yuan'),
               href: product['工频UPS电源']
             },
             {
-              title: '机架式UPS电源',
+              title: this.$t('ji-jia-shi-ups-dian-yuan'),
               href: product['机架式UPS电源']
             },
             {
-              title: '模块化UPS电源',
+              title: this.$t('mo-kuai-hua-ups-dian-yuan'),
               href: product['模块化UPS电源']
             },
             {
-              title: 'UPS蓄电池',
+              title: this.$t('ups-xu-dian-chi'),
               href: product['UPS蓄电池']
             }
           ]
         },
         {
-          title: '数据中心',
+          title: this.$t('shu-ju-zhong-xin'),
           href: product['数据中心'],
           args: [
             {
@@ -83,41 +84,41 @@ export default Vue.extend({
               href: product['户外一体柜ETC']
             },
             {
-              title: '微模块机房',
+              title: this.$t('wei-mo-kuai-ji-fang'),
               href: product['微模块机房']
             },
             {
-              title: '一体化机柜',
+              title: this.$t('yi-ti-hua-ji-gui'),
               href: product['一体化机柜']
             },
             {
-              title: '配电PDU',
+              title: this.$t('pei-dian-pdu'),
               href: product['配电PDU']
             },
             {
-              title: '动环监控',
+              title: this.$t('dong-huan-jian-kong'),
               href: product['动环监控']
             },
             {
-              title: '网络机柜',
+              title: this.$t('wang-luo-ji-gui'),
               href: product['网络机柜']
             }
           ]
         },
         {
-          title: '机房空调',
+          title: this.$t('ji-fang-kong-tiao'),
           href: product['机房空调'],
           args: [
             {
-              title: '房间空调',
+              title: this.$t('fang-jian-kong-tiao'),
               href: product['房间空调']
             },
             {
-              title: '列间空调',
+              title: this.$t('lie-jian-kong-tiao'),
               href: product['列间空调']
             },
             {
-              title: '机架空调',
+              title: this.$t('ji-jia-kong-tiao'),
               href: product['机架空调']
             }
           ]

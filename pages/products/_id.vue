@@ -4,7 +4,16 @@
       <product-asid />
       <b-col>
         <b-row no-gutters>
-          <b-col v-for="val in all" :key="val.link" cols="12" md="4" class="p-4">
+          <b-col
+            v-for="(val, key) in all.slice(
+              currentPage * 9 - 9,
+              currentPage * 9
+            )"
+            :key="val.link+key"
+            cols="12"
+            md="4"
+            class="p-4"
+          >
             <b-card class=" h-100">
               <my-img :src="val.img" :alt="val.title" />
               <!-- <b-card-img :src="val.img" :alt="val.title"></b-card-img> -->
@@ -17,6 +26,18 @@
             </b-card>
           </b-col>
         </b-row>
+        <b-row>
+          <b-col>
+            <b-pagination
+              v-show="rows > perPage"
+              v-model="currentPage"
+              class=" d-flex justify-content-center"
+              :total-rows="rows"
+              :per-page="perPage"
+              aria-controls="my-table"
+            />
+          </b-col>
+        </b-row>
       </b-col>
     </b-row>
   </b-container>
@@ -26,12 +47,25 @@ import Vue from 'vue'
 import ProductAsid from '../../components/ProductAsid.vue'
 import MyImg from '../../components/MyImg.vue'
 import { product } from '../../types/typing'
+import { product as products, getKey } from '../../components/hrefs'
 export default Vue.extend({
   components: { ProductAsid, MyImg },
   async asyncData ({ app, params }) {
     const MainUrl = `/products/${params.id}`
-    const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product', queryKeys: ['MainUrl'], MainUrl })
+    const MainTitle = getKey(products, MainUrl)
+    const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product', queryKeys: ['MainTitle'], MainTitle })
     return { all }
+  },
+  data () {
+    return {
+      perPage: 9,
+      currentPage: 1
+    }
+  },
+  computed: {
+    rows () {
+      return this.$data.all.length
+    }
   },
   head: {
     title: '（LADS）品牌产品厂家【价格 型号 参数 图片】-雷迪司',

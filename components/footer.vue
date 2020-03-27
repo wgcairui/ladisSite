@@ -81,7 +81,7 @@
             <b-col cols="6" sm="4" md="2">
               <ul>
                 <li>
-                  <strong>关于{{ defaults.name }}</strong>
+                  <strong>{{ $t('guan-yu') }}{{ defaults.name }}</strong>
                 </li>
                 <li>
                   <nuxt-link :to="about['公司简介']">
@@ -116,6 +116,7 @@
         </b-container>
       </b-col>
     </b-row>
+    <friend-link />
     <b-row>
       <b-col cols="12" class="p-0">
         <div class=" bg-dark p-2 d-flex flex-row flex-wrap">
@@ -154,8 +155,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import { product, support, about, news } from './hrefs'
+import FriendLink from './FriendLink.vue'
 export default Vue.extend({
   name: 'LadisFooter',
+  components: { FriendLink },
   data () {
     return {
       product,

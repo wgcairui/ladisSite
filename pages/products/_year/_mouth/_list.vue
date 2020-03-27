@@ -37,7 +37,7 @@
       <b-col cols="12" class="p-5 border-top">
         <b-row>
           <b-col cols="12" class="mb-3">
-            <strong>产品特点</strong>
+            <strong>{{ $t('chan-pin-te-dian') }}</strong>
           </b-col>
           <b-col cols="12" class="t2">
             <div
@@ -84,8 +84,8 @@ export default Vue.extend({
   computed: {
     items () {
       return [
-        { text: '主页', href: '/' },
-        { text: '产品分类', href: '/product' },
+        { text: this.$t('zhu-ye'), href: '/' },
+        { text: this.$t('chan-pin-fen-lei'), href: '/product' },
         { text: this.$data.all.MainParent, href: `/product/${this.$data.all.MainParent}` },
         { text: this.$data.all.title }
       ]

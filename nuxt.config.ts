@@ -119,7 +119,7 @@ export default {
       cookieKey: 'Ladis_WebSite_I18n'
     },
     // 路由配置
-    strategy: 'prefix_except_default'
+    strategy: 'no_prefix'
   },
   axios: {
     // baseURL: 'http://localhost:9005',

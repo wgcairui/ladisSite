@@ -25,9 +25,12 @@
       <b-col v-else class="px-2">
         <b-table-lite :items="[body]" :fields="fields" stacked>
           <template v-slot:cell(down)="row">
-            <b-button @click="down(row.value)">
+            <a :href="row.value">
+              DownLoad
+            </a>
+            <!-- <b-button @click="down(row.value)">
               下载文件
-            </b-button>
+            </b-button> -->
           </template>
         </b-table-lite>
       </b-col>
@@ -72,13 +75,13 @@ export default Vue.extend({
     }
   },
   methods: {
-    down (fileName:string) {
+    /* down (fileName:string) {
       try {
         window.open(`/api/Down?fileName=${fileName}`, '_self')
       } catch (error) {
         console.log(error)
       }
-    }
+    } */
   },
   head () {
     return {
