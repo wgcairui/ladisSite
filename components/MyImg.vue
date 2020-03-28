@@ -17,7 +17,8 @@ export default Vue.extend({
   },
   data () {
     return {
-      img: 'http"//www.ladishb.com' + this.src,
+    // img: 'http"//www.ladishb.com' + this.src,
+      img: this.src,
       mainProps: {
         center: true,
         fluidGrow: true,
@@ -28,7 +29,7 @@ export default Vue.extend({
   },
   methods: {
     onPic () {
-      this.img = 'http://www.ladishb.com:9006' + this.src
+      // this.img = 'http://www.ladishb.com:9006' + this.src
     }
   }
 })

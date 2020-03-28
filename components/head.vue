@@ -3,7 +3,7 @@
     <b-container>
       <b-navbar toggleable="lg" type="dark" variant="dark">
         <b-navbar-brand href="/">
-          <b-img src="/logo.png" || defaults.home.logo />
+          <b-img src="/logo.png" />
           <!-- <img src="" height="40"> -->
         </b-navbar-brand>
 
