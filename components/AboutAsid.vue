@@ -25,7 +25,7 @@
       {{ $t("index.974lfm") }}
     </b-list-group-item>
     <b-list-group-item
-      :to="about['销售服务中心']"
+      :to="about['经销商列表']"
       class="bg-dark rounded-0 my-1 text-light"
     >
       {{ $t("index.n747ex") }}
