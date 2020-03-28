@@ -7,8 +7,8 @@
             {{ title }}
           </h5>
         </div>
-        <div v-if="typeof list === 'string'">
-          <div id="newsText" class="px-5 ctlimg ql-editor" v-html="list" />
+        <div v-if="list.content">
+          <div id="newsText" class="px-5 ctlimg ql-editor" v-html="list.content" />
         </div>
         <div v-else>
           <div id="newsText" class="px-5 ctlimg">
