@@ -7,7 +7,7 @@ export default {
   mode: 'universal',
   server: {
     port: process.env.NODE_ENV === 'production' ? (process.env.NUXT_PORT || 80) : 9005,
-    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
+    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : '0.0.0.0'
   },
   /*
    ** Headers of the page
