@@ -80,7 +80,16 @@
 import Vue from 'vue'
 import MyImg from '../../components/MyImg.vue'
 export default Vue.extend({
-  components: { MyImg }
+  components: { MyImg },
+  head () {
+    return {
+      title: `${this.$data.title}-雷迪司`,
+      meta: [
+        { name: 'keywords', content: `${this.$data.title}-雷迪司` },
+        { name: 'description', content: `${this.$data.title}-雷迪司` }
+      ]
+    }
+  }
 })
 </script>
 

@@ -65,6 +65,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import MyImg from '../../../../components/MyImg.vue'
+import { product } from '../../../../components/hrefs'
 import { productList } from '../../../../types/typing'
 export default Vue.extend({
   components: {
@@ -86,7 +87,7 @@ export default Vue.extend({
       return [
         { text: this.$t('zhu-ye'), href: '/' },
         { text: this.$t('chan-pin-fen-lei'), href: '/product' },
-        { text: this.$data.all.MainParent, href: `/product/${this.$data.all.MainParent}` },
+        { text: this.$data.all.MainParent, href: (product as any)[this.$data.all.MainParent] },
         { text: this.$data.all.title }
       ]
     },

@@ -43,15 +43,6 @@ import Vue from 'vue'
 import CardCopy from '../../components/CardCopy.vue'
 import CaseAsid from '../../components/CaseAsid.vue'
 import { cases } from '../../types/typing'
-interface caseBody{
-  data:{
-    img:string
-    text:string
-    name:string
-    time:string
-    href:string
-  }
-}
 export default Vue.extend({
   components: {
     CardCopy,

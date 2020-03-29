@@ -3,9 +3,7 @@
     <b-row no-gutters>
       <b-col md="4" class="d-none d-sm-block">
         <b-button v-b-toggle.collapse-1 block class=" mt-3">
-          {{
-            $t("_id.tgqqj4")
-          }}
+          {{ $t('chang-jian-wen-ti') }}
         </b-button>
         <b-collapse id="collapse-1" visible>
           <b-list-group class="list-group">

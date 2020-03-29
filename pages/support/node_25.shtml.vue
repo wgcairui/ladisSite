@@ -4,9 +4,7 @@
       <b-col cols="12" md="4">
         <b-list-group class="asid">
           <b-list-group-item variant="info">
-            {{
-              $t("常见问题.w5qbf8")
-            }}
+            {{ $t('chang-jian-wen-ti') }}
           </b-list-group-item>
           <b-list-group-item v-for="(val,key) in supportAsid" :key="'asid' + key">
             <b-button
