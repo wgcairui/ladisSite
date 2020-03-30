@@ -13,6 +13,7 @@ interface Api {
     GetHomeNews: <T = any>() => Promise<T>
     GetBuyList: <T = any>(city: string) => Promise<T>
     Down: (fileName: string) => Promise<any>
+    GetContent: (link:string) => Promise<any>
 }
 
 declare module 'vue/types/vue' {

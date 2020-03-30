@@ -25,6 +25,11 @@ const MyApi:Plugin = (ctx:Context, inject: (key: string, value: any) => void) =>
           const data = await this.axios.get('/api/Down', { params: { fileName } })
           return data
         }
+
+        static async GetContent (link:string) {
+          const data = await this.axios.$get('/api/GetContent', { params: { link } })
+          return data
+        }
   }
   Api.axios.onRequest((config) => {
     const SiteName = ctx.store.state.defaults.name

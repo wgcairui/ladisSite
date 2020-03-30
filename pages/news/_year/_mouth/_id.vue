@@ -45,6 +45,8 @@ export default Vue.extend({
       queryKeys: ['MainUrl'],
       MainUrl
     })
+    const Content = await app.$Api.GetContent(list.link as string)
+    console.log({ list, Content })
     return { title: '', list }
   },
   data () {
