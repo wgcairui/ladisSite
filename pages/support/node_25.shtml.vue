@@ -91,12 +91,21 @@ export default Vue.extend({
     }
   },
 
-  head: {
-    title: '常见问题-雷迪司',
-    meta: [
-      { name: 'keywords', content: '常见问题-雷迪司' },
-      { name: 'description', content: '常见问题-雷迪司' }
-    ]
+  head () {
+    const [Page] = this.$data.list
+    return {
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
+      meta: [
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
+      ]
+    }
   }
 })
 </script>

@@ -45,8 +45,7 @@ export default Vue.extend({
       queryKeys: ['MainUrl'],
       MainUrl
     })
-
-    return { title: list.title, list }
+    return { title: '', list }
   },
   data () {
     return {
@@ -59,11 +58,18 @@ export default Vue.extend({
     }
   },
   head () {
+    const Page = this.$data.list
     return {
-      title: `${this.$data.title}-雷迪司`,
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
       meta: [
-        { name: 'keywords', content: this.$data.title },
-        { name: 'description', content: this.$data.title }
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
       ]
     }
   }

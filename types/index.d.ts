@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios'
 import { DbTables } from './typing'
+import { userSetup } from './myTypes'
 interface params {
     table: DbTables
     isNews?: boolean
@@ -16,7 +17,8 @@ interface Api {
 
 declare module 'vue/types/vue' {
     interface Vue {
-        $Api: Api
+        $Api: Api,
+        $defaults:userSetup
     }
 }
 

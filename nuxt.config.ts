@@ -2,8 +2,8 @@ import { Context, Configuration } from '@nuxt/types'
 import axios from 'axios'
 import { defaults } from './store/user'
 import { params } from './types'
-// const RemoteServerAddress = process.env.NODE_ENV === 'production' ? 'http://www.ladishb.com:9006' : 'http://localhost:9006'//
-const RemoteServerAddress = 'http://www.ladishb.com:9006'
+const RemoteServerAddress = process.env.NODE_ENV === 'production' ? 'http://www.ladishb.com:9006' : 'http://localhost:9006'//
+// const RemoteServerAddress = 'http://www.ladishb.com:9006'
 export default {
   mode: 'universal',
   server: {
@@ -13,7 +13,7 @@ export default {
   /*
    ** Headers of the page
    */
-  head: {
+  /* head: {
     title: defaults.home.key?.title,
     meta: [[
       { charset: 'utf-8' },
@@ -25,7 +25,7 @@ export default {
       }
     ], defaults.home.key?.meta].flat(),
     link: [{ rel: 'icon', type: 'image/x-icon', href: defaults.home.ico ?? '/favicon.ico' }]
-  },
+  }, */
 
   /*
    ** Customize the progress-bar color
@@ -38,7 +38,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/api.ts'],
+  plugins: ['~/plugins/api.ts', '~/plugins/defaults.ts'],
   /*
    ** Nuxt.js dev-modules
    */

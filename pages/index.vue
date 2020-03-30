@@ -53,7 +53,7 @@ import { caseList } from '../types/typing'
 export default Vue.extend({
   components: { MySection },
   async asyncData ({ app }) {
-    const GetNews: string[] = await app.$Api
+    const GetNews: any[] = await app.$Api
       .GetHomeNews()
       .then((el:caseList[]) => {
         return el.map(em => em.title)

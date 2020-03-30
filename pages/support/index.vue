@@ -71,11 +71,7 @@ export default Vue.extend({
     }
   },
   head: {
-    title: '服务支持-雷迪司',
-    meta: [
-      { name: 'keywords', content: '服务支持-雷迪司' },
-      { name: 'description', content: '服务支持-雷迪司' }
-    ]
+    title: '服务支持'
   }
 })
 </script>

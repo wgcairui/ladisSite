@@ -41,11 +41,18 @@ export default Vue.extend({
     return { listArray }
   },
   head () {
+    const [Page] = this.$data.listArray as vr[]
     return {
-      title: '全景展示-雷迪司',
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
       meta: [
-        { name: 'keywords', content: '全景展示-雷迪司' },
-        { name: 'description', content: '全景展示-雷迪司' }
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
       ]
     }
   }

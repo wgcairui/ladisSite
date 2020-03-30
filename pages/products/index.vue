@@ -52,6 +52,7 @@ export default Vue.extend({
   components: { ProductAsid, MyImg },
   async asyncData ({ app }) {
     const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product' })
+    console.log(all)
     return { all }
   },
 
@@ -66,19 +67,22 @@ export default Vue.extend({
       return this.$data.all.length
     }
   },
-  head: {
-    title: '（LADS）品牌产品厂家【价格 型号 参数 图片】-雷迪司',
-    meta: [
-      {
-        name: 'keywords',
-        content: '（LADS）品牌产品厂家【价格 型号 参数 图片】-雷迪司'
-      },
-      {
-        name: 'description',
-        content:
-          '雷迪司厂家生产商提供LADS品牌产品，包含LADS品牌产品品牌、参数、报价、价格、规格、大图片等，同时提供维修、维护、售后服务-深圳雷迪司科技股份有限公司'
-      }
-    ]
+
+  head () {
+    const [Page] = this.$data.all as product[]
+    return {
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
+      meta: [
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
+      ]
+    }
   }
 })
 </script>

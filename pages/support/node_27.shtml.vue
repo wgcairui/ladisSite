@@ -82,7 +82,7 @@ export default Vue.extend({
     const downs = await app.$Api.GeneralGetInfo({ table: 'Support', queryKeys: ['MainParent'], MainParent: title }).then((el:support[]) => {
       const supportMap:Map<string, support[]> = new Map()
       el.forEach((Element) => {
-        const title = Element.MainTitle
+        const title = Element.MainTitle as string
         if (supportMap.has(title)) {
           const supports = supportMap.get(title) as support[]
           supports.push(Element)
@@ -95,22 +95,19 @@ export default Vue.extend({
     console.log(downs)
     return { supportAsid, downs, title }
   },
-  /* methods: {
-    fileTypeFilter (file:any, type:string) {
-      const result = []
-      for (const i of file) {
-        if (i.type === type) { result.push(i) }
-      }
-
-      return result
-    }
-  }, */
   head () {
+    const [Page] = this.$data.supportAsid
     return {
-      title: `${this.$data.title}-雷迪司`,
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
       meta: [
-        { name: 'keywords', content: `${this.$data.title}-雷迪司` },
-        { name: 'description', content: `${this.$data.title}-雷迪司` }
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
       ]
     }
   }

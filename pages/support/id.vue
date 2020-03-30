@@ -87,11 +87,18 @@ export default Vue.extend({
     }
   },
   head () {
+    const [Page] = this.$data.downs
     return {
-      title: `${this.$data.title}-雷迪司`,
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
       meta: [
-        { name: 'keywords', content: `${this.$data.title}-雷迪司` },
-        { name: 'description', content: `${this.$data.title}-雷迪司` }
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
       ]
     }
   }

@@ -74,18 +74,20 @@ export default Vue.extend({
       ]
     }
   },
-  methods: {
-    /* down (fileName:string) {
-      try {
-        window.open(`/api/Down?fileName=${fileName}`, '_self')
-      } catch (error) {
-        console.log(error)
-      }
-    } */
-  },
   head () {
+    const Page = this.$data.body
     return {
-      title: this.$data.title
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
+      meta: [
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
+      ]
     }
   }
 })

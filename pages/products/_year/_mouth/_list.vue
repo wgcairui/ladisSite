@@ -99,11 +99,18 @@ export default Vue.extend({
     }
   },
   head () {
+    const Page = this.$data.all
     return {
-      title: this.$data.title,
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
       meta: [
-        { name: 'keywords', content: this.$data.title },
-        { name: 'description', content: this.$data.title }
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
       ]
     }
   }

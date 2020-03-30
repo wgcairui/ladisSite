@@ -53,8 +53,6 @@ export default Vue.extend({
     const key = getKey(news, url)
     const listArray = await app.$Api.GeneralGetInfo({ table: 'News', queryKeys: ['MainTitle'], MainTitle: key })
     return { listArray }
-    /* const listArray = await app.$Api.GeneralGetInfo({ table: 'News', isNews: true })
-    return { listArray } */
   },
   data () {
     return {
@@ -75,11 +73,18 @@ export default Vue.extend({
     }
   },
   head () {
+    const [Page] = this.$data.listArray
     return {
-      title: '全部新闻-雷迪司',
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
       meta: [
-        { name: 'keywords', content: '全部新闻-雷迪司' },
-        { name: 'description', content: '全部新闻-雷迪司' }
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
       ]
     }
   }

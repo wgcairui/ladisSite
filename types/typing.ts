@@ -27,18 +27,21 @@ type HtmlString = string;
 export type contentType = 'html' | '';
 // 公用包装
 export interface GMpack {
-  MainUrl:string
-  MainTitle: string; // 分类
-  MainParent: string; // 父类
-  date: Date | string; // 日期
-  table:string
-  href:string
+  PageTitle:string
+  Pagekeywords:string
+  Pagedescription:string
+  MainUrl?:string
+  MainTitle?: string; // 分类
+  MainParent?: string; // 父类
+  date?: Date | string; // 日期
+  table?:DbTables
+  href?:string
   link?:string
 }
 // 公用链接格式
 export interface GMlink {
   target?: string;
-  href: string;
+  href?: string;
   link?:string;
   title: string;
 }
@@ -116,7 +119,6 @@ export interface buyList extends GMpack {
   parent: string;
   title: string;
   content: string;
-  table: string;
 }
 
 // vr
@@ -134,9 +136,10 @@ export interface vr extends GMpack {
 export interface cases extends vr {}
 // 案例详情
 export interface caseList extends GMpack {
-  title:string
-  text: string[];
-  pic: string[];
+  title?:string
+  text?: string[];
+  pic?: string[];
+  content?:string
 }
 // about
 export interface about extends GMpack {

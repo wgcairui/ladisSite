@@ -71,11 +71,18 @@ export default Vue.extend({
     }
   },
   head () {
+    const [Page] = this.$data.listArray
     return {
-      title: '成功案例-雷迪司',
+      title: `${Page.PageTitle} - ${this.$defaults.name}`,
       meta: [
-        { name: 'keywords', content: '成功案例-雷迪司' },
-        { name: 'description', content: '成功案例-雷迪司' }
+        {
+          name: 'keywords',
+          content: Page.Pagekeywords
+        },
+        {
+          name: 'description',
+          content: Page.Pagedescription
+        }
       ]
     }
   }
