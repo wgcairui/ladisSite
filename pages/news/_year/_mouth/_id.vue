@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-row no-gutters>
+    <b-row no-gutters class=" py-4">
       <b-col cols="12">
         <div class="my-4 border-bottom">
           <h5 class=" text-center">
@@ -16,27 +16,34 @@
               {{ val }}
             </p>
           </div>
-          <div id="pic" class="px-5">
-            <my-img
+          <div id="pic" class="px-5 d-flex flex-column justify-content-center">
+            <b-img-lazy
               v-for="val in list.pic || []"
               :key="val"
               :src="val"
-              class="m-0 p-0 w-75 my-2"
+              class="m-0 p-0 w-50 my-2"
             />
           </div>
         </div>
+      </b-col>
+    </b-row>
+    <b-row no-gutters class="py-4">
+      <b-col class="d-flex justify-content-between">
+        <b-link v-if="Content.pre" :to="Content.pre.link" class=" text-dark">
+          上一页:{{ Content.pre.text }}
+        </b-link>
+        <div />
+        <b-link v-if="Content.next" :to="Content.next.link" class=" text-dark">
+          下一页:{{ Content.next.text }}
+        </b-link>
       </b-col>
     </b-row>
   </b-container>
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import MyImg from '../../../../components/MyImg.vue'
-import { caseList } from '../../../../types/typing'
+import { caseList, casesContext } from '../../../../types/typing'
 export default Vue.extend({
-  components: {
-    MyImg
-  },
   async asyncData ({ app, params }) {
     const MainUrl = '/news/' + Object.values(params).join('/')
 
@@ -45,9 +52,8 @@ export default Vue.extend({
       queryKeys: ['MainUrl'],
       MainUrl
     })
-    const Content = await app.$Api.GetContent(list.link as string)
-    console.log({ list, Content })
-    return { title: '', list }
+    const Content:casesContext = await app.$Api.GetContent(list.link as string)
+    return { title: list.title, list, Content }
   },
   data () {
     return {
@@ -77,14 +83,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang="scss">
-.content-img img {
-  max-width: 100%;
-  margin: 10px;
-}
-#newsText img {
-  max-width: 100% !important;
-  height: auto;
-}
-</style>
