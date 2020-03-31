@@ -29,8 +29,8 @@ export const defaults: userSetup = {
       ]
     },
     contact: {
-      qq: '15713024',
-      tel: ['张先生:18271826065']
+      qq: '',
+      tel: ['雷先生:13705817726']
     }
   },
   product: {
