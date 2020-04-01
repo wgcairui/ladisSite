@@ -19,7 +19,12 @@ export const mutations: MutationTree<RootState> = {
 export const actions: ActionTree<RootState, RootState> = {
   nuxtServerInit ({ commit }, { req }) {
     const forwardedHost = req.headers['x-forwarded-host']
-    const host = req.headers.host.split(':')[0]
+    let host
+    try {
+      host = req.headers.host.split(':')[0]
+    } catch (error) {
+      console.log({ host: req.headers.host })
+    }
     commit('SETHOST', { localUrl: forwardedHost || host })
   }
 }
