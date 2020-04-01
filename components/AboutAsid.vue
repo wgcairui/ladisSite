@@ -19,12 +19,14 @@
       {{ $t("index.uqcwsg") }}
     </b-list-group-item>
     <b-list-group-item
+      v-if="defaults.buy && defaults.buy.serverCenter"
       :to="about['经销商列表']"
       class="bg-dark rounded-0 my-1 text-light"
     >
       {{ $t("index.974lfm") }}
     </b-list-group-item>
     <b-list-group-item
+      v-if="defaults.buy && defaults.buy.serverCenter"
       :to="about['销售服务中心']"
       class="bg-dark rounded-0 my-1 text-light"
     >
@@ -68,6 +70,7 @@ import { about, news } from './hrefs'
 export default Vue.extend({
   data () {
     return {
+      defaults: this.$store.state.defaults,
       about,
       news
     }

@@ -50,7 +50,7 @@
             <span class="flex-grow-1 ">
               <b-link
                 v-if="defaults.home.contact.qq"
-                class="text-decoration-none d-block text-dark mb-1 show-p"
+                class="text-decoration-none d-block text-dark mb-1 tel-p  font-weight-bold"
                 :href="
                   `tencent://message/?Site=baidu.com&uin=${defaults.home.contact.qq}&Menu=yes`
                 "
@@ -59,7 +59,7 @@
               <b-link
                 v-for="tel in defaults.home.contact.tel"
                 :key="tel"
-                class="text-decoration-none d-block text-dark mb-1 show-p"
+                class="text-decoration-none d-block text-dark mb-1 tel-p   font-weight-bold"
               >{{ tel }}</b-link>
             </span>
           </span>
@@ -131,6 +131,9 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .show-p {
   font-size: 13px;
+}
+.tel-p {
+  font-size: 15px;
 }
 .shimgw {
   width: 155px;

@@ -4,7 +4,7 @@
       <b-col>
         <b-container>
           <b-row class="mb-5">
-            <b-col v-if="defaults.product" cols="6" sm="4" md="2">
+            <b-col v-if="defaults.product" cols="6" sm="4" :md="md">
               <ul>
                 <li>
                   <strong>{{ $t('section.gk11oe') }}</strong>
@@ -26,12 +26,12 @@
                 </li>
               </ul>
             </b-col>
-            <b-col v-if="defaults.support" cols="6" sm="4" md="2">
+            <b-col v-if="defaults.support" cols="6" sm="4" :md="md">
               <ul>
                 <li>
                   <strong>{{ $t('section.q5vjss') }}</strong>
                 </li>
-                <li v-if="defaults.buy.serverCenter">
+                <li v-if="defaults.buy && defaults.buy.serverCenter">
                   <nuxt-link :to="about['销售服务中心']">
                     {{ $t('section.ps0tuh') }}
                   </nuxt-link>
@@ -78,7 +78,7 @@
                 </li>
               </ul>
             </b-col>
-            <b-col cols="6" sm="4" md="2">
+            <b-col cols="6" sm="4" :md="md">
               <ul>
                 <li>
                   <strong>{{ $t('guan-yu') }}{{ defaults.name }}</strong>
@@ -95,7 +95,7 @@
                 </li>
               </ul>
             </b-col>
-            <b-col cols="6" sm="4" md="2">
+            <b-col cols="6" sm="4" :md="md">
               <ul>
                 <li>
                   <strong>{{ $t('section.ri1giq') }}</strong>
@@ -165,7 +165,8 @@ export default Vue.extend({
       support,
       about,
       news,
-      defaults: this.$store.state.defaults
+      defaults: this.$store.state.defaults,
+      md: this.$store.state.defaults.buy ? 2 : 3
     }
   }
 })

@@ -4,7 +4,10 @@ export const defaults: userSetup = {
   name,
   home: {
     ico: '/favicon.ico',
-    logo: '/a_images/public/logo.png',
+    logo: {
+      type: 'STRING',
+      value: '湖北雷迪司'
+    },
     serve: {
       show: false,
       src: 'https://cschat-ccs.aliyun.com/index.htm?tntInstId=_1DER4Qq&scene=SCE00003943#/'
@@ -31,7 +34,8 @@ export const defaults: userSetup = {
     contact: {
       qq: '',
       tel: ['雷先生:13705817726']
-    }
+    },
+    Tel400: '400-6655-778'
   },
   product: {
     showAir: true,
@@ -42,7 +46,7 @@ export const defaults: userSetup = {
 
   },
   buy: {
-    serverCenter: true,
+    serverCenter: false,
     Tmall: false,
     jd: false,
     blue: false

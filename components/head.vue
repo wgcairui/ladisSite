@@ -2,8 +2,9 @@
   <b-container>
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand href="/">
-        <b-img src="/logo.png" />
+        <b-img v-if="defaults.home.logo.type === 'PNG'" :src="defaults.home.logo.value" />
         <!-- <img src="" height="40"> -->
+        <span v-else>{{ defaults.home.logo.value }}</span>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse" />
@@ -114,7 +115,9 @@
             <template slot="button-content">
               <em>{{ $t('head.n5tjum') }}</em>
             </template>
-
+            <b-dropdown-item v-if="defaults.home.Tel400">
+              {{ defaults.home.Tel400 }}
+            </b-dropdown-item>
             <b-dropdown-item v-if="defaults.buy" :to="about['经销商列表']">
               {{ $t('head.028ccn') }}
             </b-dropdown-item>

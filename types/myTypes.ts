@@ -1,9 +1,13 @@
+type logoType = 'PNG'|'STRING'
 export interface userSetup {
     // 公司名称
     name:string
     // 主页配置
     home: {
-        logo?:string
+        logo?:{
+            type:logoType
+            value:string
+        }
         // ico
         ico?:string
         // 关键字
@@ -26,6 +30,8 @@ export interface userSetup {
             qq: string
             tel: string[]
         }
+        // 400电话
+        Tel400?:string
     }
     // 产品
     product?: {
