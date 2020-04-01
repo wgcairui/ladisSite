@@ -8,7 +8,7 @@
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
-    "start": "nuxt-ts build; nuxt-ts start",
+    "start": "nuxt-ts start",
     "start:9005": "cross-env NUXT_PORT=9005 nuxt-ts start",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
