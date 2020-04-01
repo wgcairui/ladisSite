@@ -1,7 +1,7 @@
 <template>
-  <b-container id="ladis-body" fluid class="p-0 m-0 d-flex flex-column">
+  <b-container id="ladis-body" fluid class="p-0 m-0 flex-column">
     <b-row class="main-default" no-gutters>
-      <b-col cols="12">
+      <b-col cols="12" class=" bg-dark">
         <!-- head头 -->
         <ladis-head />
       </b-col>

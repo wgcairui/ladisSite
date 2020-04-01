@@ -24,7 +24,7 @@
                   {{ text.join('/') }}
                 </p>
               </span>
-              <span class="d-none d-md-block small">
+              <span class="d-none d-md-block small mt-2">
                 <i
                   class="px-2 rounded-pill bg-secondary text-light p-1 small"
                 >{{ $t('dian-ji-jin-ru') }}>></i>
@@ -49,6 +49,7 @@
             </h5>
             <span class="flex-grow-1 ">
               <b-link
+                v-if="defaults.home.contact.qq"
                 class="text-decoration-none d-block text-dark mb-1 show-p"
                 :href="
                   `tencent://message/?Site=baidu.com&uin=${defaults.home.contact.qq}&Menu=yes`
@@ -129,7 +130,7 @@ export default Vue.extend({
 </script>
 <style lang="scss" scoped>
 .show-p {
-  font-size: small;
+  font-size: 13px;
 }
 .shimgw {
   width: 155px;

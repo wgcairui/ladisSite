@@ -50,4 +50,7 @@ export default Vue.extend({
 .pic-1 {
   max-height: 180px;
 }
+.card-body{
+  padding: .6rem;
+}
 </style>
