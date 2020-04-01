@@ -163,6 +163,9 @@
               {{ locale.name }}
             </b-dropdown-item>
           </b-nav-item-dropdown>
+          <b-nav-item v-if="defaults.home.Tel400">
+            销售热线:{{ defaults.home.Tel400 }}
+          </b-nav-item>
           <b-nav-item
             v-if="defaults.home.serve.show"
             :href="defaults.home.serve.src"
@@ -219,5 +222,8 @@ export default Vue.extend({
 }
 .head-h {
   height: 56px;
+}
+.navbar-dark .navbar-nav .nav-link,em{
+  color:aliceblue;
 }
 </style>

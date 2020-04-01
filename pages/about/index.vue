@@ -17,23 +17,17 @@
 import Vue from 'vue'
 import AboutAsid from '../../components/AboutAsid.vue'
 import { about as aboutHrefs, getKey } from '../../components/hrefs'
-import { about, AgentName } from '../../types/typing'
+import { about } from '../../types/typing'
 import aboutData from './about'
 export default Vue.extend({
   components: { AboutAsid },
-  async asyncData ({ app, store }) {
-    // 获取网站名称
-    const webSite:AgentName = store.state.defaults.name
+  async asyncData ({ app }) {
     // 获取页面主题 公司简介
     const url = '/about/'
     const key = getKey(aboutHrefs, url)
     // 获取body
-    const result = await app.$Api.GeneralGetInfo({ table: 'About', queryKeys: ['title'], title: key }).then((el:about[]) => {
-      if (el?.length > 0) {
-        const content = el[0].content?.filter(el => el.webSite === webSite)
-        if (!content) { return false }
-        return content[0].body
-      } else { return false }
+    const result = await app.$Api.GeneralGetInfo({ table: 'About', queryKeys: ['type'], type: key }).then((el:about[]) => {
+      return el[0]?.content
     })
     const body = result || ((aboutData as any)[key].content.body as any)[app.i18n.locale]
     return { body, key }
