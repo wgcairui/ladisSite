@@ -117,9 +117,6 @@
             <template slot="button-content">
               <em>{{ $t('head.n5tjum') }}</em>
             </template>
-            <b-dropdown-item v-if="defaults.home.Tel400">
-              {{ defaults.home.Tel400 }}
-            </b-dropdown-item>
             <b-dropdown-item v-if="defaults.buy" :to="about['经销商列表']">
               {{ $t('head.028ccn') }}
             </b-dropdown-item>
