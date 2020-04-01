@@ -96,9 +96,11 @@ export default Vue.extend({
 @media (min-width: 768px) {
   .imgW {
     width: 100%;
+    height: auto;
   }
 }
 .imgW {
   width: 50%;
+  height: auto;
 }
 </style>

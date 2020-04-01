@@ -89,6 +89,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { support } from './hrefs'
 export default Vue.extend({
   data () {
     return {
@@ -101,7 +102,7 @@ export default Vue.extend({
       const locale = this.$i18n.locale
       return {
         src: require('~/assets/down1.png'),
-        href: '/support/监控软件下载',
+        href: support['监控软件下载'],
         title: this.$t('zi-liao-xia-zai'),
         locale,
         content: [
@@ -115,7 +116,7 @@ export default Vue.extend({
       const locale = this.$i18n.locale
       return {
         src: require('~/assets/down2.png'),
-        href: '/support/常见问题',
+        href: support['常见问题'],
         title: this.$t('chang-jian-wen-ti'),
         locale,
         content: [

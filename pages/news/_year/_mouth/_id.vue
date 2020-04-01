@@ -21,7 +21,7 @@
               v-for="val in list.pic || []"
               :key="val"
               :src="val"
-              class="m-0 p-0 w-50 my-2"
+              class="m-0 p-0 w-50 h-auto my-2"
             />
           </div>
         </div>

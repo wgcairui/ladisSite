@@ -86,7 +86,7 @@ export default Vue.extend({
     items () {
       return [
         { text: this.$t('zhu-ye'), href: '/' },
-        { text: this.$t('chan-pin-fen-lei'), href: '/product' },
+        { text: this.$t('chan-pin-fen-lei'), href: '/products' },
         { text: this.$data.all.MainParent, href: (product as any)[this.$data.all.MainParent] },
         { text: this.$data.all.title }
       ]
