@@ -212,7 +212,10 @@ a:hover {
 }
 em,
 span,
-a {
+a ,strong{
   color: aliceblue;
+}
+strong{
+  font-size: 1.2rem;
 }
 </style>

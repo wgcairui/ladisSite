@@ -4,7 +4,9 @@
       <b-navbar-brand href="/">
         <b-img v-if="defaults.home.logo.type === 'PNG'" :src="defaults.home.logo.value" />
         <!-- <img src="" height="40"> -->
-        <span v-else>{{ defaults.home.logo.value }}</span>
+        <h3 v-else class="font-weight-bold">
+          {{ defaults.home.logo.value }}
+        </h3>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse" />

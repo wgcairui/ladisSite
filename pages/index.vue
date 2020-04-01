@@ -38,9 +38,9 @@
     </b-row>
     <b-row no-gutters class=" p-4">
       <b-col>
-        <h3 class="text-center text-primary">
+        <h2 class="text-center text-primary">
           {{ $t('shou-hou-zhi-chi') }}
-        </h3>
+        </h2>
         <my-section />
       </b-col>
     </b-row>

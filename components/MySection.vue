@@ -14,7 +14,7 @@
               />
             </div>
             <span class="d-flex flex-column py-3 px-2">
-              <h5 class="text-primary text-nowrap">{{ val.title }}</h5>
+              <h4 class="text-primary text-nowrap">{{ val.title }}</h4>
               <span class="flex-grow-1 text-dark">
                 <p
                   v-for="text in val.content"
@@ -44,9 +44,9 @@
             v-if="defaults.home.contact"
             class="d-flex flex-column  py-3 px-2"
           >
-            <h5 class="text-primary text-nowrap">
+            <h4 class="text-primary text-nowrap">
               {{ $t('lian-xi-fang-shi') }}
-            </h5>
+            </h4>
             <span class="flex-grow-1 ">
               <b-link
                 v-if="defaults.home.contact.qq"
@@ -130,10 +130,10 @@ export default Vue.extend({
 </script>
 <style lang="scss" scoped>
 .show-p {
-  font-size: 13px;
+  font-size: 16px;
 }
 .tel-p {
-  font-size: 15px;
+  font-size: 16px;
 }
 .shimgw {
   width: 155px;
