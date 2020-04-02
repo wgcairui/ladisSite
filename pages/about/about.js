@@ -103,9 +103,6 @@ const data = {
     content: {
       body: {
         zh: `<div>
-        <div class="pt-5 border-bottom text-center">
-          <h5>隐私政策</h5>
-        </div>
         <div>
           <b class=" px-5 ctlimg content-img ql-editor">
             <p><strong style="color: rgb(102, 102, 102);">范围</strong></p>
