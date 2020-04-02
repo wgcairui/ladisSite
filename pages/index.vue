@@ -113,6 +113,9 @@ export default Vue.extend({
       }
       this.$data.problemTitle = this.$data.GetNews[this.$data.problemNum - 1]
     }
+  },
+  head () {
+    return this.$store.state.defaults.home.key
   }
 })
 </script>
