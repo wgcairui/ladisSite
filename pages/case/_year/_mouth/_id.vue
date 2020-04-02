@@ -16,33 +16,29 @@
               {{ val }}
             </p>
           </div>
-          <div id="pic" class="px-5 d-flex flex-column justify-content-center">
-            <b-img-lazy
-              v-for="val in list.pic || []"
+          <div id="pic" class="px-5 d-flex flex-column">
+            <div
+              v-for="val in formPic(list.pic)"
               :key="val"
-              :src="val"
-              :alt="title"
-              class="m-0 p-0 imgW my-2"
-            />
+              class="m-0 p-0 my-2"
+            >
+              <b-img
+                :src="val"
+                center
+                class=" fluid thumbnail"
+              />
+            </div>
           </div>
         </div>
       </b-col>
     </b-row>
     <b-row no-gutters class="py-4">
-      <b-col class="d-flex justify-content-between">
-        <b-link
-          v-if="Content.pre"
-          :to="Content.pre.link"
-          class="text-dark"
-        >
+      <b-col class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+        <b-link v-if="Content.pre" :to="Content.pre.link" class=" text-dark py-2">
           上一页:{{ Content.pre.text }}
         </b-link>
         <div />
-        <b-link
-          v-if="Content.next"
-          :to="Content.next.link"
-          class="text-dark"
-        >
+        <b-link v-if="Content.next" :to="Content.next.link" class=" text-dark py-2">
           下一页:{{ Content.next.text }}
         </b-link>
       </b-col>
@@ -74,6 +70,16 @@ export default Vue.extend({
       }
     }
   },
+  methods: {
+    // 图片源去重，抓取的图片可能重复
+    formPic (pic:string[]) {
+      if (pic) {
+        return Array.from(new Set(pic))
+      } else {
+        return []
+      }
+    }
+  },
   head () {
     const Page = this.$data.list as caseList
     return {
@@ -93,14 +99,8 @@ export default Vue.extend({
 })
 </script>
 <style lang="scss" scoped>
-@media (min-width: 768px) {
-  .imgW {
-    width: 100%;
-    height: auto;
-  }
-}
-.imgW {
-  width: 50%;
-  height: auto;
+img{
+  max-height: 500px;
+  max-width: 100%;
 }
 </style>
