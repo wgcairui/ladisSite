@@ -22,10 +22,22 @@
 import Vue from 'vue'
 import ladisHead from '../components/head.vue'
 import ladisFooter from '../components/footer.vue'
+import { defaults } from '../store/user'
 export default Vue.extend({
   components: {
     ladisHead,
     ladisFooter
+  },
+  mounted () {
+    if (defaults.hm) {
+      (function () {
+        const hm = document.createElement('script')
+        hm.src = defaults.hm
+        const s = document.getElementsByTagName('script')[0]
+        const parent = s.parentNode as (Node & ParentNode)
+        parent.insertBefore(hm, s)
+      })()
+    }
   },
   head: {
     link: [

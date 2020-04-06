@@ -2,6 +2,8 @@ type logoType = 'PNG'|'STRING'
 export interface userSetup {
     // 公司名称
     name:string
+    // hm 百度统计代码
+    hm?:string
     // 主页配置
     home: {
         logo?:{

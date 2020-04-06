@@ -2,6 +2,7 @@ import { userSetup } from '../types/myTypes'
 const name = '湖北雷迪司'
 export const defaults: userSetup = {
   name,
+  // hm:'https://hm.baidu.com/hm.js?bf546544e2b54542e68aa9a497b752a4',
   home: {
     ico: '/favicon.ico',
     logo: {
