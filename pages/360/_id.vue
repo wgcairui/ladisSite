@@ -41,10 +41,9 @@ export default Vue.extend({
     return { listArray }
   },
   head () {
-    const [Page] = this.$data.listArray as vr[]
     return {
-      title: `${Page.PageTitle} - ${this.$defaults.name}`,
-      meta: [
+      title: `产品全景展示 - 雷迪司 - ${this.$defaults.name}`
+      /* meta: [
         {
           name: 'keywords',
           content: Page.Pagekeywords
@@ -53,7 +52,7 @@ export default Vue.extend({
           name: 'description',
           content: Page.Pagedescription
         }
-      ]
+      ] */
     }
   }
 })

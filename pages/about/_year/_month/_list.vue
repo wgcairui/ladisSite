@@ -39,17 +39,16 @@ export default Vue.extend({
     return { list }
   },
   head () {
-    const [Page] = this.$data.list as buyList[]
     return {
-      title: `${Page.PageTitle} - ${this.$defaults.name}`,
+      title: `UPS不间断电源_机房精密空调安装维修售后维护服务 - ${this.$defaults.name}`,
       meta: [
         {
           name: 'keywords',
-          content: Page.Pagekeywords
+          content: 'UPS不间断电源, 机房精密空调'
         },
         {
           name: 'description',
-          content: Page.Pagedescription
+          content: '雷迪司LADS生产厂家销售服务中心提供UPS电源、不间断电源、UPS蓄电池、机房空调、机房专用空调、精密空调，一体化机柜、数据中心模块化机房、动力环境监控、精密智能配电、消防、机柜等机房一体化产品的销售、安装、维修、维护、售后服务等，'
         }
       ]
     }

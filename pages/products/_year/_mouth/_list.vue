@@ -1,16 +1,20 @@
 <template>
   <b-container>
     <b-row no-gutters>
+      <!-- 导航栏 -->
       <b-col cols="12">
         <b-breadcrumb :items="items" class=" bg-light" />
       </b-col>
+      <!-- 标题 -->
       <b-col cols="12" class="border-bottom">
         <h4 class="text-capitalize">
           {{ all.title }}
         </h4>
       </b-col>
+      <!-- contont -->
       <b-col cols="12">
         <b-row no-gutters class="p-4">
+          <!-- 轮播图 -->
           <b-col cols="12" md="6" class="carousel px-2">
             <b-carousel
               id="carousel-345"
@@ -28,15 +32,19 @@
               </b-carousel-slide>
             </b-carousel>
           </b-col>
+          <!-- 说明 -->
           <b-col cols="12" md="6" class="t1 px-2">
-            <div v-if="all.t1" class="ql-editor" v-html="all.t1.content" />
-            <div v-else class="ql-editor" v-html="all.content_head" />
+            <!-- <div v-if="all.t1" class="ql-editor" v-html="all.t1.content" /> -->
+            <div class="ql-editor" v-html="all.head" />
           </b-col>
         </b-row>
       </b-col>
       <b-col cols="12" class="p-5 border-top">
         <b-row>
-          <b-col cols="12" class="mb-3">
+          <b-col>
+            <div v-html="all.body" />
+          </b-col>
+          <!-- <b-col cols="12" class="mb-3">
             <strong>{{ $t('chan-pin-te-dian') }}</strong>
           </b-col>
           <b-col cols="12" class="t2">
@@ -56,7 +64,7 @@
                 </b-link>
               </b-list-group-item>
             </b-list-group>
-          </b-col>
+          </b-col> -->
         </b-row>
       </b-col>
     </b-row>
@@ -79,8 +87,7 @@ export default Vue.extend({
       queryKeys: ['MainUrl'],
       MainUrl
     })
-    const [all] = result
-    return { title: all.title, all }
+    return { all: result[0] }
   },
   computed: {
     items () {
@@ -90,12 +97,6 @@ export default Vue.extend({
         { text: this.$data.all.MainParent, href: (product as any)[this.$data.all.MainParent] },
         { text: this.$data.all.title }
       ]
-    },
-    t1 () {
-      return this.$data.all.type === 'html'
-    },
-    t2 () {
-      return typeof this.$data.all.html.t2 === 'string'
     }
   },
   head () {

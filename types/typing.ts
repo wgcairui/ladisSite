@@ -27,9 +27,9 @@ type HtmlString = string;
 export type contentType = 'html' | '';
 // 公用包装
 export interface GMpack {
-  PageTitle:string
-  Pagekeywords:string
-  Pagedescription:string
+  PageTitle?:string
+  Pagekeywords?:string
+  Pagedescription?:string
   MainUrl?:string
   MainTitle?: string; // 分类
   MainParent?: string; // 父类
@@ -59,19 +59,12 @@ export interface productContentOld{
 }
 // 产品详情
 export interface productListOld {
-  t1?: productContentOld
-  t2?: productContentOld
-  img: string[];
-  down: GMlink[];
-}
-export interface productListNew {
   img: string[];
   head?: string;
   body?: string;
-  down: GMlink[];
 }
 // 产品包装
-export interface productList extends GMpack, productListNew, productListOld {
+export interface productList extends GMpack, productListOld {
   title:string
 }
 
@@ -142,10 +135,13 @@ export interface caseList extends GMpack {
   content?:string
 }
 // about
-export interface about{
-  type:string
-  webSite: AgentName;
-  content: string
+export interface about extends GMpack {
+  title:string
+  body?: string[];
+  content?: {
+    body: string;
+    webSite: AgentName;
+  }[];
 }
 // page
 export interface pageLink extends GMpack {
@@ -224,10 +220,4 @@ export type AgentName = 'localhost' | '湖北雷迪司' | '贵州代理商' | '�
 export interface Agents {
   name: AgentName;
   url: string;
-}
-
-// case列表上下文
-export interface casesContext{
-  pre?:cases
-  next?:cases
 }

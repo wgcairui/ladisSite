@@ -54,7 +54,7 @@ export default Vue.extend({
     const MainUrl = `/products/${params.id}`
     const MainTitle = getKey(products, MainUrl)
     const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product', queryKeys: ['MainTitle'], MainTitle })
-    return { all }
+    return { all, MainTitle }
   },
   data () {
     return {
@@ -68,17 +68,16 @@ export default Vue.extend({
     }
   },
   head () {
-    const [Page] = this.$data.all as product[]
     return {
-      title: `${Page.PageTitle} - ${this.$defaults.name}`,
+      title: `${this.$data.MainTitle}_UPS不间断电源厂家【价格 型号 参数 图片】- ${this.$defaults.name}`,
       meta: [
         {
           name: 'keywords',
-          content: Page.Pagekeywords
+          content: 'UPS电源,不间断电源,UPS不间断电源,UPS电源厂家,不间断电源厂家,UPS厂家'
         },
         {
           name: 'description',
-          content: Page.Pagedescription
+          content: '雷迪司厂家生产商提供UPS电源，不间断电源，UPS不间断电源，包含UPS电源，不间断电源，UPS不间断电源品牌、参数、报价、价格、规格、大图片等，同时提供维修、维护、售后服务-深圳雷迪司科技股份有限公司'
         }
       ]
     }

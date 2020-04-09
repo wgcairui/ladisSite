@@ -47,7 +47,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { caseList, casesContext } from '../../../../types/typing'
+import { caseList } from '../../../../types/typing'
 export default Vue.extend({
   async asyncData ({ app, params }) {
     const MainUrl = '/case/' + Object.values(params).join('/')
@@ -57,7 +57,7 @@ export default Vue.extend({
       queryKeys: ['MainUrl'],
       MainUrl
     })
-    const Content: casesContext = await app.$Api.GetContent(list.link as string)
+    const Content = await app.$Api.GetContent(list.link as string)
     return { title: list.title, list, Content }
   },
   data () {
@@ -87,11 +87,11 @@ export default Vue.extend({
       meta: [
         {
           name: 'keywords',
-          content: Page.Pagekeywords
+          content: Page.Pagekeywords as string
         },
         {
           name: 'description',
-          content: Page.Pagedescription
+          content: Page.Pagedescription as string
         }
       ]
     }
