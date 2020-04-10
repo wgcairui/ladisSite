@@ -1,0 +1,5 @@
+span.hen_util {
+    display: flex !important;
+    flex-flow: column !important;
+    height: auto !important;
+}
