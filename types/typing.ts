@@ -36,19 +36,19 @@ export interface GMpack {
   date?: Date | string; // 日期
   table?:DbTables
   href?:string
-  link?:string
+  link:string
 }
 // 公用链接格式
 export interface GMlink {
   target?: string;
   href?: string;
-  link?:string;
+  link:string;
   title: string;
 }
 // 产品目录
 export interface product extends GMpack {
   title: string;
-  href: string;
+  href?: string;
   img: string;
   link: string;
 }
@@ -59,12 +59,19 @@ export interface productContentOld{
 }
 // 产品详情
 export interface productListOld {
+  t1?: productContentOld
+  t2?: productContentOld
+  img: string[];
+  down?: GMlink[];
+}
+export interface productListNew {
   img: string[];
   head?: string;
   body?: string;
+  down?: GMlink[];
 }
 // 产品包装
-export interface productList extends GMpack, productListOld {
+export interface productList extends GMpack, productListNew, productListOld {
   title:string
 }
 
@@ -129,19 +136,16 @@ export interface vr extends GMpack {
 export interface cases extends vr {}
 // 案例详情
 export interface caseList extends GMpack {
-  title?:string
+  title:string
   text?: string[];
   pic?: string[];
   content?:string
 }
 // about
-export interface about extends GMpack {
-  title:string
-  body?: string[];
-  content?: {
-    body: string;
-    webSite: AgentName;
-  }[];
+export interface about{
+  type:string
+  webSite: AgentName;
+  content: string
 }
 // page
 export interface pageLink extends GMpack {
@@ -215,9 +219,14 @@ export interface editProduct {
 }
 
 // 代理商名称限定
-export type AgentName = 'localhost' | '湖北雷迪司' | '贵州代理商' | '陕西代理商';
+export type AgentName = 'localhost' | '湖北雷迪司' | '贵州代理商' | '陕西代理商'|'深圳市雷迪司电源有限公司'|'雷迪司网络能源(深圳)有限公司';
 // 代理
 export interface Agents {
   name: AgentName;
   url: string;
+}
+// case列表上下文
+export interface casesContext{
+  pre?:cases
+  next?:cases
 }

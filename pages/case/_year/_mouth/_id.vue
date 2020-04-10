@@ -7,11 +7,12 @@
             {{ title }}
           </h5>
         </div>
-        <div v-if="list.content">
-          <div id="newsText" class="px-5 ctlimg content-img ql-editor" v-html="list.content" />
+        <div id="content" class="px-5 ctlimg content-img ql-editor" v-html="list.content" />
+        <!-- <div v-if="list.content" id="content">
+          <div id="content" class="px-5 ctlimg content-img ql-editor" v-html="list.content" />
         </div>
         <div v-else>
-          <div id="newsText" class="px-5 ctlimg">
+          <div id="text" class="px-5 ctlimg">
             <p v-for="val in list.text || []" :key="val">
               {{ val }}
             </p>
@@ -29,7 +30,7 @@
               />
             </div>
           </div>
-        </div>
+        </div> -->
       </b-col>
     </b-row>
     <b-row no-gutters class="py-4">
@@ -57,7 +58,7 @@ export default Vue.extend({
       queryKeys: ['MainUrl'],
       MainUrl
     })
-    const Content = await app.$Api.GetContent(list.link as string)
+    const Content = await app.$Api.GetContent(list?.link as string)
     return { title: list.title, list, Content }
   },
   data () {

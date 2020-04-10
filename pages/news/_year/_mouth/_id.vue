@@ -7,7 +7,8 @@
             {{ title }}
           </h5>
         </div>
-        <div v-if="list.content">
+        <div id="newsText" class="px-5 ctlimg ql-editor" v-html="list.content" />
+        <!-- <div v-if="list.content">
           <div id="newsText" class="px-5 ctlimg ql-editor" v-html="list.content" />
         </div>
         <div v-else>
@@ -29,7 +30,7 @@
               />
             </div>
           </div>
-        </div>
+        </div> -->
       </b-col>
     </b-row>
     <b-row no-gutters class="py-4">
@@ -57,7 +58,11 @@ export default Vue.extend({
       queryKeys: ['MainUrl'],
       MainUrl
     })
-    const Content = await app.$Api.GetContent(list.link as string)
+
+    const { link } = list
+    // console.log(Object.keys(list))
+
+    const Content = await app.$Api.GetContent(link)
     return { title: list.title, list, Content }
   },
   data () {
