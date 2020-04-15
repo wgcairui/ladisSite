@@ -7,7 +7,7 @@
       </b-col>
       <!-- 标题 -->
       <b-col cols="12" class="border-bottom">
-        <h4 class="text-capitalize">
+        <h4 class="text-capitalize px-2">
           {{ all.title }}
         </h4>
       </b-col>
@@ -38,6 +38,22 @@
             <div class="ql-editor" v-html="all.head" />
           </b-col>
         </b-row>
+      </b-col>
+      <b-col class="d-none d-sm-block">
+        <ul class=" d-flex flex-row p-2" style="background-color: #9b9c9c">
+          <li data-targete="" class=" flex-fill text-center border-right" style="list-style-type: none;">
+            <a href="#ladisp1" class=" text-decoration-none text-light ">产品规格</a>
+          </li>
+          <li data-targete="" class=" flex-fill text-center border-right" style="list-style-type: none;">
+            <a href="#ladisp2" class=" text-decoration-none text-light">产品应用</a>
+          </li>
+          <li data-targete="" class=" flex-fill text-center border-right" style="list-style-type: none;">
+            <a href="#ladisp3" class=" text-decoration-none text-light">产品大图</a>
+          </li>
+          <li data-targete="" class=" flex-fill text-center" style="list-style-type: none;">
+            <a href="#ladisp4" class=" text-decoration-none text-light">相关下载</a>
+          </li>
+        </ul>
       </b-col>
       <b-col cols="12" class="p-5 border-top">
         <b-row>

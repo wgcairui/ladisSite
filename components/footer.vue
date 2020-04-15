@@ -118,8 +118,8 @@
     </b-row>
     <friend-link />
     <b-row>
-      <b-col cols="12" class="p-0">
-        <div class=" bg-dark p-2 d-flex flex-row flex-wrap">
+      <b-col cols="12" class="p-0  bg-dark p-2 d-flex flex-column flex-sm-row flex-wrap">
+        <div>
           <nuxt-link to="/sitemap" class=" px-1">
             {{ $t('footer.9c708c') }}
           </nuxt-link>
@@ -139,8 +139,11 @@
           <nuxt-link :to="about['隐私政策']" class=" px-1">
             {{ $t('footer.5d7lkm') }}
           </nuxt-link>
-          <span class=" ml-auto">
-            <span> <em>© 2019 All Rights Reserved</em> {{ defaults.name }} </span>
+        </div>
+        <div class="beian">
+          <span class=" d-flex flex-column flex-sm-row align-items-center">
+            <span> <em>© 2019 All Rights Reserved</em> </span>
+            <span>{{ defaults.name }} </span>
             <span>
               <b-link target="_blank" href="http://www.beian.miit.gov.cn">{{
                 defaults.home.beian
@@ -182,6 +185,9 @@ export default Vue.extend({
   ul {
     list-style: inside;
     padding-left: 2rem;
+  }
+  .beian{
+    margin-left: auto;
   }
 }
 
