@@ -33,7 +33,7 @@
             </b-carousel>
           </b-col>
           <!-- 说明 -->
-          <b-col cols="12" md="6" class="t1 p-4">
+          <b-col cols="12" md="6" class="t1 p-4 printDisplay_para">
             <!-- <div v-if="all.t1" class="ql-editor" v-html="all.t1.content" /> -->
             <div class="ql-editor" v-html="all.head" />
           </b-col>
@@ -57,7 +57,7 @@
       </b-col>
       <b-col cols="12" class="p-5 border-top">
         <b-row>
-          <b-col>
+          <b-col class="productUtil">
             <div v-html="all.body" />
           </b-col>
         </b-row>
