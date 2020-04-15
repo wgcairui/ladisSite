@@ -33,7 +33,7 @@
             </b-carousel>
           </b-col>
           <!-- 说明 -->
-          <b-col cols="12" md="6" class="t1 px-2">
+          <b-col cols="12" md="6" class="t1 p-4">
             <!-- <div v-if="all.t1" class="ql-editor" v-html="all.t1.content" /> -->
             <div class="ql-editor" v-html="all.head" />
           </b-col>
@@ -60,27 +60,6 @@
           <b-col>
             <div v-html="all.body" />
           </b-col>
-          <!-- <b-col cols="12" class="mb-3">
-            <strong>{{ $t('chan-pin-te-dian') }}</strong>
-          </b-col>
-          <b-col cols="12" class="t2">
-            <div
-              v-if="all.t2"
-              class="t2-s content-img"
-              v-html="all.t2.content"
-            />
-            <div v-else class="content-img" v-html="all.content_body " />
-          </b-col>
-          <b-col v-if="all.t2 && all.t2.type != 'html'" cols="12" class="down">
-            <h4>{{ $t('list._id.q9xyoe') }}</h4>
-            <b-list-group>
-              <b-list-group-item v-for="val in all.down" :key="val.title">
-                <b-link target="_blank" :href="val.href">
-                  {{ val.title }}
-                </b-link>
-              </b-list-group-item>
-            </b-list-group>
-          </b-col> -->
         </b-row>
       </b-col>
     </b-row>
