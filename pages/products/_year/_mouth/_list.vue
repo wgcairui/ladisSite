@@ -75,6 +75,7 @@ import Vue from 'vue'
 import MyImg from '../../../../components/MyImg.vue'
 import { product } from '../../../../components/hrefs'
 import { productList } from '../../../../types/typing'
+import '../../../../assets/css/product.css'
 export default Vue.extend({
   components: {
     MyImg

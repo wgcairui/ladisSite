@@ -52,7 +52,7 @@ export default Vue.extend({
   components: { ProductAsid, MyImg },
   async asyncData ({ app }) {
     const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product' })
-    console.log(all)
+    // console.log(all)
     return { all }
   },
   data () {
