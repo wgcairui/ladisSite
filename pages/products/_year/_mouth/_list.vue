@@ -3,7 +3,7 @@
     <b-row no-gutters>
       <!-- 导航栏 -->
       <b-col cols="12">
-        <b-breadcrumb :items="items" class=" bg-light" />
+        <b-breadcrumb :items="items" style="background-color: #ffffff" />
       </b-col>
       <!-- 标题 -->
       <b-col cols="12" class="border-bottom">
