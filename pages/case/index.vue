@@ -71,19 +71,8 @@ export default Vue.extend({
     }
   },
   head () {
-    const [Page] = this.$data.listArray
     return {
-      title: `${Page.PageTitle} - ${this.$defaults.name}`,
-      meta: [
-        {
-          name: 'keywords',
-          content: Page.Pagekeywords
-        },
-        {
-          name: 'description',
-          content: Page.Pagedescription
-        }
-      ]
+      title: `成功案例  - ${this.$defaults.name}`
     }
   }
 })

@@ -30,7 +30,7 @@ import { buyList } from '../../../../types/typing'
 export default Vue.extend({
   async asyncData ({ app, params }) {
     const MainUrl = '/about/' + Object.values(params).join('/')
-
+    console.log(MainUrl)
     const list:buyList[] = await app.$Api.GeneralGetInfo({
       table: 'Buy_list',
       queryKeys: ['MainUrl'],

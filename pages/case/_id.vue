@@ -61,7 +61,7 @@ export default Vue.extend({
     const url = '/case/' + params.id
     const key = getKey(cases, url)
     const listArray = await app.$Api.GeneralGetInfo({ table: 'Case', queryKeys: ['MainTitle'], MainTitle: key })
-    return { listArray }
+    return { listArray, key }
   },
   data () {
     return {
@@ -82,19 +82,8 @@ export default Vue.extend({
     }
   },
   head () {
-    const [Page] = this.$data.listArray
     return {
-      title: `${Page.PageTitle} - ${this.$defaults.name}`,
-      meta: [
-        {
-          name: 'keywords',
-          content: Page.Pagekeywords
-        },
-        {
-          name: 'description',
-          content: Page.Pagedescription
-        }
-      ]
+      title: `${(this as any).key} - ${this.$defaults.name}`
     }
   }
 })
