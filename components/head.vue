@@ -215,6 +215,9 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+em{
+  font-style: normal;
+}
 .nav-h {
   height: 56px;
   z-index: 100;

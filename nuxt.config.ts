@@ -2,13 +2,12 @@ import { Context, Configuration } from '@nuxt/types'
 import axios from 'axios'
 import { defaults } from './store/user'
 import { params } from './types'
-const RemoteServerAddress = process.env.NODE_ENV === 'production' ? 'http://www.ladishb.com:9006' : 'http://localhost:9006'//
-// const RemoteServerAddress = 'http://www.ladishb.com:9006'
+const RemoteServerAddress = process.env.NODE_ENV === 'production' ? 'http://www.ladishb.com:9006' : 'http://localhost:9006'
 export default {
   mode: 'universal',
   server: {
-    port: process.env.NODE_ENV === 'production' ? (process.env.NUXT_PORT || 80) : 9005,
-    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : '0.0.0.0'
+    port: process.env.NODE_ENV === 'production' ? (process.env.NUXT_PORT || defaults.port || 80) : 9005,
+    host: process.env.NODE_ENV === 'production' ? defaults.host || '0.0.0.0' : '0.0.0.0'
   },
   /*
    ** Headers of the page

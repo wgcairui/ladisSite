@@ -1,5 +1,8 @@
 type logoType = 'PNG'|'STRING'
 export interface userSetup {
+    host?:string
+    // port
+    port?:number
     // 公司名称
     name:string
     // hm 百度统计代码

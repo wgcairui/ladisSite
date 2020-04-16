@@ -104,4 +104,13 @@ img{
   max-height: 500px;
   max-width: 100%;
 }
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #fdfdfe;
+}
+.page-link{
+  color: #343a40;
+}
 </style>

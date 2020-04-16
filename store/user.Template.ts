@@ -1,6 +1,10 @@
 import { userSetup } from '../types/myTypes'
 const name = '湖北雷迪司'
 export const defaults: userSetup = {
+  // 默认网站域名
+  host: 'localhost',
+  // 默认端口
+  port: 80,
   name,
   // hm:'https://hm.baidu.com/hm.js?bf546544e2b54542e68aa9a497b752a4',
   home: {

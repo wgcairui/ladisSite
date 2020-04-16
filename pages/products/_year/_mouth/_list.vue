@@ -167,4 +167,14 @@ img {
     padding-bottom: 2rem;
   }
 }
+//@at-root
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #fdfdfe;
+}
+.page-link{
+  color: #343a40;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <b-col cols="12">
-    <b-row class=" bg-dark px-4 pt-3 pb-0">
+    <b-row class="bg-dark px-4 pt-3 pb-0">
       <b-col>
         <b-container>
           <b-row class="mb-5">
@@ -59,22 +59,32 @@
                   </nuxt-link>
                 </li>
                 <li v-if="defaults.buy.blue">
-                  <a href="https://lgsm.tmall.com/">{{
-                    $t('section.6v39gj')
-                  }}</a>
+                  <a href="https://lgsm.tmall.com/">
+                    {{
+                      $t('section.6v39gj')
+                    }}
+                  </a>
                 </li>
                 <li v-if="defaults.buy.Tmall">
-                  <a href="https://leidisi.tmall.com/" target="_bank">{{
-                    $t('section.k9mydj')
-                  }}</a>
+                  <a href="https://leidisi.tmall.com/" target="_bank">
+                    {{
+                      $t('section.k9mydj')
+                    }}
+                  </a>
                 </li>
                 <li v-if="defaults.buy.jd">
-                  <a href="https://mall.jd.com/index-131620.html" target="_bank">{{
-                    $t('section.pfuunc')
-                  }}</a>
+                  <a href="https://mall.jd.com/index-131620.html" target="_bank">
+                    {{
+                      $t('section.pfuunc')
+                    }}
+                  </a>
                 </li>
                 <li v-for="(val,key) in defaults.buy.userMall || []" :key="key">
-                  <a :href="val.src || '#'" target="_blank" rel="noopener noreferrer">{{ val.title || '' }}</a>
+                  <a
+                    :href="val.src || '#'"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >{{ val.title || '' }}</a>
                 </li>
               </ul>
             </b-col>
@@ -101,15 +111,17 @@
                   <strong>{{ $t('section.ri1giq') }}</strong>
                 </li>
                 <li>
-                  <a href="http://www.pesiv.com" target="_bank">{{
-                    $t('section.l7qkwb')
-                  }}</a>
+                  <a href="http://www.pesiv.com" target="_bank">
+                    {{
+                      $t('section.l7qkwb')
+                    }}
+                  </a>
                 </li>
-                <li>
+                <!-- <li>
                   <a href="http://116.62.48.175:81" target="_bank">{{
                     $t('section.wkyimq')
                   }}</a>
-                </li>
+                </li>-->
               </ul>
             </b-col>
           </b-row>
@@ -118,36 +130,40 @@
     </b-row>
     <friend-link />
     <b-row>
-      <b-col cols="12" class="p-0  bg-dark p-2 d-flex flex-column flex-sm-row flex-wrap">
+      <b-col cols="12" class="p-0 bg-dark p-2 d-flex flex-column flex-sm-row flex-wrap">
         <div>
-          <nuxt-link to="/sitemap" class=" px-1">
+          <nuxt-link to="/sitemap" class="px-1">
             {{ $t('footer.9c708c') }}
           </nuxt-link>
 
-          <nuxt-link :to="about['联系我们']" class=" px-1">
+          <nuxt-link :to="about['联系我们']" class="px-1">
             {{ $t('footer.fp5qvs') }}
           </nuxt-link>
 
-          <nuxt-link :to="about['加入我们']" class=" px-1">
+          <nuxt-link :to="about['加入我们']" class="px-1">
             {{ $t('footer.ce1e0h') }}
           </nuxt-link>
 
-          <nuxt-link :to="about['使用声明']" class=" px-1">
+          <nuxt-link :to="about['使用声明']" class="px-1">
             {{ $t('footer.amhzvr') }}
           </nuxt-link>
 
-          <nuxt-link :to="about['隐私政策']" class=" px-1">
+          <nuxt-link :to="about['隐私政策']" class="px-1">
             {{ $t('footer.5d7lkm') }}
           </nuxt-link>
         </div>
         <div class="beian">
-          <span class=" d-flex flex-column flex-sm-row align-items-center">
-            <span> <em>© 2019 All Rights Reserved</em> </span>
-            <span>{{ defaults.name }} </span>
+          <span class="d-flex flex-column flex-sm-row align-items-center">
             <span>
-              <b-link target="_blank" href="http://www.beian.miit.gov.cn">{{
-                defaults.home.beian
-              }}</b-link>
+              <em>© 2019 All Rights Reserved</em>
+            </span>
+            <span>{{ defaults.name }}</span>
+            <span>
+              <b-link target="_blank" href="http://www.beian.miit.gov.cn">
+                {{
+                  defaults.home.beian
+                }}
+              </b-link>
             </span>
           </span>
         </div>
@@ -175,7 +191,7 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @media (min-width: 576px) {
   .colsm-2 {
     flex: 0 0 20%;
@@ -186,9 +202,16 @@ export default Vue.extend({
     list-style: inside;
     padding-left: 2rem;
   }
-  .beian{
+  .beian {
     margin-left: auto;
   }
+  .beian span {
+    margin-left: 0px;
+  }
+}
+
+.beian span {
+  margin-left: 8px;
 }
 
 ul {
@@ -218,10 +241,11 @@ a:hover {
 }
 em,
 span,
-a ,strong{
+a,
+strong {
   color: aliceblue;
 }
-strong{
+strong {
   font-size: 1.2rem;
 }
 </style>
