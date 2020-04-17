@@ -67,7 +67,7 @@ import AboutAsid from '../../components/AboutAsid.vue'
 import { buyList, buy } from '../../types/typing'
 export default Vue.extend({
   components: { AboutAsid },
-  async asyncData ({ app }) {
+  async asyncData ({ app, error }) {
     const city = new Set()
     const area = {}
     // dealear经销商信息
@@ -98,6 +98,7 @@ export default Vue.extend({
         return element
       })
     })
+    if (area === 0) { error({ statusCode: 500, message: 'content null' }) }
     return { map, area }
   },
 

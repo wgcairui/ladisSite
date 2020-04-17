@@ -50,15 +50,16 @@
 import Vue from 'vue'
 import { caseList } from '../../../../types/typing'
 export default Vue.extend({
-  async asyncData ({ app, params }) {
-    const MainUrl = '/case/' + Object.values(params).join('/')
-
-    const [list]: caseList[] = await app.$Api.GeneralGetInfo({
+  async asyncData ({ app, params, error }) {
+    const link = '/case/' + Object.values(params).join('/')
+    const lists: caseList[] = await app.$Api.GeneralGetInfo({
       table: 'Case_list',
-      queryKeys: ['MainUrl'],
-      MainUrl
+      queryKeys: ['link'],
+      link
     })
-    const Content = await app.$Api.GetContent(list?.link as string)
+    if (lists?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
+    const list = lists[0]
+    const Content = await app.$Api.GetContent(list.link as string)
     return { title: list.title, list, Content }
   },
   data () {

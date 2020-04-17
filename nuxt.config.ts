@@ -70,7 +70,7 @@ export default {
     // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
     // eslint-disable-next-line require-await
     routes: async () => {
-      const param:params = { table: 'Router' }
+      const param: params = { table: 'Router' }
       const router = await axios.get(
         `${RemoteServerAddress}/api/Get_arg`, { params: param }
       ).then((el) => {
@@ -137,12 +137,7 @@ export default {
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend (_config: Configuration, _ctx: Context) { }
   },
   router: {
-    // middleware: 'redict'
   }
 }

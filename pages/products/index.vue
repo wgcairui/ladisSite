@@ -30,7 +30,7 @@
         <b-row>
           <b-col>
             <b-pagination
-              v-show="rows > perPage"
+              v-if="rows > perPage"
               v-model="currentPage"
               class=" d-flex justify-content-center"
               :total-rows="rows"
@@ -50,9 +50,9 @@ import MyImg from '../../components/MyImg.vue'
 import { product } from '../../types/typing'
 export default Vue.extend({
   components: { ProductAsid, MyImg },
-  async asyncData ({ app }) {
+  async asyncData ({ app, error }) {
     const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product' })
-    // console.log(all)
+    if (all?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
     return { all }
   },
   data () {

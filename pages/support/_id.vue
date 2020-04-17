@@ -4,9 +4,7 @@
       <b-col cols="12" md="4">
         <b-list-group class="asid">
           <b-list-group-item variant="info">
-            {{
-              $t("常见问题.w5qbf8")
-            }}
+            常见问题
           </b-list-group-item>
           <b-list-group-item v-for="(val,key) in supportAsid" :key="'asid' + key">
             <b-button
@@ -79,7 +77,6 @@ interface buyArea {
   parent: string
 }
 export default Vue.extend({
-
   async asyncData ({ app, params }) {
     const MainUrl = `/support/${params.id}`
     const supportAsids:supportProblem[] = await app.$Api.GeneralGetInfo({ table: 'Page', queryKeys: ['MainTitle'], MainTitle: 'support_problem_asid' })
@@ -120,19 +117,8 @@ export default Vue.extend({
     }
   },
   head () {
-    const [Page] = this.$data.list
     return {
-      title: `${Page.PageTitle} - ${this.$defaults.name}`,
-      meta: [
-        {
-          name: 'keywords',
-          content: Page.Pagekeywords
-        },
-        {
-          name: 'description',
-          content: Page.Pagedescription
-        }
-      ]
+      title: `服务支持 - ${this.$defaults.name}`
     }
   }
 })

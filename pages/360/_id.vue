@@ -31,13 +31,14 @@ export default Vue.extend({
     CardCopy,
     VrAsid
   },
-  async asyncData ({ app, params }) {
+  async asyncData ({ app, params, error }) {
     const listArrays:vr[] = await app.$Api.GeneralGetInfo({ table: 'VR' })
     const key = getKey(Vr, '/360/' + params.id)
     const listArray = listArrays.filter((el) => {
       // console.log({ name: el.name.trim(), key: `［${key}］` })
       return el.name.trim() === `［${key}］`
     })
+    if (listArray?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
     return { listArray }
   },
   head () {

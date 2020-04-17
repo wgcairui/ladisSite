@@ -75,14 +75,14 @@ export default Vue.extend({
   components: {
     MyImg
   },
-  async asyncData ({ app, params }) {
-    const MainUrl = '/products/' + Object.values(params).join('/')
-
+  async asyncData ({ app, params, error }) {
+    const link = '/products/' + Object.values(params).join('/')
     const result:productList[] = await app.$Api.GeneralGetInfo({
       table: 'Product_list',
-      queryKeys: ['MainUrl'],
-      MainUrl
+      queryKeys: ['link'],
+      link
     })
+    if (result?.length === 0) { error({ statusCode: 500, message: 'content丢失' }) }
     return { all: result[0] }
   },
   computed: {

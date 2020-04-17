@@ -29,7 +29,7 @@
         <b-row>
           <b-col>
             <b-pagination
-              v-show="rows > perPage"
+              v-if="rows > perPage"
               v-model="currentPage"
               class=" d-flex justify-content-center"
               :total-rows="rows"
@@ -50,10 +50,11 @@ import { product } from '../../types/typing'
 import { product as products, getKey } from '../../components/hrefs'
 export default Vue.extend({
   components: { ProductAsid, MyImg },
-  async asyncData ({ app, params }) {
+  async asyncData ({ app, params, error }) {
     const MainUrl = `/products/${params.id}`
     const MainTitle = getKey(products, MainUrl)
     const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product', queryKeys: ['MainTitle'], MainTitle })
+    if (!all) { error({ statusCode: 500, message: 'content null' }) }
     return { all, MainTitle }
   },
   data () {

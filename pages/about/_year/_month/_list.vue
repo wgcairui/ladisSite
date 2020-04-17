@@ -6,7 +6,7 @@
       </b-col>
     </b-row>
     <b-row no-gutters>
-      <b-col v-for="val in list" :key="val.title" cols="12" md="4">
+      <b-col v-for="val in list" :key="val.link" cols="12" md="4">
         <b-card :title="val.title" class="m-2">
           <b-card-body>
             <!-- <div v-if="typeof val.content !== 'string'">
@@ -17,7 +17,7 @@
               <p>{{ $t("_id.x7u8c6") }}：{{ val.content.remark }}</p>
             </div>
             <pre v-else>{{ val.content }}</pre> -->
-            <pre>{{ val.content }}</pre>
+            <pre>{{ val.content.replace(/(\\n| )/g,'') }}</pre>
           </b-card-body>
         </b-card>
       </b-col>
@@ -28,14 +28,15 @@
 import Vue from 'vue'
 import { buyList } from '../../../../types/typing'
 export default Vue.extend({
-  async asyncData ({ app, params }) {
-    const MainUrl = '/about/' + Object.values(params).join('/')
-    console.log(MainUrl)
+  async asyncData ({ app, params, error }) {
+    const link = '/about/' + Object.values(params).join('/')
+    if (link.includes('undefined')) { error({ statusCode: 505, message: link }) }
     const list:buyList[] = await app.$Api.GeneralGetInfo({
       table: 'Buy_list',
-      queryKeys: ['MainUrl'],
-      MainUrl
+      queryKeys: ['link'],
+      link
     })
+    if (!list) { error({ statusCode: 500, message: '内容丢失' }) }
     return { list }
   },
   head () {

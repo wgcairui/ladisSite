@@ -41,7 +41,7 @@
 import Vue from 'vue'
 import { supportList, support } from '../../../../types/typing'
 export default Vue.extend({
-  async asyncData ({ app, params }) {
+  async asyncData ({ app, params, error }) {
     let title = ''
     let isProblem:boolean = true
     let body:supportList | support
@@ -56,8 +56,7 @@ export default Vue.extend({
       body = down[0]
       title = body.title
     }
-    // console.log({ body, title, isProblem })
-
+    if (!body) { error({ statusCode: 500, message: 'no content' }) }
     return { body, title, isProblem }
   },
   data () {

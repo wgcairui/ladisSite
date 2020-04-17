@@ -60,6 +60,7 @@ export default Vue.extend({
       }).catch(() => {
         return []
       })
+    // if (GetNews?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
     return { GetNews }
   },
   data () {

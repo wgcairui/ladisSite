@@ -27,7 +27,7 @@
           </b-list-group-item>
         </b-list-group>
         <b-pagination
-          v-show="rows > 10"
+          v-if="rows > perPage"
           v-model="currentPage"
           :total-rows="rows"
           :per-page="perPage"
@@ -47,8 +47,9 @@ export default Vue.extend({
     CardCopy,
     NewsAsid
   },
-  async asyncData ({ app }) {
+  async asyncData ({ app, error }) {
     const listArray = await app.$Api.GeneralGetInfo({ table: 'News', isNews: true })
+    if (listArray?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
     return { listArray }
   },
   data () {

@@ -27,7 +27,7 @@
           </b-list-group-item>
         </b-list-group>
         <b-pagination
-          v-show="rows > 10"
+          v-if="rows > perPage"
           v-model="currentPage"
           class=" d-flex justify-content-center"
           :total-rows="rows"
@@ -57,10 +57,11 @@ export default Vue.extend({
     CardCopy,
     CaseAsid
   },
-  async asyncData ({ app, params }) {
+  async asyncData ({ app, params, error }) {
     const url = '/case/' + params.id
     const key = getKey(cases, url)
     const listArray = await app.$Api.GeneralGetInfo({ table: 'Case', queryKeys: ['MainTitle'], MainTitle: key })
+    if (listArray?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
     return { listArray, key }
   },
   data () {

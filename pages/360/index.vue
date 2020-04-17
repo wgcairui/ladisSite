@@ -30,8 +30,9 @@ export default Vue.extend({
     CardCopy,
     VrAsid
   },
-  async asyncData ({ app }) {
+  async asyncData ({ app, error }) {
     const listArray:vr[] = await app.$Api.GeneralGetInfo({ table: 'VR' })
+    if (listArray?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
     return { listArray }
   },
   head () {
