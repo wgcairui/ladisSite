@@ -17,7 +17,7 @@
             width="100%"
             height="480"
             allowfullscreen
-            :src="body.movie"
+            :src="body.movie.replace(/http:\/\//g, 'https://')"
           />
         </div>
       </b-col>
