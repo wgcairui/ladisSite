@@ -1,4 +1,4 @@
-import { Context, Configuration } from '@nuxt/types'
+import { Configuration } from '@nuxt/types'
 import axios from 'axios'
 import { defaults } from './store/user'
 import { params } from './types'
@@ -137,7 +137,8 @@ export default {
    ** Build configuration
    */
   build: {
+    extractCSS: true
   },
   router: {
   }
-}
+} as Configuration
