@@ -25,7 +25,7 @@
         <a href="http://www.szlwtech.com/" target="_blank" alt="开关电源ic">开关电源ic</a> &nbsp;&nbsp;
         <a href="http://www.jianqiaochina.com" target="_blank" alt="振动试验台">振动试验台</a> &nbsp;&nbsp;
       </div>
-      <div>
+    <!--  <div>
         <a
           v-for="val in Agent"
           :key="val.name"
@@ -33,7 +33,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >{{ val.name }}</a>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
