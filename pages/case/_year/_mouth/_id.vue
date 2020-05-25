@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols="12">
         <div class="my-4 border-bottom">
-          <h5 class="text-center">
+          <h5 class="text-center px2">
             {{ title }}
           </h5>
         </div>
@@ -35,11 +35,11 @@
     </b-row>
     <b-row no-gutters class="py-4">
       <b-col class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
-        <b-link v-if="Content.pre" :to="Content.pre.link" class=" text-dark py-2">
+        <b-link v-if="Content.pre" :to="Content.pre.link" class=" text-dark p-2">
           上一页:{{ Content.pre.text }}
         </b-link>
         <div />
-        <b-link v-if="Content.next" :to="Content.next.link" class=" text-dark py-2">
+        <b-link v-if="Content.next" :to="Content.next.link" class=" text-dark p-2">
           下一页:{{ Content.next.text }}
         </b-link>
       </b-col>
@@ -101,10 +101,6 @@ export default Vue.extend({
 })
 </script>
 <style lang="scss" scoped>
-img{
-  max-height: 500px;
-  max-width: 100%;
-}
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
