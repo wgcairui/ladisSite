@@ -23,7 +23,6 @@
         <a href="http://www.paileshi.com.cn/" target="_blank" alt="干式变压器">干式变压器</a> &nbsp;&nbsp;
         <a href="http://www.shiweisemi.com/" target="_blank" alt="LED芯片">LED芯片</a> &nbsp;&nbsp;
         <a href="http://www.szlwtech.com/" target="_blank" alt="开关电源ic">开关电源ic</a> &nbsp;&nbsp;
-        <a href="http://www.cune.com.cn/ " target="_blank" alt="便携式UPS">便携式UPS</a> &nbsp;&nbsp;
         <a href="http://www.jianqiaochina.com" target="_blank" alt="振动试验台">振动试验台</a> &nbsp;&nbsp;
       </div>
       <div>
@@ -62,7 +61,7 @@ export default Vue.extend({
         { name: '贵州兴义雷迪司', url: 'xingyi.gzjifang.com' },
         { name: '贵州凯里雷迪司', url: 'kaili.gzjifang.com' },
         { name: '陕西雷迪司', url: 'www.xaladis.com' },
-        { name: '河北雷迪司', url: 'www.hbladis.com' },
+        // { name: '河北雷迪司', url: 'www.hbladis.com' },
         { name: '福建雷迪司', url: 'www.ladups.com' }
       ] as Agents[]
     }
