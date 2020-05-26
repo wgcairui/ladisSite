@@ -28,7 +28,7 @@
       <b-col cols="12" class="bg-dark p-1">
         <div class="d-flex justify-content-center ">
           <b-link
-            :href="`/news/${problemTitle}`"
+            :href="`/news`"
             class="text-light stretched-link m-1 text-decoration-none"
           >
             {{ problemTitle }}
