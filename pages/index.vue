@@ -28,10 +28,11 @@
       <b-col cols="12" class="bg-dark p-1">
         <div class="d-flex justify-content-center ">
           <b-link
-            :href="`/news`"
+            :href="problemTitle.link"
+            target="_blank"
             class="text-light stretched-link m-1 text-decoration-none"
           >
-            {{ problemTitle }}
+            {{ problemTitle.title }}
           </b-link>
         </div>
       </b-col>
@@ -49,18 +50,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import MySection from '../components/MySection.vue'
-import { caseList } from '../types/typing'
+// import { caseList } from '../types/typing'
 export default Vue.extend({
   components: { MySection },
   async asyncData ({ app }) {
     const GetNews: any[] = await app.$Api
-      .GetHomeNews()
-      .then((el:caseList[]) => {
-        return el.map(em => em.title)
-      }).catch(() => {
+      .GetHomeNews().catch(() => {
         return []
       })
-    // if (GetNews?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
     return { GetNews }
   },
   data () {
@@ -73,7 +70,10 @@ export default Vue.extend({
         height: 100
       },
       problemNum: 0,
-      problemTitle: '室外一体化机柜的组成'
+      problemTitle: {
+        title: '新闻资讯',
+        href: '/news'
+      }
     }
   },
   computed: {
