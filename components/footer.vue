@@ -7,7 +7,9 @@
             <b-col v-if="defaults.product" cols="6" sm="4" :md="md">
               <ul>
                 <li>
-                  <strong>{{ $t('section.gk11oe') }}</strong>
+                  <h5 class=" text-light text-truncate">
+                    {{ $t('section.gk11oe') }}
+                  </h5>
                 </li>
                 <li v-if="defaults.product.showUps">
                   <nuxt-link :to="product['UPS电源']">
@@ -29,7 +31,9 @@
             <b-col v-if="defaults.support" cols="6" sm="4" :md="md">
               <ul>
                 <li>
-                  <strong>{{ $t('section.q5vjss') }}</strong>
+                  <h5 class=" text-light text-truncate">
+                    {{ $t('section.q5vjss') }}
+                  </h5>
                 </li>
                 <li v-if="defaults.buy && defaults.buy.serverCenter">
                   <nuxt-link :to="about['销售服务中心']">
@@ -48,10 +52,12 @@
                 </li>
               </ul>
             </b-col>
-            <b-col v-if="defaults.buy" cols="6" sm="4" md="3">
+            <b-col v-if="defaults.buy" cols="6" sm="4" :md="md">
               <ul>
                 <li>
-                  <strong>{{ $t('section.21ws8d') }}</strong>
+                  <h5 class=" text-light text-truncate">
+                    {{ $t('section.21ws8d') }}
+                  </h5>
                 </li>
                 <li v-if="defaults.buy.serverCenter">
                   <nuxt-link :to="about['经销商列表']">
@@ -88,10 +94,12 @@
                 </li>
               </ul>
             </b-col>
-            <b-col cols="6" sm="4" :md="md">
+            <b-col cols="6" sm="4" md="3">
               <ul>
                 <li>
-                  <strong>{{ $t('guan-yu') }}{{ defaults.name }}</strong>
+                  <h5 class=" text-light text-truncate">
+                    {{ $t('guan-yu') }}{{ defaults.name }}
+                  </h5>
                 </li>
                 <li>
                   <nuxt-link :to="about['公司简介']">
@@ -108,7 +116,9 @@
             <b-col cols="6" sm="4" :md="md">
               <ul>
                 <li>
-                  <strong>{{ $t('section.ri1giq') }}</strong>
+                  <h5 class=" text-light text-truncate">
+                    {{ $t('section.ri1giq') }}
+                  </h5>
                 </li>
                 <li>
                   <a href="http://www.pesiv.com" target="_bank">

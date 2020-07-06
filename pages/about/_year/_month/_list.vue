@@ -6,8 +6,8 @@
       </b-col>
     </b-row>
     <b-row no-gutters>
-      <b-col v-for="val in list" :key="val.link" cols="12" md="4">
-        <b-card :title="val.title" class="m-2">
+      <b-col v-for="val in list" :key="val.link" cols="12" md="4" class="p-2">
+        <b-card :title="val.title" class="h-100">
           <b-card-body>
             <!-- <div v-if="typeof val.content !== 'string'">
               <p>{{ $t("_id.sjrt39") }}：{{ val.content.tel }}</p>
