@@ -60,6 +60,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 import MySection from '../components/MySection.vue'
 // import { caseList } from '../types/typing'
 export default Vue.extend({
@@ -87,6 +88,7 @@ export default Vue.extend({
     }
   },
   computed: {
+    ...mapState(['agentConfig']),
     carousel () {
       const local = this.$i18n.locale
       if (local === 'zh') {
@@ -126,7 +128,14 @@ export default Vue.extend({
     }
   },
   head () {
-    return this.$store.state.defaults.home.key
+    const self = this as any
+    return {
+      title: self.agentConfig.title,
+      meta: [
+        { name: 'keywords', content: self.agentConfig.metaKeywords },
+        { name: 'description', content: self.agentConfig.metaDescription }
+      ]
+    }
   }
 })
 </script>

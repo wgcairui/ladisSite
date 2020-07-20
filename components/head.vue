@@ -2,10 +2,10 @@
   <b-container>
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand href="/">
-        <b-img v-if="defaults.home.logo.type === 'PNG'" :src="defaults.home.logo.value" />
+        <b-img v-if="agentConfig.logoType === 'PNG'" :src="agentConfig.logoValue" />
         <!-- <img src="" height="40"> -->
         <h3 v-else class="font-weight-bold">
-          {{ defaults.home.logo.value }}
+          {{ agentConfig.logoValue }}
         </h3>
       </b-navbar-brand>
 
@@ -98,9 +98,9 @@
               {{ $t('head.4ggyxs') }}
             </b-dropdown-item>
             <b-dropdown-item
-              v-for="(val,key) in defaults.buy.userMall"
+              v-for="(val,key) in tmls"
               :key="key+100"
-              :href="val.src "
+              :href="val.src"
               target="_blank"
             >
               {{ val.title }}
@@ -162,8 +162,8 @@
               {{ locale.name }}
             </b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-item v-if="defaults.home.Tel400">
-            销售热线:{{ defaults.home.Tel400 }}
+          <b-nav-item v-if="agentConfig.contact400">
+            销售热线:{{ agentConfig.contact400 }}
           </b-nav-item>
           <b-nav-item
             v-if="defaults.home.serve.show"
@@ -179,6 +179,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 import { NuxtVueI18n } from 'nuxt-i18n/types/nuxt-i18n'
 import { news, cases, vr, product, about, support } from './hrefs'
 export default Vue.extend({
@@ -190,11 +191,22 @@ export default Vue.extend({
       vr,
       product,
       about,
-      support,
-      defaults: this.$store.state.defaults
+      support
     }
   },
   computed: {
+    ...mapState(['agentConfig', 'defaults']),
+    tmls () {
+      const tmls = this.agentConfig.tml as string[]
+      if (tmls && tmls.length > 0) {
+        return tmls.map((el) => {
+          const [title, src] = el.split('+')
+          return { title, src }
+        })
+      } else {
+        return []
+      }
+    },
     localSite () {
       return this.$store.state.localSite
     },

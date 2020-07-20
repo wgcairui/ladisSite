@@ -131,7 +131,8 @@ export default {
     '/_CMS_NEWS_IMG_': RemoteServerAddress,
     '/a_images': RemoteServerAddress,
     '/down': RemoteServerAddress,
-    '/upload': RemoteServerAddress
+    '/upload': RemoteServerAddress,
+    '/config': RemoteServerAddress
   },
 
   /*

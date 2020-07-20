@@ -138,7 +138,6 @@
         </b-container>
       </b-col>
     </b-row>
-    <friend-link />
     <b-row>
       <b-col cols="12" class="p-0 bg-dark p-2 d-flex flex-column flex-sm-row flex-wrap">
         <div>
@@ -171,7 +170,7 @@
             <span>
               <b-link target="_blank" href="http://www.beian.miit.gov.cn">
                 {{
-                  defaults.home.beian
+                  agentConfig.beian
                 }}
               </b-link>
             </span>
@@ -179,24 +178,36 @@
         </div>
       </b-col>
     </b-row>
+    <div class="row foot-nav-pc friendlink" style="display:none;">
+      <div class="row friendlylist">
+        <div class="col-md-12 left">
+          &nbsp;
+        </div>
+        <div class="col-md-12 right">
+          <a>友情链接：</a>
+          <a v-for="(share, key ) in linkFrend" :key="key" :href="share.link" target="_blank" alt="触摸一体机">{{ share.name }}</a> &nbsp;&nbsp;
+        </div>
+      </div>
+    </div>
   </b-col>
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 import { product, support, about, news } from './hrefs'
-import FriendLink from './FriendLink.vue'
 export default Vue.extend({
   name: 'LadisFooter',
-  components: { FriendLink },
   data () {
     return {
       product,
       support,
       about,
       news,
-      defaults: this.$store.state.defaults,
       md: this.$store.state.defaults.buy ? 2 : 3
     }
+  },
+  computed: {
+    ...mapState(['agentConfig', 'defaults', 'linkFrend'])
   }
 })
 </script>

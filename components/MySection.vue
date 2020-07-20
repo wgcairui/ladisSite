@@ -33,14 +33,14 @@
             <b-img src="~/assets/down3.png" class="d-inline shimgw" />
           </div>
 
-          <span v-if="defaults.home.contact" class="d-flex flex-column py-3 px-2">
+          <span v-if="agentConfig.contactTel" class="d-flex flex-column py-3 px-2">
             <h4 class="text-primary text-nowrap">{{ $t('lian-xi-fang-shi') }}</h4>
             <span class="flex-grow-1">
               <b-link
-                v-if="defaults.home.contact.qq"
+                v-if="agentConfig.contactQQ"
                 class="text-decoration-none d-block text-dark mb-1 tel-p font-weight-bold"
                 :href="
-                  `tencent://message/?Site=baidu.com&uin=${defaults.home.contact.qq}&Menu=yes`
+                  `tencent://message/?Site=baidu.com&uin=${agentConfig.contactQQ}&Menu=yes`
                 "
                 target="_blank"
               >
@@ -104,10 +104,10 @@
                     p-id="4903"
                   />
                 </svg>
-                {{ defaults.home.contact.qq }}
+                {{ agentConfig.contactQQ }}
               </b-link>
               <b-link
-                v-for="tel in defaults.home.contact.tel"
+                v-for="tel in agentConfig.contactTel"
                 :key="tel"
                 class="text-decoration-none d-block text-dark mb-1 tel-p font-weight-bold"
               >
@@ -158,14 +158,16 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 import { support } from './hrefs'
 export default Vue.extend({
   data () {
     return {
-      defaults: this.$store.state.defaults
+      // defaults: this.$store.state.defaults
     }
   },
   computed: {
+    ...mapState(['agentConfig', 'defaults']),
     // 资料下载
     down () {
       const locale = this.$i18n.locale
