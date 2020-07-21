@@ -5,7 +5,7 @@ export const state = () => ({
   localUrl: '',
   defaults,
   agentConfig: {},
-  linkFrend: []
+  linkFrend: [] as any[]
 })
 
 export type RootState = ReturnType<typeof state>
@@ -19,7 +19,8 @@ export const mutations: MutationTree<RootState> = {
   },
   SETAGENTCONFIG (state, payload) {
     state.agentConfig = payload.agentConfig
-    state.linkFrend = payload.linkFrend
+    const linkFrend = (<{name:string}[]>payload.linkFrend).filter(el => el.name !== state.defaults.name)
+    state.linkFrend = linkFrend
   }
 }
 
