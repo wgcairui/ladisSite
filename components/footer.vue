@@ -98,7 +98,7 @@
               <ul>
                 <li>
                   <h5 class=" text-light text-truncate">
-                    {{ $t('guan-yu') }}{{ defaults.name }}
+                    {{ $t('guan-yu-wo-men') }}
                   </h5>
                 </li>
                 <li>

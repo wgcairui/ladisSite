@@ -101,9 +101,7 @@
     "x7u8c6": "Remarks"
   },
   "list": {
-    "_id": {
-      "q9xyoe": "Related download"
-    }
+    "_id": {}
   },
   "ups-dian-yuan": "UPS",
   "hou-bei-shi-ups-dian-yuan": "Backup UPS",
@@ -137,11 +135,10 @@
   "cuo-wu-dai-ma": "FaultCode",
   "ji-shu-wen-dang": "TechnicalDocumentation",
   "shou-hou-zhi-chi": "After-sales Support",
-  "guan-yu": "About ",
   "zhu-ye": "HOME",
   "chan-pin-fen-lei": "Product Categories",
-  "chan-pin-te-dian": "Product Features",
   "zheng-shu-zi-zhi": "CertificateDownLoad",
   "li-ji-zi-xun": "Consulting",
-  "yun-jian-kong-ping-tai": "Cloud Monitoring Platform"
+  "yun-jian-kong-ping-tai": "Cloud Monitoring Platform",
+  "guan-yu-wo-men": "about us"
 }

@@ -101,9 +101,7 @@
     "x7u8c6": "备注"
   },
   "list": {
-    "_id": {
-      "q9xyoe": "相关下载"
-    }
+    "_id": {}
   },
   "ups-dian-yuan": "UPS电源",
   "hou-bei-shi-ups-dian-yuan": "后备式UPS电源",
@@ -137,11 +135,10 @@
   "cuo-wu-dai-ma": "错误代码",
   "ji-shu-wen-dang": "技术文档",
   "shou-hou-zhi-chi": "售后支持",
-  "guan-yu": "关于",
   "zhu-ye": "主页",
   "chan-pin-fen-lei": "产品分类",
-  "chan-pin-te-dian": "产品特点",
   "zheng-shu-zi-zhi": "证书资质",
   "li-ji-zi-xun": "立即咨询",
-  "yun-jian-kong-ping-tai": "云监控平台"
+  "yun-jian-kong-ping-tai": "云监控平台",
+  "guan-yu-wo-men": "关于我们"
 }
