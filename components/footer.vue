@@ -173,6 +173,10 @@
                   agentConfig.beian
                 }}
               </b-link>
+              <b-link v-if="agentConfig.wangan" target="_blank" href="http://www.beian.gov.cn">
+                <b-img src="http://www.beian.gov.cn/img/ghs.png" />
+                {{ agentConfig.wangan }}
+              </b-link>
             </span>
           </span>
         </div>
