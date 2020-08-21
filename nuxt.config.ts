@@ -63,7 +63,8 @@ export default {
     '@bazzite/nuxt-optimized-images',
     // 网站地图
     // https://github.com/nuxt-community/sitemap-module
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/component-cache'
   ],
   sitemap: {
     hostname: defaults.name,
