@@ -1,14 +1,15 @@
-import { Configuration } from '@nuxt/types'
+import { NuxtAppOptions } from '@nuxt/types'
 import axios from 'axios'
 import { defaults } from './store/user'
 import { params } from './types'
 // const RemoteServerAddress = process.env.NODE_ENV === 'production' ? 'http://www.ladishb.com/admin' : 'http://localhost:9006'
 const RemoteServerAddress = 'http://www.ladishb.com/admin'
 export default {
-  mode: 'universal',
+  dev: process.env.NODE_ENV !== 'production',
+
   server: {
     port: process.env.NODE_ENV === 'production' ? (process.env.NUXT_PORT || defaults.port || 80) : 9005,
-    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : '0.0.0.0'
+    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
   },
   /*
    ** Headers of the page
@@ -76,7 +77,7 @@ export default {
       const router = await axios.get(
         `${RemoteServerAddress}/api/Get_arg`, { params: param }
       ).then((el) => {
-        return el.data.map((router: { rout: any }) => router.rout)
+        return el.data.map((router: { rout: any} ) => router.rout)
       }).catch((err) => {
         console.log(err)
         return []
@@ -142,6 +143,5 @@ export default {
   build: {
     extractCSS: true
   },
-  router: {
-  }
-} as Configuration
+  router: {}
+} as unknown as NuxtAppOptions
