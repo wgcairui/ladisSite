@@ -6,13 +6,13 @@
       </b-col>
       <b-col cols="12" md="9" class=" mt-3 mb-5">
         <b-list-group>
-          <b-list-group-item v-for="val in listArray" :key="val.text">
+          <b-list-group-item v-for="val in listArraylink" :key="val.text">
             <card-copy
               :img="val.img"
               :text="val.text"
               :title="val.name"
               :time="val.time"
-              :href="'http://www.ladis.com.cn'+val.link"
+              :href="val.link"
             />
           </b-list-group-item>
         </b-list-group>
@@ -33,7 +33,16 @@ export default Vue.extend({
   async asyncData ({ app, error }) {
     const listArray:vr[] = await app.$Api.GeneralGetInfo({ table: 'VR' })
     if (listArray?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
-    return { listArray }
+    const listArraylink = listArray.map((el) => {
+      if (!/http:\/\/www.ladis.com.cn/.test(el.link)) {
+        el.link = 'https://www.ladis.com.cn' + el.link
+      }
+      if (el.link.startsWith('http:')) {
+        el.link = el.link.replace(/^http/, 'https')
+      }
+      return el
+    })
+    return { listArraylink }
   },
   head () {
     return {

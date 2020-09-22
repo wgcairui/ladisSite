@@ -10,9 +10,9 @@ export interface userSetup {
     // 主页配置
     home: {
         logo?:{
-            type:logoType
+            type:logoType,
             value:string
-        }
+        }|string
         // ico
         ico?:string
         // 关键字

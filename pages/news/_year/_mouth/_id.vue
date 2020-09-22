@@ -60,7 +60,7 @@ export default Vue.extend({
     if (lists?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
     const list = lists[0]
     const Content = await app.$Api.GetContent(link)
-    return { title: list.title, list, Content }
+    return { title: list.title || '', list, Content }
   },
   data () {
     return {

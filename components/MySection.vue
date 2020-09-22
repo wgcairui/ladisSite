@@ -30,15 +30,15 @@
       <b-col cols="6" sm="4">
         <div class="d-flex flex-row">
           <div class="d-none d-lg-block">
-            <b-img src="~/assets/down3.png" class="d-inline shimgw" />
+            <b-img src="/a_images/down3.png" class="d-inline shimgw" />
           </div>
 
-          <span v-if="agentConfig.contactTel" class="d-flex flex-column py-3 px-2">
+          <span v-if="agentConfig.contactTel" class="d-flex flex-column py-3 ">
             <h4 class="text-primary text-nowrap">{{ $t('lian-xi-fang-shi') }}</h4>
             <span class="flex-grow-1">
               <b-link
                 v-if="agentConfig.contactQQ"
-                class="text-decoration-none d-block text-dark mb-1 tel-p font-weight-bold"
+                class="text-decoration-none d-block text-dark mb-1 tel-p font-weight-bold text-nowrap"
                 :href="
                   `tencent://message/?Site=baidu.com&uin=${agentConfig.contactQQ}&Menu=yes`
                 "
@@ -172,7 +172,7 @@ export default Vue.extend({
     down () {
       const locale = this.$i18n.locale
       return {
-        src: require('~/assets/down1.png'),
+        src: '/a_images/down1.png',
         href: support['监控软件下载'],
         title: this.$t('zi-liao-xia-zai'),
         locale,
@@ -188,7 +188,7 @@ export default Vue.extend({
     problem () {
       const locale = this.$i18n.locale
       return {
-        src: require('~/assets/down2.png'),
+        src: '/a_images/down2.png',
         href: support['常见问题'],
         title: this.$t('chang-jian-wen-ti'),
         locale,
@@ -213,5 +213,8 @@ export default Vue.extend({
 }
 .shimgw {
   width: 155px;
+}
+svg{
+  max-width: 20px;
 }
 </style>

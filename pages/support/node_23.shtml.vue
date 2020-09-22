@@ -8,7 +8,7 @@
     <b-row no-gutters>
       <b-col class=" my-5">
         <b-tabs>
-          <b-tab :title="$t('维修服务.4o89za')" active class=" p-3">
+          <b-tab title="维修服务" active class=" p-3">
             <h4 class=" border-bottom text-center">
               服务政策
             </h4>

@@ -1,19 +1,19 @@
-import { NuxtAppOptions } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
 import axios from 'axios'
 import { defaults } from './store/user'
 import { params } from './types'
 // const RemoteServerAddress = process.env.NODE_ENV === 'production' ? 'http://www.ladishb.com/admin' : 'http://localhost:9006'
 const RemoteServerAddress = 'http://www.ladishb.com/admin'
 export default {
+  telemetry: false,
+  ssr: true,
   dev: process.env.NODE_ENV !== 'production',
-
+  modern: 'server',
   server: {
     port: process.env.NODE_ENV === 'production' ? (process.env.NUXT_PORT || defaults.port || 80) : 9005,
-    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
+    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : '0.0.0.0'
   },
-  /*
-   ** Headers of the page
-   */
+
   head: {
     title: defaults.home.key?.title,
     meta: [
@@ -26,21 +26,20 @@ export default {
     ]
   },
 
-  /*
-   ** Customize the progress-bar color
-   */
+  // Customize the progress-bar color
+
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
+
+  // Global CSS
+
   css: ['~/assets/ladis-old.css'],
-  /*
-   ** Plugins to load before mounting the App
-   */
+
+  // Plugins to load before mounting the App
+
   plugins: ['~/plugins/api.ts', '~/plugins/defaults.ts', '~/plugins/baidu.js'],
-  /*
-   ** Nuxt.js dev-modules
-   */
+
+  // Nuxt.js dev-modules
+
   buildModules: [
     // https://typescript.nuxtjs.org/guide/setup.html#installation
     '@nuxt/typescript-build',
@@ -49,9 +48,9 @@ export default {
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module'
   ],
-  /*
-   ** Nuxt.js modules
-   */
+
+  // Nuxt.js modules
+
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
@@ -77,7 +76,7 @@ export default {
       const router = await axios.get(
         `${RemoteServerAddress}/api/Get_arg`, { params: param }
       ).then((el) => {
-        return el.data.map((router: { rout: any} ) => router.rout)
+        return el.data.map((router: { rout: any }) => router.rout)
       }).catch((err) => {
         console.log(err)
         return []
@@ -137,11 +136,10 @@ export default {
     '/config': RemoteServerAddress
   },
 
-  /*
-   ** Build configuration
-   */
+  // Build configuration
+
   build: {
     extractCSS: true
   },
   router: {}
-} as unknown as NuxtAppOptions
+} as NuxtConfig
