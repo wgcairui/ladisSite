@@ -94,6 +94,7 @@ export default Vue.extend({
       const local = this.$i18n.locale
       if (local === 'zh') {
         return [
+          '/banner/banner05-pc.jpg',
           '/banner/banner01-pc.jpg',
           '/banner/banner02-pc.jpg',
           '/banner/banner03-pc.jpg',
@@ -128,7 +129,7 @@ export default Vue.extend({
       this.$data.problemTitle = this.$data.GetNews[this.$data.problemNum - 1]
     },
     linkvr (src:string) {
-      if (/banner03-/.test(src)) { window.open('https://www.ladis.com.cn/pic/quanjingjifang/') }
+      if (/banner05-/.test(src)) { window.open('https://www.ladis.com.cn/pic/quanjingjifang/') }
     }
   },
   head () {

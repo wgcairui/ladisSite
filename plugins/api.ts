@@ -1,8 +1,8 @@
-import { Context, Plugin } from '@nuxt/types'
+import { Plugin } from '@nuxt/types'
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { params } from '../types/index'
 
-const MyApi:Plugin = (ctx:Context, inject: (key: string, value: any) => void) => {
+const MyApi:Plugin = (ctx, inject) => {
   class Api {
         static axios:NuxtAxiosInstance = (ctx.$axios.create({ method: 'GET' }) as any)
 

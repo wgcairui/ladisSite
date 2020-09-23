@@ -1,5 +1,7 @@
-import { Context } from '@nuxt/types'
+import { Middleware } from '@nuxt/types'
 
-export default function ({ route }:Context) {
-  console.log(route)
+const Mid:Middleware = (ctx) => {
+  console.log(ctx.route)
 }
+
+export default Mid
