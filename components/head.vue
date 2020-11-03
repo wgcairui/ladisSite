@@ -114,10 +114,17 @@
             <template slot="button-content">
               <em>{{ $t('head.n5tjum') }}</em>
             </template>
+<<<<<<< HEAD
             <b-dropdown-item v-if="showBuy" :to="about['经销商列表']">
               {{ $t('head.028ccn') }}
             </b-dropdown-item>
             <b-dropdown-item v-if="showBuy" :to="about['销售服务中心']">
+=======
+            <b-dropdown-item v-if="defaults.buy.serverCenter" :to="about['经销商列表']">
+              {{ $t('head.028ccn') }}
+            </b-dropdown-item>
+            <b-dropdown-item v-if="defaults.buy.serverCenter" :to="about['销售服务中心']">
+>>>>>>> ee72b6074c262813dda5f1c20e5d4edf8d022809
               {{ $t('head.vy3lqf') }}
             </b-dropdown-item>
             <b-dropdown-item v-if="showNews" :to="news['全部新闻']">
