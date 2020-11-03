@@ -13,7 +13,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown v-if="defaults.product" right>
+          <b-nav-item-dropdown v-if="showProduct" right>
             <template slot="button-content">
               <em>{{ $t('head.pneaqh') }}</em>
             </template>
@@ -21,26 +21,23 @@
               {{ $t('head.spa5wv') }}
             </b-dropdown-item>
             <b-dropdown-item
-              v-if="defaults.product.showUps"
               :to="product['UPS电源']"
             >
               {{ $t('head.oa0e4r') }}
             </b-dropdown-item>
             <b-dropdown-item
-              v-if="defaults.product.showDataCenter"
               :to="product['数据中心']"
             >
               {{ $t('head.1t6jqi') }}
             </b-dropdown-item>
             <b-dropdown-item
-              v-if="defaults.product.showAir"
               :to="product['机房空调']"
             >
               {{ $t('head.odglin') }}
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown v-if="defaults.support" right>
+          <b-nav-item-dropdown v-if="showProduct" right>
             <template slot="button-content">
               <em>{{ $t('head.lcnmgn') }}</em>
             </template>
@@ -68,30 +65,30 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown v-if="defaults.buy" right>
+          <b-nav-item-dropdown v-if="showBuy || tmls.length>0" right>
             <template slot="button-content">
               <em>{{ $t('head.pku7s6') }}</em>
             </template>
-            <b-dropdown-item v-if="defaults.buy.serverCenter" :to="about['销售服务中心']">
+            <b-dropdown-item v-if="showBuy" :to="about['销售服务中心']">
               {{ $t('head.azg9np') }}
             </b-dropdown-item>
             <b-dropdown-divider />
             <b-dropdown-item
-              v-if="defaults.buy.Tmall"
+              v-if="showBuy"
               href="https://leidisi.tmall.com/"
               target="_blank"
             >
               {{ $t('head.1cufnl') }}
             </b-dropdown-item>
             <b-dropdown-item
-              v-if="defaults.buy.jd"
+              v-if="showBuy"
               href="https://mall.jd.com/index-131620.html"
               target="_blank"
             >
               {{ $t('head.kj9sli') }}
             </b-dropdown-item>
             <b-dropdown-item
-              v-if="defaults.buy.blue"
+              v-if="showBuy"
               href="https://lgsm.tmall.com/"
               target="_blank"
             >
@@ -107,23 +104,23 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item v-if="defaults.vr" :to="vr['全景展示']">
+          <b-nav-item :to="vr['全景展示']">
             {{ $t('head.yiyt7o') }}
           </b-nav-item>
-          <b-nav-item v-if="defaults.case" :to="cases['成功案例']">
+          <b-nav-item v-if="showCase" :to="cases['成功案例']">
             {{ $t('head.ekilla') }}
           </b-nav-item>
           <b-nav-item-dropdown right>
             <template slot="button-content">
               <em>{{ $t('head.n5tjum') }}</em>
             </template>
-            <b-dropdown-item v-if="defaults.buy" :to="about['经销商列表']">
+            <b-dropdown-item v-if="showBuy" :to="about['经销商列表']">
               {{ $t('head.028ccn') }}
             </b-dropdown-item>
-            <b-dropdown-item v-if="defaults.buy" :to="about['销售服务中心']">
+            <b-dropdown-item v-if="showBuy" :to="about['销售服务中心']">
               {{ $t('head.vy3lqf') }}
             </b-dropdown-item>
-            <b-dropdown-item v-if="defaults.news" :to="news['全部新闻']">
+            <b-dropdown-item v-if="showNews" :to="news['全部新闻']">
               {{ $t('head.t1vwuq') }}
             </b-dropdown-item>
             <b-dropdown-divider />
@@ -150,7 +147,7 @@
               {{ $t('footer.5d7lkm') }}
             </b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-item-dropdown v-if="defaults.laungua" right>
+          <b-nav-item-dropdown v-if="showLaungua" right>
             <template slot="button-content">
               <em>{{ $t('head.vix4n3') }}</em>
             </template>
@@ -165,13 +162,13 @@
           <b-nav-item v-if="agentConfig.contact400">
             销售热线:{{ agentConfig.contact400 }}
           </b-nav-item>
-          <b-nav-item
+          <!-- <b-nav-item
             v-if="defaults.home.serve.show"
             :href="defaults.home.serve.src"
             target="_blank"
           >
             {{ $t('head.vnvsqr') }}
-          </b-nav-item>
+          </b-nav-item> -->
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -195,7 +192,7 @@ export default Vue.extend({
     }
   },
   computed: {
-    ...mapState(['agentConfig', 'defaults']),
+    ...mapState(['agentConfig', 'name', 'showProduct', 'showBuy', 'showCase', 'showNews', 'showLaungua']),
     tmls () {
       const tmls = this.agentConfig.tml as string[]
       if (tmls && tmls.length > 0) {
@@ -206,9 +203,6 @@ export default Vue.extend({
       } else {
         return []
       }
-    },
-    localSite () {
-      return this.$store.state.localSite
     },
     availableLocales () {
       const locales: NuxtVueI18n.Options.LocaleObject[] = this.$i18n

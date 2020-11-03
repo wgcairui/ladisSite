@@ -83,7 +83,7 @@ export default Vue.extend({
   components: { MyImg },
   head () {
     return {
-      title: `${this.$data.title}`
+      title: `${this.$store.state.name}`
     }
   }
 })

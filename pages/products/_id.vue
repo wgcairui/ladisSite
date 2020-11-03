@@ -70,7 +70,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: `${this.$data.MainTitle}_UPS不间断电源厂家【价格 型号 参数 图片】- ${this.$defaults.name}`,
+      title: `${this.$data.MainTitle}_UPS不间断电源厂家【价格 型号 参数 图片】- ${this.$store.state.name}`,
       meta: [
         {
           name: 'keywords',

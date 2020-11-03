@@ -46,7 +46,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: `产品全景展示 - 雷迪司 - ${this.$defaults.name}`
+      title: `产品全景展示 - 雷迪司 - ${this.$store.state.name}`
       /* meta: [
         {
           name: 'keywords',

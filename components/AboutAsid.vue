@@ -19,14 +19,14 @@
       {{ $t("index.uqcwsg") }}
     </b-list-group-item>
     <b-list-group-item
-      v-if="defaults.buy && defaults.buy.serverCenter"
+      v-if="showBuy"
       :to="about['经销商列表']"
       class="bg-dark rounded-0 my-1 text-light"
     >
       {{ $t("index.974lfm") }}
     </b-list-group-item>
     <b-list-group-item
-      v-if="defaults.buy && defaults.buy.serverCenter"
+      v-if="showBuy"
       :to="about['销售服务中心']"
       class="bg-dark rounded-0 my-1 text-light"
     >
@@ -66,19 +66,17 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 import { about, news } from './hrefs'
 export default Vue.extend({
   data () {
     return {
-      defaults: this.$store.state.defaults,
       about,
       news
     }
   },
   computed: {
-    localSite () {
-      return this.$store.state.localSite
-    }
+    ...mapState(['name', 'showProduct', 'showBuy', 'showCase', 'showNews', 'showLaungua'])
   }
 })
 </script>

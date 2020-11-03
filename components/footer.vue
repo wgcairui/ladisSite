@@ -4,38 +4,38 @@
       <b-col>
         <b-container>
           <b-row class="mb-5">
-            <b-col v-if="defaults.product" cols="6" sm="4" :md="md">
+            <b-col v-if="showProduct" cols="6" sm="4" :md="md">
               <ul>
                 <li>
                   <h5 class=" text-light text-truncate">
                     {{ $t('section.gk11oe') }}
                   </h5>
                 </li>
-                <li v-if="defaults.product.showUps">
+                <li>
                   <nuxt-link :to="product['UPS电源']">
                     {{ $t('section.4t9bzs') }}
                   </nuxt-link>
                 </li>
-                <li v-if="defaults.product.showDataCenter">
+                <li>
                   <nuxt-link :to="product['数据中心']">
                     {{ $t('section.4r35dn') }}
                   </nuxt-link>
                 </li>
-                <li v-if="defaults.product.showAir">
+                <li>
                   <nuxt-link :to="product['机房空调']">
                     {{ $t('section.f7h57b') }}
                   </nuxt-link>
                 </li>
               </ul>
             </b-col>
-            <b-col v-if="defaults.support" cols="6" sm="4" :md="md">
+            <b-col cols="6" sm="4" :md="md">
               <ul>
                 <li>
                   <h5 class=" text-light text-truncate">
                     {{ $t('section.q5vjss') }}
                   </h5>
                 </li>
-                <li v-if="defaults.buy && defaults.buy.serverCenter">
+                <li v-if="showBuy">
                   <nuxt-link :to="about['销售服务中心']">
                     {{ $t('section.ps0tuh') }}
                   </nuxt-link>
@@ -52,46 +52,46 @@
                 </li>
               </ul>
             </b-col>
-            <b-col v-if="defaults.buy" cols="6" sm="4" :md="md">
+            <b-col v-if="showBuy" cols="6" sm="4" :md="md">
               <ul>
                 <li>
                   <h5 class=" text-light text-truncate">
                     {{ $t('section.21ws8d') }}
                   </h5>
                 </li>
-                <li v-if="defaults.buy.serverCenter">
+                <li v-if="showBuy">
                   <nuxt-link :to="about['经销商列表']">
                     {{ $t('section.u7wjbw') }}
                   </nuxt-link>
                 </li>
-                <li v-if="defaults.buy.blue">
+                <li v-if="showBuy">
                   <a href="https://lgsm.tmall.com/">
                     {{
                       $t('section.6v39gj')
                     }}
                   </a>
                 </li>
-                <li v-if="defaults.buy.Tmall">
+                <li v-if="showBuy">
                   <a href="https://leidisi.tmall.com/" target="_bank">
                     {{
                       $t('section.k9mydj')
                     }}
                   </a>
                 </li>
-                <li v-if="defaults.buy.jd">
+                <li v-if="showBuy">
                   <a href="https://mall.jd.com/index-131620.html" target="_bank">
                     {{
                       $t('section.pfuunc')
                     }}
                   </a>
                 </li>
-                <li v-for="(val,key) in defaults.buy.userMall || []" :key="key">
+                <!-- <li v-for="(val,key) in defaults.buy.userMall || []" :key="key">
                   <a
                     :href="val.src || '#'"
                     target="_blank"
                     rel="noopener noreferrer"
                   >{{ val.title || '' }}</a>
-                </li>
+                </li> -->
               </ul>
             </b-col>
             <b-col cols="6" sm="4" md="3">
@@ -106,7 +106,7 @@
                     {{ $t('section.v0otza') }}
                   </nuxt-link>
                 </li>
-                <li v-if="defaults.news">
+                <li v-if="showNews">
                   <nuxt-link :to="news['全部新闻']">
                     {{ $t('section.qis2vp') }}
                   </nuxt-link>
@@ -166,7 +166,7 @@
             <span>
               <em>© 2019 All Rights Reserved</em>
             </span>
-            <span>{{ defaults.name }}</span>
+            <span>{{ name }}</span>
             <span>
               <b-link target="_blank" href="http://www.beian.miit.gov.cn">
                 {{
@@ -207,11 +207,11 @@ export default Vue.extend({
       support,
       about,
       news,
-      md: this.$store.state.defaults.buy ? 2 : 3
+      md: this.$store.state.showBuy ? 2 : 3
     }
   },
   computed: {
-    ...mapState(['agentConfig', 'defaults', 'linkFrend'])
+    ...mapState(['agentConfig', 'name', 'showProduct', 'showBuy', 'showCase', 'showNews', 'showLaungua', 'linkFrend'])
   }
 })
 </script>

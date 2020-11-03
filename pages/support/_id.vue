@@ -118,7 +118,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: `服务支持 - ${this.$defaults.name}`
+      title: `服务支持 - ${this.$store.state.name}`
     }
   }
 })

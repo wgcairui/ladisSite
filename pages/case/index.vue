@@ -73,7 +73,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: `成功案例  - ${this.$defaults.name}`
+      title: `成功案例  - ${this.$store.state.name}`
     }
   }
 })

@@ -72,7 +72,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: `新闻资讯 - ${this.$defaults.name}`
+      title: `新闻资讯 - ${this.$store.state.name}`
     }
   }
 })

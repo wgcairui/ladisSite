@@ -34,7 +34,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: `${this.$data.key} - ${this.$defaults.name}`
+      title: `${this.$data.key} - ${this.$store.state.name}`
     }
   }
 })

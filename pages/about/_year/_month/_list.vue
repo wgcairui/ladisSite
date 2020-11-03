@@ -41,7 +41,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: `UPS不间断电源_机房精密空调安装维修售后维护服务 - ${this.$defaults.name}`,
+      title: `UPS不间断电源_机房精密空调安装维修售后维护服务 - ${this.$store.state.name}`,
       meta: [
         {
           name: 'keywords',

@@ -161,13 +161,8 @@ import Vue from 'vue'
 import { mapState } from 'vuex'
 import { support } from './hrefs'
 export default Vue.extend({
-  data () {
-    return {
-      // defaults: this.$store.state.defaults
-    }
-  },
   computed: {
-    ...mapState(['agentConfig', 'defaults']),
+    ...mapState(['agentConfig']),
     // 资料下载
     down () {
       const locale = this.$i18n.locale

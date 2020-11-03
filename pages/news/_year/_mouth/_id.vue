@@ -85,7 +85,7 @@ export default Vue.extend({
   head () {
     const Page = this.$data.list
     return {
-      title: `${Page.PageTitle} - ${this.$defaults.name}`,
+      title: `${Page.PageTitle} - ${this.$store.state.name}`,
       meta: [
         {
           name: 'keywords',

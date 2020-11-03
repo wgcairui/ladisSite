@@ -1,8 +1,6 @@
 import { NuxtConfig } from '@nuxt/types'
 import axios from 'axios'
-import { defaults } from './store/user'
 import { params } from './types'
-// const RemoteServerAddress = process.env.NODE_ENV === 'production' ? 'http://www.ladishb.com/admin' : 'http://localhost:9006'
 const RemoteServerAddress = 'http://www.ladishb.com/admin'
 export default {
   telemetry: false,
@@ -10,19 +8,19 @@ export default {
   dev: process.env.NODE_ENV !== 'production',
   modern: 'server',
   server: {
-    port: process.env.NODE_ENV === 'production' ? (process.env.NUXT_PORT || defaults.port || 80) : 9005,
-    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : '0.0.0.0'
+    port: process.env.NODE_ENV === 'production' ? (process.env.NUXT_PORT || 80) : 9005,
+    host: '0.0.0.0'
   },
 
   head: {
-    title: defaults.home.key?.title,
+    title: process.env.NAME,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: defaults.home.ico ?? '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
-      { src: defaults.hm }
+      { src: process.env.CODE_HM }
     ]
   },
 
@@ -36,7 +34,7 @@ export default {
 
   // Plugins to load before mounting the App
 
-  plugins: ['~/plugins/api.ts', '~/plugins/defaults.ts', '~/plugins/baidu.js'],
+  plugins: ['~/plugins/api.ts', '~/plugins/baidu.js'],
 
   // Nuxt.js dev-modules
 
@@ -67,7 +65,7 @@ export default {
     '@nuxtjs/component-cache'
   ],
   sitemap: {
-    hostname: defaults.name,
+    hostname: process.env.NAME,
     gzip: true,
     // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
     // eslint-disable-next-line require-await

@@ -20,6 +20,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 import ladisHead from '../components/head.vue'
 import ladisFooter from '../components/footer.vue'
 export default Vue.extend({
@@ -27,14 +28,18 @@ export default Vue.extend({
     ladisHead,
     ladisFooter
   },
-  head: {
-    link: [
-      {
-        href: '//at.alicdn.com/t/font_1290509_iyq1zhprcvc.css',
-        type: 'text/css',
-        rel: 'stylesheet'
-      }
-    ]
+  computed: {
+    ...mapState(['agentConfig'])
+  },
+  head () {
+    const self = this as any
+    return {
+      title: self.agentConfig.title,
+      meta: [
+        { name: 'keywords', content: self.agentConfig.metaKeywords },
+        { name: 'description', content: self.agentConfig.metaDescription }
+      ]
+    }
   }
 })
 </script>

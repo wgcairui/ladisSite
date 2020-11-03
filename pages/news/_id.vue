@@ -75,7 +75,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: `${(this as any).key} - ${this.$defaults.name}`
+      title: `${(this as any).key} - ${this.$store.state.name}`
     }
   }
 })
