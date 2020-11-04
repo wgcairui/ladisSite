@@ -56,7 +56,7 @@ export default Vue.extend({
       body = down[0]
       title = body.title
     }
-    if (!body) { error({ statusCode: 500, message: 'no content' }) }
+    if (!body) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { body, title, isProblem }
   },
   data () {

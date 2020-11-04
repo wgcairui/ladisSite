@@ -52,7 +52,7 @@ export default Vue.extend({
     const url = '/news/' + params.id
     const key = getKey(news, url)
     const listArray = await app.$Api.GeneralGetInfo({ table: 'News', queryKeys: ['MainTitle'], MainTitle: key })
-    if (listArray?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
+    if (listArray?.length === 0) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { listArray, key }
   },
   data () {

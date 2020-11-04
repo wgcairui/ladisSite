@@ -30,13 +30,13 @@ import { buyList } from '../../../../types/typing'
 export default Vue.extend({
   async asyncData ({ app, params, error }) {
     const link = '/about/' + Object.values(params).join('/')
-    if (link.includes('undefined')) { error({ statusCode: 505, message: link }) }
+    if (link.includes('undefined')) { return error({ statusCode: 505, message: link }) }
     const list:buyList[] = await app.$Api.GeneralGetInfo({
       table: 'Buy_list',
       queryKeys: ['link'],
       link
     })
-    if (!list) { error({ statusCode: 500, message: '内容丢失' }) }
+    if (!list) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { list }
   },
   head () {

@@ -52,7 +52,7 @@ export default Vue.extend({
   components: { ProductAsid, MyImg },
   async asyncData ({ app, error }) {
     const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product' })
-    if (all?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
+    if (all?.length === 0) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { all }
   },
   data () {

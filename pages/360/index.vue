@@ -32,7 +32,7 @@ export default Vue.extend({
   },
   async asyncData ({ app, error }) {
     const listArray:vr[] = await app.$Api.GeneralGetInfo({ table: 'VR' })
-    if (listArray?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
+    if (listArray?.length === 0) { return error({ statusCode: 500, message: '页面走丢了' }) }
     const listArraylink = listArray.map((el) => {
       if (!/http:\/\/www.ladis.com.cn/.test(el.link)) {
         el.link = 'https://www.ladis.com.cn' + el.link

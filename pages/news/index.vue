@@ -49,7 +49,7 @@ export default Vue.extend({
   },
   async asyncData ({ app, error }) {
     const listArray = await app.$Api.GeneralGetInfo({ table: 'News', isNews: true })
-    if (listArray?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
+    if (listArray?.length === 0) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { listArray }
   },
   data () {

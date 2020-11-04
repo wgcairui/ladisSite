@@ -54,7 +54,7 @@ export default Vue.extend({
     const MainUrl = `/products/${params.id}`
     const MainTitle = getKey(products, MainUrl)
     const all:product[] = await app.$Api.GeneralGetInfo({ table: 'Product', queryKeys: ['MainTitle'], MainTitle })
-    if (!all) { error({ statusCode: 500, message: 'content null' }) }
+    if (!all) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { all, MainTitle }
   },
   data () {

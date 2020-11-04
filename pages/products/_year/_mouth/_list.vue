@@ -82,7 +82,7 @@ export default Vue.extend({
       queryKeys: ['link'],
       link
     })
-    if (result?.length === 0) { error({ statusCode: 500, message: 'content丢失' }) }
+    if (result?.length === 0) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { all: result[0] }
   },
   computed: {

@@ -57,7 +57,9 @@ export default Vue.extend({
       queryKeys: ['link'],
       link
     })
-    if (lists?.length === 0) { error({ statusCode: 500, message: 'content null' }) }
+    if (lists?.length < 1) {
+      return error({ statusCode: 500, message: '页面走丢了' })
+    }
     const list = lists[0]
     const Content = await app.$Api.GetContent(link)
     return { title: list.title || '', list, Content }

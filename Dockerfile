@@ -1,23 +1,26 @@
-FROM node:14-alpine
+#run  docker run -itd --name ladissite -p 80:80 -e NAME="湖北雷迪司" ladissite
+#npm run build:docker && docker stop ladissite && docker rm ladissite && docker run -itd --name ladissite -p 80:80 -e NAME="湖北雷迪司" ladissite && docker exec -it ladissite /bin/bash   
 
-WORKDIR /app
+FROM node
 
 ENV NPM_CONFIG_LOGLEVEL warn
 ENV NODE_ENV=production
 
-COPY ["package.json","tsconfig.json", "nuxt.config.ts", "/app/"]
+COPY ["package.json","tsconfig.json", "nuxt.config.ts", "/"]
 
 # Install app dependencies
+# echo https://mirrors.aliyun.com/alpine/v3.6/main/ > /etc/apk/repositories  && apk add autoconf automake libtool 
 
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org && cnpm install && cnpm install -g ts-node typescript pm2
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org \
+    && cnpm install && cnpm install -g ts-node typescript pm2
 
-COPY .nuxt /app/.nuxt
-COPY assets /app/assets
-COPY locales /app/locales
-COPY middleware /app/middleware
-COPY plugins /app/plugins
-COPY store /app/store
-COPY types /app/types
+COPY .nuxt /.nuxt
+COPY assets /assets
+COPY locales /locales
+COPY middleware /middleware
+COPY plugins /plugins
+COPY store /store
+COPY types /types
 
 EXPOSE 80
 
