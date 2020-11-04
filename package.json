@@ -4,6 +4,7 @@
   "description": "LADS官方网站，使用cs",
   "author": "wgcairui",
   "private": true,
+  "readme": "docker run -itd --restart always --name ladissite -p 80:80 -e NAME='湖北雷迪司' ladissite",
   "scripts": {
     "dev": "cross-env NAME=福州雷迪司通电子有限公司 nuxt-ts",
     "build": "nuxt-ts build",

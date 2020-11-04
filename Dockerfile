@@ -1,6 +1,3 @@
-#run  docker run -itd --name ladissite -p 80:80 -e NAME="湖北雷迪司" ladissite
-#npm run build:docker && docker stop ladissite && docker rm ladissite && docker run -itd --name ladissite -p 80:80 -e NAME="湖北雷迪司" ladissite && docker exec -it ladissite /bin/bash   
-
 FROM node
 
 ENV NPM_CONFIG_LOGLEVEL warn
@@ -20,8 +17,9 @@ COPY locales /locales
 COPY middleware /middleware
 COPY plugins /plugins
 COPY store /store
+COPY static /static
 COPY types /types
 
 EXPOSE 80
 
-#CMD ["npm","run","start"]
+CMD ["npm","run","start"]
