@@ -1,13 +1,24 @@
-FROM node
-# 申明网站名称
-ENV NAME = localhost
-# 百度统计代码
-ENV CODE_HM = https://hm.baidu.com/hm.js?bf546544e2b54542e68aa9a497b752a4
-# 显示
-ENV SHOW_PRODUCT = 1
-ENV SHOW_BUY = 0
-ENV SHOW_CASE = 1
-ENV SHOW_NEWS = 1
-ENV SHOW_LAUNGUA = 0
+FROM node:14-alpine
+
+WORKDIR /app
+
+ENV NPM_CONFIG_LOGLEVEL warn
+ENV NODE_ENV=production
+
+COPY ["package.json","tsconfig.json", "nuxt.config.ts", "/app/"]
+
+# Install app dependencies
+
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org && cnpm install && cnpm install -g ts-node typescript pm2
+
+COPY .nuxt /app/.nuxt
+COPY assets /app/assets
+COPY locales /app/locales
+COPY middleware /app/middleware
+COPY plugins /app/plugins
+COPY store /app/store
+COPY types /app/types
 
 EXPOSE 80
+
+#CMD ["npm","run","start"]

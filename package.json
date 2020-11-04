@@ -5,11 +5,11 @@
   "author": "wgcairui",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
+    "dev": "cross-env NAME=福州雷迪司通电子有限公司 nuxt-ts",
     "build": "nuxt-ts build",
+    "build:docker": "sudo docker build -t ladissite .",
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start",
-    "start:9005": "cross-env NUXT_PORT=9005 nuxt-ts start",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "lint-staged": {

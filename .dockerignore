@@ -1,0 +1,12 @@
+node_modules
+components
+layouts
+pages
+.dockerignore
+.gitignore
+Dockerfile
+.editorconfig
+.eslintrc.js
+.prettierrc
+jsconfig.json
+stylelint.config.js

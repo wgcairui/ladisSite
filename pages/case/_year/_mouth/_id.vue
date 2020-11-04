@@ -48,7 +48,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { caseList } from '../../../../types/typing'
+import { caseList } from '~/types/typing'
 export default Vue.extend({
   async asyncData ({ app, params, error }) {
     const link = '/case/' + Object.values(params).join('/')

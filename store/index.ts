@@ -2,13 +2,13 @@ import { GetterTree, ActionTree, MutationTree } from 'vuex'
 import { Context } from '@nuxt/types'
 export const state = () => ({
   localUrl: '',
-  name: process.env.NAME || 'localhost',
-  hm: process.env.CODE_HM || '',
-  showProduct: process.env.SHOW_PRODUCT ? Boolean(process.env.SHOW_PRODUCT) : true,
-  showBuy: process.env.SHOW_BUY ? Boolean(process.env.SHOW_BUY) : false,
-  showCase: process.env.SHOW_CASE ? Boolean(process.env.SHOW_CASE) : true,
-  showNews: process.env.SHOW_NEWS ? Boolean(process.env.SHOW_NEWS) : true,
-  showLaungua: process.env.SHOW_LAUNGUA ? Boolean(process.env.SHOW_LAUNGUA) : false,
+  name: '',
+  hm: '',
+  showProduct: true,
+  showBuy: false,
+  showCase: true,
+  showNews: true,
+  showLaungua: false,
   agentConfig: {},
   linkFrend: [] as any[]
 })
@@ -24,23 +24,32 @@ export const mutations: MutationTree<RootState> = {
   },
   SETAGENTCONFIG (state, payload) {
     state.agentConfig = payload.agentConfig
-    const linkFrend = (<{name:string}[]>payload.linkFrend).filter(el => el.name !== state.name)
+    const linkFrend = (<{ name: string }[]>payload.linkFrend).filter(el => el.name !== state.name)
     state.linkFrend = linkFrend
+    state.hm = payload.agentConfig.hm
+    state.name = payload.agentConfig.name
+    state.showBuy = payload.agentConfig.showBuy || state.showBuy
+    state.showCase = payload.agentConfig.showCase || state.showCase
+    state.showLaungua = payload.agentConfig.showLaungua || state.showLaungua
+    state.showNews = payload.agentConfig.showNews || state.showNews
+    state.showProduct = payload.agentConfig.showProduct || state.showProduct
+    // console.log(state)
   }
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  async nuxtServerInit ({ commit, state }, { req, $axios }:Context) {
+  async nuxtServerInit ({ commit }, { req, $axios }: Context) {
     const forwardedHost = req.headers['x-forwarded-host']
     const host = req.headers.host?.split(':')[0]
     commit('SETHOST', { localUrl: forwardedHost || host })
 
     const WagentConfig = $axios.$get('/config/agent', {
-      params: { name: state.name }
+      params: { name: process.env.NAME }
     })
     const WlinkFrend = $axios.$get('/config/linkFrend')
 
     await Promise.all([WagentConfig, WlinkFrend]).then(([agentConfig, linkFrend]) => {
+      // console.log({ name: process.env.NAME })
       commit('SETAGENTCONFIG', { agentConfig, linkFrend })
     }).catch((e) => {
       console.log(e)

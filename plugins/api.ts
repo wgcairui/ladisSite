@@ -32,7 +32,7 @@ const MyApi:Plugin = (ctx, inject) => {
         }
   }
   Api.axios.onRequest((config) => {
-    const SiteName = ctx.store.state.defaults.name
+    const SiteName = ctx.store.state.name
     const i18n = ctx.app.i18n.locale
     config.params = { ...config.params || {}, SiteName, i18n }
     return config
