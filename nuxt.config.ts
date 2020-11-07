@@ -58,7 +58,7 @@ export default {
     'nuxt-i18n',
     // 优化图像加载
     // https://www.bazzite.com/docs/nuxt-optimized-images/
-    '@bazzite/nuxt-optimized-images',
+    // '@bazzite/nuxt-optimized-images',
     // 网站地图
     // https://github.com/nuxt-community/sitemap-module
     '@nuxtjs/sitemap',

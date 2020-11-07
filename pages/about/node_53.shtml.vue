@@ -98,7 +98,7 @@ export default Vue.extend({
         return element
       })
     })
-    if (area) { return error({ statusCode: 500, message: '页面走丢了' }) }
+    if (!area) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { map, area }
   },
 
