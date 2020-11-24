@@ -42,8 +42,9 @@ export const actions: ActionTree<RootState, RootState> = {
     const forwardedHost = req.headers['x-forwarded-host']
     const host = req.headers.host?.split(':')[0]
     commit('SETHOST', { localUrl: forwardedHost || host })
-
-    const WagentConfig = $http.$get('/config/agent?name=' + encodeURI(env.name))
+    // console.log({location:'store',env,p:process.env});
+    
+    const WagentConfig = $http.$get('/config/agent?name=' + encodeURI(process.env.NAME!))
     const WlinkFrend = $http.$get('/config/linkFrend')
 
     await Promise.all([WagentConfig, WlinkFrend]).then(([agentConfig, linkFrend]) => {

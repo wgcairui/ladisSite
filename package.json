@@ -4,13 +4,14 @@
   "description": "LADS官方网站，使用cs",
   "author": "wgcairui",
   "private": true,
-  "readme": "docker run -itd --restart always --name ladissite -p 80:80 -e NAME='湖北雷迪司' ladissite",
+  "readme": "docker run -itd --restart always --name ladissite -p 80:80 -e NAME='湖北雷迪司' wgcairui/ladissite:latest",
   "scripts": {
     "dev": "cross-env NAME=福州雷迪司通电子有限公司 nuxt-ts",
     "build": "nuxt-ts build",
     "build:docker": "tsc nuxt.config.ts && npm run build && sudo docker build -t ladissite . && rm nuxt.config.js",
+    "push:docker": "sudo docker login && sudo docker tag ladissite:latest wgcairui/ladissite:latest && sudo docker push wgcairui/ladissite:latest",
     "generate": "nuxt-ts generate",
-    "start": "cross-env NODE_ENV=production tsc nuxt.config.ts && nuxt start",
+    "start": "nuxt start",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "lint-staged": {
@@ -29,13 +30,14 @@
     "nuxt-i18n": "^6.15.1"
   },
   "devDependencies": {
-    "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxt/types": "^2.14.7",
     "@nuxt/typescript-build": "^2.0.3",
+    "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/eslint-config-typescript": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/proxy": "^2.0.1",
     "@nuxtjs/stylelint-module": "^4.0.0",
+    "@types/node-fetch": "^2.5.7",
     "babel-eslint": "^10.0.1",
     "cross-env": "^7.0.2",
     "eslint": "^7.9.0",

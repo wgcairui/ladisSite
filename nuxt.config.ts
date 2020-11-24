@@ -4,7 +4,6 @@ import axios from 'axios'
 import { params } from './types'
 const RemoteServerAddress = 'https://www.ladishb.com/admin'
 // const RemoteServerAddress = 'http://www.ladishb.com:8006'
-const siteName = process.env.NAME || '湖北雷迪司'
 const config: NuxtConfig = {
   telemetry: false,
   ssr: true,
@@ -15,12 +14,10 @@ const config: NuxtConfig = {
     host: '0.0.0.0'
   },
   env: {
-    name: siteName,
     serverUrl: RemoteServerAddress
   },
 
   head: {
-    title: siteName,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -69,12 +66,12 @@ const config: NuxtConfig = {
     '@nuxtjs/proxy'
   ],
   sitemap: {
-    hostname: siteName,
     gzip: true,
     // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
     // eslint-disable-next-line require-await
     routes: async (ctx: NuxtApp) => {
-      console.log({ ctx })
+      
+      // console.log({ ctx })
       const param: params = { table: 'Router' }
       const router = await axios.post(
         `${RemoteServerAddress}/api/Get_arg`, { params: param }

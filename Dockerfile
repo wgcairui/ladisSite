@@ -9,14 +9,14 @@ COPY ["package.json", "nuxt.config.js", "/"]
 # Install app dependencies
 # echo https://mirrors.aliyun.com/alpine/v3.6/main/ > /etc/apk/repositories  && apk add autoconf automake libtool 
 
-RUN  npm install --production --registry=https://registry.npm.taobao.org
+RUN  npm install -g cnpm --registry=https://registry.npm.taobao.org && cnpm install --production
 
 COPY .nuxt /.nuxt
 COPY assets /assets
 COPY locales /locales
-COPY middleware /middleware
-COPY plugins /plugins
-COPY store /store
+#COPY middleware /middleware
+#COPY plugins /plugins
+#COPY store /store
 COPY static /static
 
 EXPOSE 80
