@@ -2,10 +2,10 @@ import { NuxtConfig } from '@nuxt/types'
 import { NuxtApp } from '@nuxt/types/app'
 import axios from 'axios'
 import { params } from './types'
-// const RemoteServerAddress = 'http://www.ladishb.com/admin'
-const RemoteServerAddress = 'http://www.ladishb.com:8006'
+const RemoteServerAddress = 'https://www.ladishb.com/admin'
+// const RemoteServerAddress = 'http://www.ladishb.com:8006'
 const siteName = process.env.NAME || '湖北雷迪司'
-export default {
+const config: NuxtConfig = {
   telemetry: false,
   ssr: true,
   dev: process.env.NODE_ENV !== 'production',
@@ -27,7 +27,7 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
-      { src: process.env.CODE_HM }
+      { src: process.env.CODE_HM || '' }
     ]
   },
 
@@ -74,7 +74,7 @@ export default {
     // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
     // eslint-disable-next-line require-await
     routes: async (ctx: NuxtApp) => {
-      console.log({ctx})
+      console.log({ ctx })
       const param: params = { table: 'Router' }
       const router = await axios.post(
         `${RemoteServerAddress}/api/Get_arg`, { params: param }
@@ -160,4 +160,6 @@ export default {
     extractCSS: true
   },
   router: {}
-} as NuxtConfig
+}
+
+export default config
