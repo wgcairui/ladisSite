@@ -10,7 +10,7 @@
     "build": "nuxt-ts build",
     "build:docker": "tsc nuxt.config.ts && npm run build && sudo docker build -t ladissite . && rm nuxt.config.js",
     "generate": "nuxt-ts generate",
-    "start": "nuxt start",
+    "start": "cross-env NODE_ENV=production tsc nuxt.config.ts && nuxt start",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "lint-staged": {
@@ -18,9 +18,9 @@
     "*.{css,vue}": "stylelint"
   },
   "dependencies": {
-    "@nuxtjs/auth": "^4.9.0",
-    "@nuxtjs/axios": "^5.12.2",
+    "@nuxt/http": "^0.6.0",
     "@nuxtjs/component-cache": "^1.1.6",
+    "@nuxtjs/proxy": "^2.0.1",
     "@nuxtjs/sitemap": "^2.4.0",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.3",

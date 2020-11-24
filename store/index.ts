@@ -38,15 +38,13 @@ export const mutations: MutationTree<RootState> = {
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  async nuxtServerInit ({ commit }, { req, $axios }: Context) {
+  async nuxtServerInit ({ commit }, { req, $http, env }: Context) {
     const forwardedHost = req.headers['x-forwarded-host']
     const host = req.headers.host?.split(':')[0]
     commit('SETHOST', { localUrl: forwardedHost || host })
 
-    const WagentConfig = $axios.$get('/config/agent', {
-      params: { name: process.env.NAME }
-    })
-    const WlinkFrend = $axios.$get('/config/linkFrend')
+    const WagentConfig = $http.$get('/config/agent?name=' + encodeURI(env.name))
+    const WlinkFrend = $http.$get('/config/linkFrend')
 
     await Promise.all([WagentConfig, WlinkFrend]).then(([agentConfig, linkFrend]) => {
       // console.log({ name: process.env.NAME })

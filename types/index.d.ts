@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { DbTables } from './typing'
 interface params {
     table: DbTables
@@ -7,7 +6,6 @@ interface params {
     [t:string]:any
 }
 interface Api {
-    axios: AxiosInstance
     GeneralGetInfo: <T = any>(params: params) => Promise<T>
     GetHomeNews: <T = any>() => Promise<T>
     GetBuyList: <T = any>(city: string) => Promise<T>

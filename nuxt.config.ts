@@ -1,7 +1,10 @@
 import { NuxtConfig } from '@nuxt/types'
+import { NuxtApp } from '@nuxt/types/app'
 import axios from 'axios'
 import { params } from './types'
-const RemoteServerAddress = 'http://www.ladishb.com/admin'
+// const RemoteServerAddress = 'http://www.ladishb.com/admin'
+const RemoteServerAddress = 'http://www.ladishb.com:8006'
+const siteName = process.env.NAME || '湖北雷迪司'
 export default {
   telemetry: false,
   ssr: true,
@@ -11,9 +14,13 @@ export default {
     port: process.env.NODE_ENV === 'production' ? 80 : 9005,
     host: '0.0.0.0'
   },
+  env: {
+    name: siteName,
+    serverUrl: RemoteServerAddress
+  },
 
   head: {
-    title: process.env.NAME,
+    title: siteName,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -34,17 +41,17 @@ export default {
 
   // Plugins to load before mounting the App
 
-  plugins: ['~/plugins/api.ts', '~/plugins/baidu.js'],
+  plugins: ['~/plugins/api.ts', '~/plugins/http.ts', '~/plugins/baidu.js'],
 
   // Nuxt.js dev-modules
 
   buildModules: [
     // https://typescript.nuxtjs.org/guide/setup.html#installation
-    '@nuxt/typescript-build',
+    '@nuxt/typescript-build'
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module'
+    // '@nuxtjs/stylelint-module'
   ],
 
   // Nuxt.js modules
@@ -52,26 +59,24 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     // https://nuxt-community.github.io/nuxt-i18n/
     'nuxt-i18n',
-    // 优化图像加载
-    // https://www.bazzite.com/docs/nuxt-optimized-images/
-    // '@bazzite/nuxt-optimized-images',
-    // 网站地图
     // https://github.com/nuxt-community/sitemap-module
     '@nuxtjs/sitemap',
-    '@nuxtjs/component-cache'
+    '@nuxtjs/component-cache',
+    // https://http.nuxtjs.org/setup
+    '@nuxt/http',
+    '@nuxtjs/proxy'
   ],
   sitemap: {
-    hostname: process.env.NAME,
+    hostname: siteName,
     gzip: true,
     // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
     // eslint-disable-next-line require-await
-    routes: async () => {
+    routes: async (ctx: NuxtApp) => {
+      console.log({ctx})
       const param: params = { table: 'Router' }
-      const router = await axios.get(
+      const router = await axios.post(
         `${RemoteServerAddress}/api/Get_arg`, { params: param }
       ).then((el) => {
         return el.data.map((router: { rout: any }) => router.rout)
@@ -119,14 +124,29 @@ export default {
     // 路由配置
     strategy: 'no_prefix'
   },
-  axios: {
-    // baseURL: 'http://localhost:9005',
-    proxy: true
-    // credentials: true
+  http: {
+    proxy: true,
+    retry: 2
+  },
+  publicRuntimeConfig: {
+    http: {
+      browserBaseURL: process.env.BROWSER_BASE_URL
+    }
+  },
+
+  privateRuntimeConfig: {
+    http: {
+      baseURL: process.env.BASE_URL
+    }
   },
 
   proxy: {
-    '/api': RemoteServerAddress,
+    '/api/': {
+      target: RemoteServerAddress,
+      pathRewrite: {
+        '/api/': '/api/v2/'
+      }
+    },
     '/_CMS_NEWS_IMG_': RemoteServerAddress,
     '/a_images': RemoteServerAddress,
     '/down': RemoteServerAddress,
