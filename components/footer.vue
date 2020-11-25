@@ -122,21 +122,19 @@
           <nuxt-link :to="about['使用声明']" class="px-1">{{ $t('footer.amhzvr') }}</nuxt-link>
 
           <nuxt-link :to="about['隐私政策']" class="px-1">{{ $t('footer.5d7lkm') }}</nuxt-link>
-          <b-link target="_blank" href="https://beian.miit.gov.cn">
-            {{
-            agentConfig.beian
-            }}
-          </b-link>
         </div>
-        <div class="">
-          
-        </div>
+        <div class></div>
         <div class="beian">
           <span class="d-flex flex-column flex-sm-row align-items-center">
             <span>
               <em>© 2019 All Rights Reserved</em>
             </span>
             <span>{{ name }}</span>
+            <b-link target="_blank" href="https://beian.miit.gov.cn">
+              {{
+              agentConfig.beian
+              }}
+            </b-link>
             <span>
               <b-link
                 v-if="agentConfig.wangan"
