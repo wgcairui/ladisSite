@@ -6,7 +6,7 @@
   "private": true,
   "readme": "docker run -itd --restart always --name ladissite -p 80:80 -e NAME='湖北雷迪司' wgcairui/ladissite:latest",
   "scripts": {
-    "dev": "cross-env NAME=福州雷迪司通电子有限公司 nuxt-ts",
+    "dev": "cross-env NAME=深圳市雷迪司电源有限公司 nuxt-ts",
     "build": "nuxt-ts build",
     "build:docker": "tsc nuxt.config.ts && npm run build && sudo docker build -t ladissite . && rm nuxt.config.js",
     "push:docker": "sudo docker login && sudo docker tag ladissite:latest wgcairui/ladissite:latest && sudo docker push wgcairui/ladissite:latest",

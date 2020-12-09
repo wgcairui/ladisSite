@@ -26,10 +26,9 @@ export default Vue.extend({
     const url = '/about/' + params.id
     const key = getKey(aboutHrefs, url)
     // 获取body
-    const result = await app.$Api.GeneralGetInfo({ table: 'About', queryKeys: ['type'], type: key }).then((el:about[]) => {
-      return el[0]?.content
+    const body = await app.$Api.GeneralGetInfo({ table: 'About', queryKeys: ['type'], type: key }).then((el:about[]) => {
+      return el.find(el=>el.type === key)?.content || ((aboutData as any)[key].content.body as any)[app.i18n.locale]
     })
-    const body = result || ((aboutData as any)[key].content.body as any)[app.i18n.locale]
     return { body, key }
   },
   head () {
