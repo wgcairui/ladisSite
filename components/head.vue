@@ -162,13 +162,12 @@
           <b-nav-item v-if="agentConfig.contact400">
             销售热线:{{ agentConfig.contact400 }}
           </b-nav-item>
-          <!-- <b-nav-item
-            v-if="defaults.home.serve.show"
-            :href="defaults.home.serve.src"
+          <b-nav-item
+            href="https://cschat-ccs.aliyun.com/index.htm?tntInstId=_1DER4Qq&scene=SCE00003943#/"
             target="_blank"
           >
             {{ $t('head.vnvsqr') }}
-          </b-nav-item> -->
+          </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

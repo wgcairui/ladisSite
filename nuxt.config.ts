@@ -4,6 +4,9 @@ import axios from 'axios'
 import { params } from './types'
 const RemoteServerAddress = 'https://www.ladishb.com/admin'
 // const RemoteServerAddress = 'http://www.ladishb.com:8006'
+process.env.CODE_HM  = 'https://hm.baidu.com/hm.js?265ab1ae5fe5d0764570151f06dc3263'
+console.log(process.env.CODE_HM);
+
 const config: NuxtConfig = {
   telemetry: false,
   ssr: true,
@@ -22,9 +25,15 @@ const config: NuxtConfig = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    {
+      href: '//at.alicdn.com/t/font_1290509_iyq1zhprcvc.css',
+      type: 'text/css',
+      rel: 'stylesheet'
+    }
+  ],
     script: [
-      { src: process.env.CODE_HM || '' }
+      { src: process.env.CODE_HM || 'https://hm.baidu.com/hm.js?265ab1ae5fe5d0764570151f06dc3263' }
     ]
   },
 
