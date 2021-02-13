@@ -33,7 +33,7 @@ const config: NuxtConfig = {
     }
   ],
     script: [
-      { src: process.env.CODE_HM || 'https://hm.baidu.com/hm.js?265ab1ae5fe5d0764570151f06dc3263' }
+      //{ src: process.env.CODE_HM || 'https://hm.baidu.com/hm.js?265ab1ae5fe5d0764570151f06dc3263' }
     ]
   },
 
