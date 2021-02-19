@@ -59,7 +59,7 @@
         <b-container>
           <div class="d-flex justify-content-center">
             <span class="opt-li">
-              <b-link>
+              <b-link :to="hrefs.news['全部新闻']">
                 <div class="d-flex">
                   <b-img src="/pic/q1.png" />
                   <div>
@@ -70,7 +70,7 @@
               </b-link>
             </span>
             <span class="opt-li">
-              <b-link>
+              <b-link :to="hrefs.product['所有产品']">
                 <div class="d-flex">
                   <b-img src="/pic/q2.png" />
                   <div>
@@ -81,7 +81,7 @@
               </b-link>
             </span>
             <span class="opt-li">
-              <b-link>
+              <b-link :to="hrefs.support['服务支持']">
                 <div class="d-flex">
                   <b-img src="/pic/q3.png" />
                   <div>
@@ -92,7 +92,7 @@
               </b-link>
             </span>
             <span class="opt-li">
-              <b-link>
+              <b-link :to="hrefs.about['公司简介']">
                 <div class="d-flex">
                   <b-img src="/pic/q4.png" />
                   <div>
@@ -103,7 +103,7 @@
               </b-link>
             </span>
             <span class="opt-li">
-              <b-link>
+              <b-link :to="hrefs.cases['成功案例']">
                 <div class="d-flex">
                   <b-img src="/pic/q5.png" />
                   <div>
@@ -127,7 +127,83 @@
     <b-row no-gutters class="mb-4">
       <b-col>
         <b-container class="d-flex">
-          <div class="opt-2 flex-fill">
+          <b-row no-gutters>
+            <b-col cols="3" class="opt-2">
+              <b-img fluid src="/pic/n1.jpg" />
+              <div class="content">
+                <span class="bg"></span>
+                <div class="d-flex flex-column align-content-center content-child">
+                  <b-img src="/pic/n1_2.png" />
+                  <span class="br">_</span>
+                  <h3>关于我们</h3>
+                  <p class="p-0" v-html="gsjj"></p>
+                  <b-link :to="hrefs.about['公司简介']" class="py-2 px-4 border button"
+                    >查看详情</b-link
+                  >
+                </div>
+              </div>
+            </b-col>
+            <b-col cols="3" class="opt-2">
+              <b-img fluid src="/pic/n2.jpg" />
+              <div class="content">
+                <span class="bg"></span>
+                <div class="d-flex flex-column align-content-center content-child">
+                  <b-img src="/pic/n2_2.png" />
+                  <span class="br">_</span>
+                  <h3>新闻</h3>
+                  <p class="p-0">
+                    企业新闻
+                    <br />
+                    产品新闻
+                    <br />
+                    行业新闻
+                    <br />
+                  </p>
+                  <b-link :to="hrefs.news['全部新闻']" class="py-2 px-4 border button"
+                    >查看详情</b-link
+                  >
+                </div>
+              </div>
+            </b-col>
+            <b-col cols="3" class="opt-2">
+              <b-img fluid src="/pic/n3.jpg" />
+              <div class="content">
+                <span class="bg"></span>
+                <div class="d-flex flex-column align-content-center content-child">
+                  <b-img src="/pic/n3_2.png" />
+                  <span class="br">_</span>
+                  <h3>产品线</h3>
+                  <p class="p-0">
+                    UPS电源
+                    <br />
+                    数据中心
+                    <br />
+                    机房空调
+                    <br />
+                  </p>
+                  <b-link :to="hrefs.product['所有产品']" class="py-2 px-4 border button"
+                    >查看详情</b-link
+                  >
+                </div>
+              </div>
+            </b-col>
+            <b-col cols="3" class="opt-2">
+              <b-img fluid src="/pic/n4.jpg" />
+              <div class="content">
+                <span class="bg"></span>
+                <div class="d-flex flex-column align-content-center content-child">
+                  <b-img src="/pic/n4_2.png" />
+                  <span class="br">_</span>
+                  <h3>联系我们</h3>
+                  <p class="p-0" v-html="lxwm"></p>
+                  <b-link :to="hrefs.about['联系我们']" class="py-2 px-4 border button"
+                    >查看详情</b-link
+                  >
+                </div>
+              </div>
+            </b-col>
+          </b-row>
+          <!-- <div class="opt-2 flex-fill">
             <b-img fluid src="/pic/n1.jpg" />
           </div>
           <div class="opt-2 flex-fill">
@@ -138,7 +214,7 @@
           </div>
           <div class="opt-2 flex-fill">
             <b-img src="/pic/n4.jpg" />
-          </div>
+          </div> -->
         </b-container>
       </b-col>
     </b-row>
@@ -155,17 +231,35 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapState } from "vuex";
+import { about } from "~/types/typing";
 import MySection from "../components/MySection.vue";
+import * as hrefs from "../components/hrefs.js";
 // import { caseList } from '../types/typing'
 export default Vue.extend({
   components: { MySection },
   async asyncData({ app }) {
-    const GetNews: any[] = await app.$Api.GetHomeNews().catch(() => {
+    /* const GetNews: any[] = await app.$Api.GetHomeNews().catch(() => {
       return [];
+    }); */
+    // 获取body
+    const body1: about[] = await app.$Api.GeneralGetInfo({
+      table: "About",
+      queryKeys: ["type"],
+      type: "公司简介",
     });
-    return { GetNews };
+
+    const gsjj =
+      body1.find((el) => el.type === "公司简介")?.content.slice(0, 66) + "..." || "";
+    const lxwm =
+      body1.find((el) => el.type === "联系我们")?.content.slice(0, 66) + "..." || "";
+
+    console.log({ gsjj, lxwm });
+
+    return { gsjj, lxwm };
   },
   data() {
+    console.log({ hrefs });
+
     return {
       mainProps: {
         center: true,
@@ -179,6 +273,7 @@ export default Vue.extend({
         title: "新闻资讯",
         href: "/news",
       },
+      hrefs,
     };
   },
   computed: {
@@ -210,14 +305,14 @@ export default Vue.extend({
       return [`${Mobile} 760w`, `${Pad} 1200w`, `${Pc}`];
     },
     swithProblem() {
-      if (this.$data.problemNum === this.newsNum) {
+      /* if (this.$data.problemNum === this.newsNum) {
         this.$data.problemNum = 1;
       } else {
         this.$data.problemNum++;
       }
       if (this.$data.GetNews.length > 0) {
         this.$data.problemTitle = this.$data.GetNews[this.$data.problemNum - 1];
-      }
+      } */
     },
     linkvr(src: string) {
       if (/banner05-/.test(src)) {
@@ -267,8 +362,84 @@ export default Vue.extend({
 }
 
 .opt-2 {
-  img {
-    max-width: 30px;
+  position: relative;
+  div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .content {
+    .bg {
+      background: #161a1d;
+      opacity: 0.6;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .content-child {
+      align-items: center;
+      padding: 2rem;
+      img {
+        transition: margin-top 0.6s;
+        width: 66px;
+        margin-top: 2rem;
+      }
+      h3,
+      p,
+      a {
+        transition: margin-top 0.3s, display 0.3s;
+        color: #fff;
+        margin-top: 2rem;
+      }
+      .br {
+        transition: all 0.3s;
+        margin-top: 1rem;
+        color: #fff;
+      }
+      .button {
+        transition: all 0.5s;
+      }
+      .button:hover {
+        background: #fff;
+        color: #00c1de;
+      }
+      p,
+      .button {
+        display: none;
+        padding: 0.7rem 1.2rem;
+        color: #fff;
+        font-size: 0.9rem;
+      }
+    }
+    .content-child:hover {
+      img {
+        margin-top: 0rem;
+      }
+      .br {
+        margin-top: 0;
+        line-height: 0;
+        color: #161a1d;
+      }
+      h3,
+      p {
+        margin-top: 0.6rem;
+      }
+      p,
+      .button {
+        display: block;
+      }
+    }
+  }
+  .content:hover {
+    .bg {
+      background: #0066ca;
+      opacity: 0.9;
+    }
   }
 }
 </style>
