@@ -136,11 +136,13 @@
                   <b-img src="/pic/n1_2.png" />
                   <span class="br">_</span>
                   <h3>关于我们</h3>
-                  <p class="p-0" v-html="info.gsjj"></p>
-                  <b-link
+                  <p class="p-0 flex-grow-1 overflow-hidden" v-html="info.gsjj"></p>
+
+                  <b-button
+                    variant="outline-success"
                     :to="hrefs.about['公司简介']"
-                    class="py-2 px-4 border button stretched-link"
-                    >查看详情</b-link
+                    class="button"
+                    >查看详情</b-button
                   >
                 </div>
               </div>
@@ -161,10 +163,11 @@
                     行业新闻
                     <br />
                   </p>
-                  <b-link
+                  <b-button
+                    variant="outline-success"
                     :to="hrefs.news['全部新闻']"
-                    class="py-2 px-4 border stretched-link button"
-                    >查看详情</b-link
+                    class="button"
+                    >查看详情</b-button
                   >
                 </div>
               </div>
@@ -185,10 +188,11 @@
                     机房空调
                     <br />
                   </p>
-                  <b-link
+                  <b-button
+                    variant="outline-success"
                     :to="hrefs.product['所有产品']"
-                    class="py-2 px-4 border button stretched-link"
-                    >查看详情</b-link
+                    class="button"
+                    >查看详情</b-button
                   >
                 </div>
               </div>
@@ -202,10 +206,12 @@
                   <span class="br">_</span>
                   <h3>联系我们</h3>
                   <p class="p-0" v-html="info.lxwm"></p>
-                  <b-link
+
+                  <b-button
+                    variant="outline-success"
                     :to="hrefs.about['联系我们']"
-                    class="py-2 px-4 border stretched-link button"
-                    >查看详情</b-link
+                    class="button"
+                    >查看详情</b-button
                   >
                 </div>
               </div>
@@ -279,9 +285,30 @@ export default Vue.extend({
     ...mapState(["agentConfig"]),
     info() {
       const body = (<any>this).body as about[];
-      const gsjj = body.find((el) => el.type === "公司简介")?.content;
-      const lxwm = body.find((el) => el.type === "联系我们")?.content;
+      const gsjj =
+        body
+          .find((el) => el.type === "公司简介")
+          ?.content.replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .slice(0, 100) + "..." || "";
+      const lxwm =
+        body
+          .find((el) => el.type === "联系我们")
+          ?.content.replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .replace("\n<p>&nbsp;</p>", "")
+          .slice(0, 200) + "..." || "";
 
+      ('"<p><strong>服务热线</strong>：18126113612</p>\n<p>&nbsp;</p>\n<p><strong>负责人</strong>：张智敏</p>\n<p>&nbsp;</p>\n<p><strong>公司名称</strong>：雷迪司网络能源（深圳）有限公司</p>\n<p><br /><strong>联系电话</strong>：0755-23244677</p>\n<p><br /><strong>地址</strong>： 深圳市宝安区松裕路东方御景A栋</p>\n<p>&nbsp;</p>\n<p><strong>制造中心</strong>：深圳雷迪司科技股份有限公司</p>\n<p><br /><strong>地址</strong>： 深圳市前海深港合作区前湾一路1号A栋</p>\n<p>&nbsp;</p>\n<p><strong>制造中心</strong>：雷迪司科技湖北有限公司</p>\n<p><br /><strong>地址</strong>： 湖北省嘉鱼县田野大道');
       /* const t1 = document.createElement("div");
       t1.innerHTML = gsjj!;
 
@@ -406,6 +433,11 @@ export default Vue.extend({
         color: #fff;
         margin-top: 2rem;
       }
+      p {
+        p {
+          max-height: 100px;
+        }
+      }
       .br {
         transition: all 0.3s;
         margin-top: 1rem;
@@ -413,6 +445,7 @@ export default Vue.extend({
       }
       .button {
         transition: all 0.5s;
+        margin-top: auto;
       }
       .button:hover {
         background: #fff;
@@ -424,6 +457,7 @@ export default Vue.extend({
         padding: 0.7rem 1.2rem;
         color: #fff;
         font-size: 0.9rem;
+        overflow: hidden;
       }
     }
     .content-child:hover {
