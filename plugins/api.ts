@@ -4,29 +4,43 @@ import { Plugin } from '@nuxt/types'
 import { params } from '../types/index'
 
 const MyApi: Plugin = ({ $http, store }, inject) => {
+  /**
+   * 用于向服务器请求数据
+   */
   class Api {
     // static axios:NuxtHTTPInstance = (ctx.$axios.create({ method: 'GET' }) as any)
     static Params(params: { [x: string]: string }) {
       const query = new URLSearchParams(params)
       return '?' + query.toString()
     }
-
+    /**
+     * 获取数据条目
+     * @param param 
+     */
     static async GeneralGetInfo(param: params) {
       $http.setHeader('name', encodeURI(store.state.name))
       const data = await $http.$post('/api/Get_arg', param)
       return data
     }
-
+    /**
+     * 获取最新的新闻条目
+     */
     static async GetHomeNews() {
       const data = await $http.$get('/api/GetHomeNews')// ({ url: '/api/GetHomeNews' })
       return data
     }
-
+    /**
+     * 获取代理商信息
+     * @param city 代理商所在地
+     */
     static async GetBuyList(city: string) {
       const data = await $http.$post('/api/Get_buy_li', { city })
       return data
     }
-
+    /**
+     * 获取下载资料信息
+     * @param fileName 下载文件名
+     */
     static async Down(fileName: string) {
       const data = await $http.$post('/api/Down', { fileName })
       return data

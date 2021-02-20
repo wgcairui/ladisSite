@@ -1,6 +1,9 @@
 import { Plugin } from '@nuxt/types'
 const http:Plugin = ({ $http,store }) => {
   $http.onRequest((_config) => {
+    /**
+     * 设置代理商名称到头
+     */
     $http.setHeader('name', encodeURI(store.state.name))
     /* const url = new URL(_config.url)
     if (/^\/(api|_CMS_NEWS_IMG_|a_images|down|upload|config)/.test(url.pathname)) {

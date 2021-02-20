@@ -17,22 +17,30 @@
       </b-col>
     </b-row>
     <aside class="aside d-flex flex-column position-fixed">
-      <b-link
-        v-if="agentConfig.contactQQ"
-        class="text-decoration-none bg-dark text-light"
-        :href="`tencent://message/?Site=baidu.com&uin=${agentConfig.contactQQ}&Menu=yes`"
-        target="_blank"
-      >
-        >
-        <b-img src="/pic/side_icon04.png" />
-        {{ agentConfig.contactQQ }}
-      </b-link>
-      <div class="tels" v-for="tel in agentConfig.contactTel" :key="tel">
-        <b-link class="d-flex">
-          <b-img src="/pic/side_icon01.png" />
-          {{ tel }}
-        </b-link>
-      </div>
+      <ul class="d-none d-lg-block">
+        <li class="tels" v-if="agentConfig.contactQQ">
+          <div class="telChild">
+            <b-link
+              :href="`tencent://message/?Site=baidu.com&uin=${agentConfig.contactQQ}&Menu=yes`"
+              target="_blank"
+              class="text-decoration-none"
+            >
+              <span class="d-flex text-nowrap">
+                <b-img src="/pic/side_icon04.png" />
+                {{ agentConfig.contactQQ }}
+              </span>
+            </b-link>
+          </div>
+        </li>
+        <li class="tels" v-for="tel in agentConfig.contactTel" :key="tel">
+          <div class="telChild">
+            <span class="d-flex text-decoration-none text-nowrap">
+              <b-img src="/pic/side_icon01.png" />
+              {{ tel }}
+            </span>
+          </div>
+        </li>
+      </ul>
     </aside>
   </b-container>
 </template>
@@ -62,7 +70,7 @@ export default Vue.extend({
 });
 </script>
 
-<style scss>
+<style lang="scss">
 html,
 body,
 #__nuxt,
@@ -79,17 +87,38 @@ body,
   top: 30%;
   width: 54px;
   z-index: 10000;
-}
 
-.tels {
-  transition: all 0.5s;
-  background-color: #1d2124;
-  color: #fff;
-  text-decoration-style: none;
-}
+  .tels {
+    position: relative;
+    height: 54px;
+    .telChild {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 54px;
+      transition: all 0.3s;
+      background-color: #1d2124;
+      color: #fff;
+      text-decoration-style: none;
+      span {
+        align-items: center;
+      }
+      a {
+        color: #fff;
+      }
+    }
+  }
 
-.tels:hover {
-  width: 100px;
-  background-color: #17a2b8;
+  .tels:hover {
+    .telChild {
+      width: 220px;
+      background-color: #17a2b8;
+      padding-right: 5px;
+      a {
+        color: #fff;
+        text-decoration-style: none;
+      }
+    }
+  }
 }
 </style>

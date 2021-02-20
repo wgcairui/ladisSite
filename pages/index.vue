@@ -61,10 +61,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.news['全部新闻']">
                 <div class="d-flex">
-                  <b-img src="/pic/q1.png" />
+                  <b-img src="/pic/q1.png" class="d-none d-lg-block" />
                   <div>
                     <h2>新闻资讯</h2>
-                    <p>第一时间了解最新资讯</p>
+                    <p class="d-none d-lg-block">第一时间了解最新资讯</p>
                   </div>
                 </div>
               </b-link>
@@ -72,10 +72,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.product['所有产品']">
                 <div class="d-flex">
-                  <b-img src="/pic/q2.png" />
+                  <b-img src="/pic/q2.png" class="d-none d-lg-block" />
                   <div>
                     <h2>产品中心</h2>
-                    <p>实时掌控产品动态</p>
+                    <p class="d-none d-lg-block">实时掌控产品动态</p>
                   </div>
                 </div>
               </b-link>
@@ -83,10 +83,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.support['服务支持']">
                 <div class="d-flex">
-                  <b-img src="/pic/q3.png" />
+                  <b-img src="/pic/q3.png" class="d-none d-lg-block" />
                   <div>
                     <h2>服务中心</h2>
-                    <p>满足需求 想客户之所想</p>
+                    <p class="d-none d-lg-block">满足需求 想客户之所想</p>
                   </div>
                 </div>
               </b-link>
@@ -94,10 +94,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.about['公司简介']">
                 <div class="d-flex">
-                  <b-img src="/pic/q4.png" />
+                  <b-img src="/pic/q4.png" class="d-none d-lg-block" />
                   <div>
                     <h2>关于我们</h2>
-                    <p>以人为本 服务领先</p>
+                    <p class="d-none d-lg-block">以人为本 服务领先</p>
                   </div>
                 </div>
               </b-link>
@@ -105,10 +105,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.cases['成功案例']">
                 <div class="d-flex">
-                  <b-img src="/pic/q5.png" />
+                  <b-img src="/pic/q5.png" class="d-none d-lg-block" />
                   <div>
                     <h2>成功案例</h2>
-                    <p>了解客户对我们的评价</p>
+                    <p class="d-none d-lg-block">了解客户对我们的评价</p>
                   </div>
                 </div>
               </b-link>
@@ -119,12 +119,12 @@
     </b-row>
     <b-row no-gutters>
       <b-col>
-        <h3 class="text-center py-4">
+        <h3 class="text-center py-4 d-none d-lg-block">
           致力于提供高效节能的电源、制冷、配电等数据中心机房一体化解决方案
         </h3>
       </b-col>
     </b-row>
-    <b-row no-gutters class="mb-4">
+    <b-row no-gutters class="mb-4 d-none d-lg-block">
       <b-col>
         <b-container class="d-flex">
           <b-row no-gutters>
@@ -136,8 +136,10 @@
                   <b-img src="/pic/n1_2.png" />
                   <span class="br">_</span>
                   <h3>关于我们</h3>
-                  <p class="p-0" v-html="gsjj"></p>
-                  <b-link :to="hrefs.about['公司简介']" class="py-2 px-4 border button"
+                  <p class="p-0" v-html="info.gsjj"></p>
+                  <b-link
+                    :to="hrefs.about['公司简介']"
+                    class="py-2 px-4 border button stretched-link"
                     >查看详情</b-link
                   >
                 </div>
@@ -159,7 +161,9 @@
                     行业新闻
                     <br />
                   </p>
-                  <b-link :to="hrefs.news['全部新闻']" class="py-2 px-4 border button"
+                  <b-link
+                    :to="hrefs.news['全部新闻']"
+                    class="py-2 px-4 border stretched-link button"
                     >查看详情</b-link
                   >
                 </div>
@@ -181,7 +185,9 @@
                     机房空调
                     <br />
                   </p>
-                  <b-link :to="hrefs.product['所有产品']" class="py-2 px-4 border button"
+                  <b-link
+                    :to="hrefs.product['所有产品']"
+                    class="py-2 px-4 border button stretched-link"
                     >查看详情</b-link
                   >
                 </div>
@@ -195,8 +201,10 @@
                   <b-img src="/pic/n4_2.png" />
                   <span class="br">_</span>
                   <h3>联系我们</h3>
-                  <p class="p-0" v-html="lxwm"></p>
-                  <b-link :to="hrefs.about['联系我们']" class="py-2 px-4 border button"
+                  <p class="p-0" v-html="info.lxwm"></p>
+                  <b-link
+                    :to="hrefs.about['联系我们']"
+                    class="py-2 px-4 border stretched-link button"
                     >查看详情</b-link
                   >
                 </div>
@@ -242,24 +250,15 @@ export default Vue.extend({
       return [];
     }); */
     // 获取body
-    const body1: about[] = await app.$Api.GeneralGetInfo({
+    const body: about[] = await app.$Api.GeneralGetInfo({
       table: "About",
       queryKeys: ["type"],
       type: "公司简介",
     });
 
-    const gsjj =
-      body1.find((el) => el.type === "公司简介")?.content.slice(0, 66) + "..." || "";
-    const lxwm =
-      body1.find((el) => el.type === "联系我们")?.content.slice(0, 66) + "..." || "";
-
-    console.log({ gsjj, lxwm });
-
-    return { gsjj, lxwm };
+    return { body };
   },
   data() {
-    console.log({ hrefs });
-
     return {
       mainProps: {
         center: true,
@@ -278,6 +277,17 @@ export default Vue.extend({
   },
   computed: {
     ...mapState(["agentConfig"]),
+    info() {
+      const body = (<any>this).body as about[];
+      const gsjj = body.find((el) => el.type === "公司简介")?.content;
+      const lxwm = body.find((el) => el.type === "联系我们")?.content;
+
+      /* const t1 = document.createElement("div");
+      t1.innerHTML = gsjj!;
+
+      console.log({ gsjj, lxwm, t1t: t1.innerText }); */
+      return { gsjj, lxwm };
+    },
     carousel() {
       const local = this.$i18n.locale;
       if (local === "zh") {

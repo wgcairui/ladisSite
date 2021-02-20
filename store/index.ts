@@ -19,10 +19,15 @@ export const getters: GetterTree<RootState, RootState> = {
 }
 
 export const mutations: MutationTree<RootState> = {
-  SETHOST (state, payload) {
+  SETHOST(state, payload) {
     state.localUrl = payload.localUrl
   },
-  SETAGENTCONFIG (state, payload) {
+  /**
+   * 设置网站运行初始参数
+   * @param state 
+   * @param payload 
+   */
+  SETAGENTCONFIG(state, payload) {
     state.agentConfig = payload.agentConfig
     const linkFrend = (<{ name: string }[]>payload.linkFrend).filter(el => el.name !== state.name)
     state.linkFrend = linkFrend
@@ -38,12 +43,17 @@ export const mutations: MutationTree<RootState> = {
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  async nuxtServerInit ({ commit }, { req, $http, env }: Context) {
+  /**
+   * 每个用户都会请求获取代理商配置的运行参数
+   * @param param0 
+   * @param param1 
+   */
+  async nuxtServerInit({ commit }, { req, $http, env }: Context) {
     const forwardedHost = req.headers['x-forwarded-host']
     const host = req.headers.host?.split(':')[0]
     commit('SETHOST', { localUrl: forwardedHost || host })
     // console.log({location:'store',env,p:process.env});
-    
+
     const WagentConfig = $http.$get('/config/agent?name=' + encodeURI(process.env.NAME!))
     const WlinkFrend = $http.$get('/config/linkFrend')
 
