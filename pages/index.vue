@@ -296,8 +296,6 @@ export default Vue.extend({
           ?.content.replace(/<\/?.+?\/?>/g, "")
           .replace(/&nbsp;/g, "")
           .slice(0, 100) + "..." || "";
-
-      console.log({ gsjj, lxwm });
       return { gsjj, lxwm };
     },
     carousel() {
