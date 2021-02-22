@@ -59,12 +59,15 @@ export default Vue.extend({
   },
   head() {
     const self = this as any;
+    // console.log(this.agentConfig);
+
     return {
       title: self.agentConfig.title,
       meta: [
         { name: "keywords", content: self.agentConfig.metaKeywords },
         { name: "description", content: self.agentConfig.metaDescription },
       ],
+      script: this.agentConfig.hm ? [{ src: this.agentConfig.hm }] : [],
     };
   },
 });
