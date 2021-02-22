@@ -136,7 +136,7 @@
                   <b-img src="/pic/n1_2.png" />
                   <span class="br">_</span>
                   <h3>关于我们</h3>
-                  <p class="p-0 flex-grow-1 overflow-hidden" v-html="info.gsjj"></p>
+                  <p class="p-0 flex-grow-1 overflow-hidden">{{ info.gsjj }}</p>
 
                   <b-button
                     variant="outline-success"
@@ -205,7 +205,7 @@
                   <b-img src="/pic/n4_2.png" />
                   <span class="br">_</span>
                   <h3>联系我们</h3>
-                  <p class="p-0" v-html="info.lxwm"></p>
+                  <p class="p-0">{{ info.lxwm }}</p>
 
                   <b-button
                     variant="outline-success"
@@ -288,31 +288,16 @@ export default Vue.extend({
       const gsjj =
         body
           .find((el) => el.type === "公司简介")
-          ?.content.replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
+          ?.content.replace(/<\/?.+?\/?>/g, "")
           .slice(0, 100) + "..." || "";
       const lxwm =
         body
           .find((el) => el.type === "联系我们")
-          ?.content.replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .replace("\n<p>&nbsp;</p>", "")
-          .slice(0, 200) + "..." || "";
+          ?.content.replace(/<\/?.+?\/?>/g, "")
+          .replace(/&nbsp;/g, "")
+          .slice(0, 100) + "..." || "";
 
-      ('"<p><strong>服务热线</strong>：18126113612</p>\n<p>&nbsp;</p>\n<p><strong>负责人</strong>：张智敏</p>\n<p>&nbsp;</p>\n<p><strong>公司名称</strong>：雷迪司网络能源（深圳）有限公司</p>\n<p><br /><strong>联系电话</strong>：0755-23244677</p>\n<p><br /><strong>地址</strong>： 深圳市宝安区松裕路东方御景A栋</p>\n<p>&nbsp;</p>\n<p><strong>制造中心</strong>：深圳雷迪司科技股份有限公司</p>\n<p><br /><strong>地址</strong>： 深圳市前海深港合作区前湾一路1号A栋</p>\n<p>&nbsp;</p>\n<p><strong>制造中心</strong>：雷迪司科技湖北有限公司</p>\n<p><br /><strong>地址</strong>： 湖北省嘉鱼县田野大道');
-      /* const t1 = document.createElement("div");
-      t1.innerHTML = gsjj!;
-
-      console.log({ gsjj, lxwm, t1t: t1.innerText }); */
+      console.log({ gsjj, lxwm });
       return { gsjj, lxwm };
     },
     carousel() {

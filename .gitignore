@@ -88,5 +88,5 @@ sw.*
 
 # Vim swap files
 *.swp
-
+.vscode
 store/user.ts
