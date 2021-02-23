@@ -52,6 +52,10 @@ const MyApi: Plugin = ({ $http, store, $axios }, inject) => {
     }
 
     static post(base: string, body: any) {
+      if(!process){
+        console.log({document});
+        
+      }
       try {
         return $http.$post(base, body)
       } catch (error) {
