@@ -4,8 +4,8 @@ import axios from 'axios'
 import { params } from './types'
 const RemoteServerAddress = 'https://www.ladishb.com/admin'
 // const RemoteServerAddress = 'http://www.ladishb.com:8006'
-process.env.CODE_HM  = 'https://hm.baidu.com/hm.js?265ab1ae5fe5d0764570151f06dc3263'
-console.log(process.env.CODE_HM);
+//process.env.CODE_HM  = 'https://hm.baidu.com/hm.js?265ab1ae5fe5d0764570151f06dc3263'
+//console.log(process.env.CODE_HM);
 
 const config: NuxtConfig = {
   telemetry: false,
@@ -31,7 +31,7 @@ const config: NuxtConfig = {
       type: 'text/css',
       rel: 'stylesheet'
     }
-  ],
+    ],
     script: [
       //{ src: process.env.CODE_HM || 'https://hm.baidu.com/hm.js?265ab1ae5fe5d0764570151f06dc3263' }
     ]
@@ -69,17 +69,18 @@ const config: NuxtConfig = {
     'nuxt-i18n',
     // https://github.com/nuxt-community/sitemap-module
     '@nuxtjs/sitemap',
-    '@nuxtjs/component-cache',
+    //'@nuxtjs/component-cache',
     // https://http.nuxtjs.org/setup
     '@nuxt/http',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    '@nuxtjs/axios'
   ],
   sitemap: {
     gzip: true,
     // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
     // eslint-disable-next-line require-await
     routes: async (ctx: NuxtApp) => {
-      
+
       // console.log({ ctx })
       const param: params = { table: 'Router' }
       const router = await axios.post(
@@ -93,12 +94,12 @@ const config: NuxtConfig = {
       return router
     }
   },
-  optimizedImages: {
+  /* optimizedImages: {
     // 优化的图像类型
     handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif', 'jpg'],
     // 开启优化
     optimizeImages: true
-  },
+  }, */
   i18n: {
     locales: [
       {

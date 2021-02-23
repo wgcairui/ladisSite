@@ -3,7 +3,7 @@ import { Plugin } from '@nuxt/types'
 // import { NuxtHTTPInstance } from '@nuxt/http'
 import { params } from '../types/index'
 
-const MyApi: Plugin = ({ $http, store }, inject) => {
+const MyApi: Plugin = ({ $http, store, $axios }, inject) => {
   /**
    * 用于向服务器请求数据
    */
@@ -19,7 +19,7 @@ const MyApi: Plugin = ({ $http, store }, inject) => {
      */
     static async GeneralGetInfo(param: params) {
       $http.setHeader('name', encodeURI(store.state.name))
-      const data = await $http.$post('/api/Get_arg', param)
+      const data = await this.post('/api/Get_arg', param)
       return data
     }
     /**
@@ -34,7 +34,7 @@ const MyApi: Plugin = ({ $http, store }, inject) => {
      * @param city 代理商所在地
      */
     static async GetBuyList(city: string) {
-      const data = await $http.$post('/api/Get_buy_li', { city })
+      const data = await this.post('/api/Get_buy_li', { city })
       return data
     }
     /**
@@ -42,13 +42,22 @@ const MyApi: Plugin = ({ $http, store }, inject) => {
      * @param fileName 下载文件名
      */
     static async Down(fileName: string) {
-      const data = await $http.$post('/api/Down', { fileName })
+      const data = await this.post('/api/Down', { fileName })
       return data
     }
 
     static async GetContent(link: string) {
-      const data = await $http.$post('/api/GetContent', { link })
+      const data = await this.post('/api/GetContent', { link })
       return data
+    }
+
+    static post(base: string, body: any) {
+      try {
+        return $http.$post(base, body)
+      } catch (error) {
+        console.log({ error });
+        return $axios.$post(base, body)
+      }
     }
   }
   /* Api.axios.onRequest((config) => {

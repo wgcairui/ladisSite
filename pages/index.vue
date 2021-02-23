@@ -25,35 +25,6 @@
         </b-carousel>
       </b-col>
     </b-row>
-    <!-- <b-row no-gutters>
-      <b-col cols="12" class="bg-dark p-1">
-        <div class="d-flex justify-content-center">
-          <b-link
-            :href="problemTitle.href"
-            target="_blank"
-            class="text-light stretched-link m-1 text-decoration-none text-nowrap"
-          >
-            <svg
-              t="1593997878559"
-              class="icon"
-              viewBox="0 0 1024 1024"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              p-id="5807"
-              height="24"
-              style="max-width: 20px"
-            >
-              <path
-                d="M849.170732 0c97.404878 0 174.829268 77.42439 174.829268 174.829268v674.341464c0 97.404878-77.42439 174.829268-174.829268 174.829268H174.829268c-97.404878 0-174.829268-77.42439-174.829268-174.829268V174.829268c0-97.404878 77.42439-174.829268 174.829268-174.829268h674.341464z m-224.780488 252.253659H257.24878c-17.482927 2.497561-32.468293 22.478049-32.468292 42.458536v444.565854c2.497561 22.478049 17.482927 39.960976 34.965853 39.960975H724.292683c17.482927-2.497561 32.468293-19.980488 32.468293-42.458536V382.126829c-2.497561-22.478049-17.482927-39.960976-34.965854-39.960975h-34.965854v392.117073h-27.47317V294.712195c-4.995122-24.97561-19.980488-42.458537-34.965854-42.458536z m-64.936585 374.634146v42.458536H294.712195v-42.458536h264.741464z m0-87.414634v42.458536H294.712195v-42.458536h264.741464z m-132.370732-174.829269v132.370732h-132.370732v-132.370732h132.370732z m127.37561 87.414635l4.995122 42.458536h-99.902439v-42.458536h94.907317z m0-87.414635l4.995122 42.458537h-99.902439v-42.458537h94.907317z"
-                fill="#38B781"
-                p-id="5808"
-              />
-            </svg>
-            {{ problemTitle.title }}
-          </b-link>
-        </div>
-      </b-col>
-    </b-row> -->
     <b-row no-gutters>
       <b-col class="bg-dark">
         <b-container>
@@ -124,9 +95,100 @@
         </h3>
       </b-col>
     </b-row>
-    <b-row no-gutters class="mb-4 d-none d-lg-block">
-      <b-col>
-        <b-container class="d-flex">
+    <b-row
+      no-gutters
+      class="mb-4"
+      style="padding: 0px 15%; overflow: hidden; max-height: 400px"
+    >
+      <b-col cols="3" class="position-relative opt-2">
+        <b-img src="/pic/n1.jpg" fluid-grow />
+        <div class="content">
+          <span class="bg"></span>
+          <div class="d-flex flex-column align-content-center content-child">
+            <b-img src="/pic/n1_2.png" />
+            <span class="br">_</span>
+            <h3>关于我们</h3>
+            <p class="p-0 flex-grow-1 overflow-hidden">{{ info.gsjj }}</p>
+
+            <b-button
+              variant="outline-success"
+              :to="hrefs.about['公司简介']"
+              class="button"
+              >查看详情</b-button
+            >
+          </div>
+        </div>
+      </b-col>
+      <b-col cols="3" class="position-relative opt-2">
+        <img src="/pic/n2.jpg" class="w-100" />
+        <div class="content">
+          <span class="bg"></span>
+          <div class="d-flex flex-column align-content-center content-child">
+            <b-img src="/pic/n2_2.png" />
+            <span class="br">_</span>
+            <h3>新闻</h3>
+            <p class="p-0">
+              企业新闻
+              <br />
+              产品新闻
+              <br />
+              行业新闻
+              <br />
+            </p>
+            <b-button
+              variant="outline-success"
+              :to="hrefs.news['全部新闻']"
+              class="button"
+              >查看详情</b-button
+            >
+          </div>
+        </div>
+      </b-col>
+      <b-col cols="3" class="position-relative opt-2">
+        <img src="/pic/n3.jpg" class="w-100" />
+        <div class="content">
+          <span class="bg"></span>
+          <div class="d-flex flex-column align-content-center content-child">
+            <b-img src="/pic/n3_2.png" />
+            <span class="br">_</span>
+            <h3>产品线</h3>
+            <p class="p-0">
+              UPS电源
+              <br />
+              数据中心
+              <br />
+              机房空调
+              <br />
+            </p>
+            <b-button
+              variant="outline-success"
+              :to="hrefs.product['所有产品']"
+              class="button"
+              >查看详情</b-button
+            >
+          </div>
+        </div>
+      </b-col>
+      <b-col cols="3" class="position-relative opt-2">
+        <img src="/pic/n4.jpg" class="w-100" />
+        <div class="content">
+          <span class="bg"></span>
+          <div class="d-flex flex-column align-content-center content-child">
+            <b-img src="/pic/n4_2.png" />
+            <span class="br">_</span>
+            <h3>联系我们</h3>
+            <p class="p-0 text-wrap">{{ info.lxwm }}</p>
+
+            <b-button
+              variant="outline-success"
+              :to="hrefs.about['联系我们']"
+              class="button"
+              >查看详情</b-button
+            >
+          </div>
+        </div>
+      </b-col>
+      <!-- <b-container class="d-flex">
           <b-row no-gutters>
             <b-col cols="3" class="opt-2">
               <b-img fluid src="/pic/n1.jpg" />
@@ -217,29 +279,8 @@
               </div>
             </b-col>
           </b-row>
-          <!-- <div class="opt-2 flex-fill">
-            <b-img fluid src="/pic/n1.jpg" />
-          </div>
-          <div class="opt-2 flex-fill">
-            <b-img src="/pic/n2.jpg" />
-          </div>
-          <div class="opt-2 flex-fill">
-            <b-img src="/pic/n3.jpg" />
-          </div>
-          <div class="opt-2 flex-fill">
-            <b-img src="/pic/n4.jpg" />
-          </div> -->
-        </b-container>
-      </b-col>
+        </b-container> -->
     </b-row>
-    <!-- <b-row no-gutters class="p-4">
-      <b-col>
-        <h2 class="text-center text-primary">
-          {{ $t("shou-hou-zhi-chi") }}
-        </h2>
-        <my-section />
-      </b-col>
-    </b-row> -->
   </b-container>
 </template>
 <script lang="ts">
@@ -296,6 +337,8 @@ export default Vue.extend({
           ?.content.replace(/<\/?.+?\/?>/g, "")
           .replace(/&nbsp;/g, "")
           .slice(0, 100) + "..." || "";
+      // console.log({ body, gsjj, lxwm });
+
       return { gsjj, lxwm };
     },
     carousel() {
@@ -468,5 +511,9 @@ export default Vue.extend({
       opacity: 0.9;
     }
   }
+}
+
+.list-block {
+  padding: 0 20%;
 }
 </style>
