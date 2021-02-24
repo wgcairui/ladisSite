@@ -79,20 +79,22 @@ const config: NuxtConfig = {
     gzip: true,
     // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
     // eslint-disable-next-line require-await
-    routes: async (ctx: NuxtApp) => {
+    /* routes: async (ctx: NuxtApp) => {
 
-      // console.log({ ctx })
+      console.log(Object.keys(ctx))
       const param: params = { table: 'Router' }
       const router = await axios.post(
-        `${RemoteServerAddress}/api/Get_arg`, { params: param }
+        `${RemoteServerAddress}/api/v2/Get_arg`, { params: param },{headers:{name:encodeURI(process.env.NAME!)}}
       ).then((el) => {
         return el.data.map((router: { rout: any }) => router.rout)
       }).catch((err) => {
         console.log(err)
         return []
       })
+      console.log({router});
+      
       return router
-    }
+    } */
   },
   /* optimizedImages: {
     // 优化的图像类型

@@ -14,12 +14,9 @@ const MyApi: Plugin = ({ $http, store, $axios,env }, inject) => {
     constructor(){
       $axios.onRequest((config)=>{
         config.headers.name = encodeURI(store.state.name)
-        //config.baseURL = 'https://www.ladishb.com/admin'
         return config
       })
-     // $axios.setBaseURL('https://www.ladishb.com/admin')
     }
-    // static axios:NuxtHTTPInstance = (ctx.$axios.create({ method: 'GET' }) as any)
     Params(params: { [x: string]: string }) {
       const query = new URLSearchParams(params)
       return '?' + query.toString()
