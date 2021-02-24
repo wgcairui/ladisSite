@@ -426,6 +426,7 @@ export default Vue.extend({
 
 .opt-2 {
   position: relative;
+  height: 100%;
   div {
     position: absolute;
     left: 0;

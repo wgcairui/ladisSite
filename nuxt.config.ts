@@ -13,7 +13,7 @@ const config: NuxtConfig = {
   dev: process.env.NODE_ENV !== 'production',
   modern: 'server',
   server: {
-    port: process.env.NODE_ENV === 'production' ? 80 : 9005,
+    port: process.env.NODE_ENV === 'production' ? 8000 : 9005,
     host: '0.0.0.0'
   },
   env: {
@@ -131,15 +131,23 @@ const config: NuxtConfig = {
     // 路由配置
     strategy: 'no_prefix'
   },
+  /* axios: {
+    baseURL: process.env.BASE_URL, // Used as fallback if no runtime config is provided
+  }, */
   http: {
     proxy: true,
     retry: 2
   },
+  axios: {
+    proxy: true // Can be also an object with default options
+  },
+
   publicRuntimeConfig: {
     http: {
       browserBaseURL: process.env.BROWSER_BASE_URL
     }
   },
+  
 
   privateRuntimeConfig: {
     http: {
