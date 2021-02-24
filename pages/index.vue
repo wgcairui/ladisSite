@@ -108,7 +108,7 @@
             <b-img src="/pic/n1_2.png" />
             <span class="br">_</span>
             <h3>关于我们</h3>
-            <p class="p-0 flex-grow-1 overflow-hidden">{{ info.gsjj }}</p>
+            <p class="p-0 p-warp">{{ info.gsjj }}</p>
 
             <b-button
               variant="outline-success"
@@ -177,7 +177,7 @@
             <b-img src="/pic/n4_2.png" />
             <span class="br">_</span>
             <h3>联系我们</h3>
-            <p class="p-0 text-wrap">{{ info.lxwm }}</p>
+            <p class="p-0 p-warp">{{ info.lxwm }}</p>
 
             <b-button
               variant="outline-success"
@@ -459,10 +459,10 @@ export default Vue.extend({
         color: #fff;
         margin-top: 2rem;
       }
-      p {
-        p {
-          max-height: 100px;
-        }
+      .p-warp{
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        width: 100%;
       }
       .br {
         transition: all 0.3s;
