@@ -13,7 +13,7 @@ const config: NuxtConfig = {
   dev: process.env.NODE_ENV !== 'production',
   modern: 'server',
   server: {
-    port: process.env.NODE_ENV === 'production' ? 8000 : 9005,
+    port: process.env.NODE_ENV === 'production' ? 80 : 9005,
     host: '0.0.0.0'
   },
   env: {
