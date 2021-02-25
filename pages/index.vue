@@ -32,10 +32,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.news['全部新闻']">
                 <div class="d-flex">
-                  <b-img src="/pic/q1.png" class="d-none d-lg-block" />
+                  <b-img src="/pic/q1.png" class=" sm-hide" />
                   <div>
                     <h2>新闻资讯</h2>
-                    <p class="d-none d-lg-block">第一时间了解最新资讯</p>
+                    <p class=" sm-hide">第一时间了解最新资讯</p>
                   </div>
                 </div>
               </b-link>
@@ -43,10 +43,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.product['所有产品']">
                 <div class="d-flex">
-                  <b-img src="/pic/q2.png" class="d-none d-lg-block" />
+                  <b-img src="/pic/q2.png" class=" sm-hide" />
                   <div>
                     <h2>产品中心</h2>
-                    <p class="d-none d-lg-block">实时掌控产品动态</p>
+                    <p class=" sm-hide">实时掌控产品动态</p>
                   </div>
                 </div>
               </b-link>
@@ -54,10 +54,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.support['服务支持']">
                 <div class="d-flex">
-                  <b-img src="/pic/q3.png" class="d-none d-lg-block" />
+                  <b-img src="/pic/q3.png" class=" sm-hide" />
                   <div>
                     <h2>服务中心</h2>
-                    <p class="d-none d-lg-block">满足需求 想客户之所想</p>
+                    <p class=" sm-hide">满足需求 想客户之所想</p>
                   </div>
                 </div>
               </b-link>
@@ -65,10 +65,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.about['公司简介']">
                 <div class="d-flex">
-                  <b-img src="/pic/q4.png" class="d-none d-lg-block" />
+                  <b-img src="/pic/q4.png" class=" sm-hide" />
                   <div>
                     <h2>关于我们</h2>
-                    <p class="d-none d-lg-block">以人为本 服务领先</p>
+                    <p class=" sm-hide">以人为本 服务领先</p>
                   </div>
                 </div>
               </b-link>
@@ -76,10 +76,10 @@
             <span class="opt-li">
               <b-link :to="hrefs.cases['成功案例']">
                 <div class="d-flex">
-                  <b-img src="/pic/q5.png" class="d-none d-lg-block" />
+                  <b-img src="/pic/q5.png" class=" sm-hide" />
                   <div>
                     <h2>成功案例</h2>
-                    <p class="d-none d-lg-block">了解客户对我们的评价</p>
+                    <p class=" sm-hide">了解客户对我们的评价</p>
                   </div>
                 </div>
               </b-link>
@@ -90,15 +90,15 @@
     </b-row>
     <b-row no-gutters>
       <b-col>
-        <h3 class="text-center py-4 d-none d-lg-block">
+        <h3 class="text-center py-4  sm-hide">
           致力于提供高效节能的电源、制冷、配电等数据中心机房一体化解决方案
         </h3>
       </b-col>
     </b-row>
     <b-row
       no-gutters
-      class="mb-4"
-      style="padding: 0px 15%; overflow: hidden; max-height: 400px"
+      class="mb-4 sm-hide"
+      style=" overflow: hidden; max-height: 400px"
     >
       <b-col cols="3" class="position-relative opt-2">
         <b-img src="/pic/n1.jpg" fluid-grow />
@@ -188,98 +188,6 @@
           </div>
         </div>
       </b-col>
-      <!-- <b-container class="d-flex">
-          <b-row no-gutters>
-            <b-col cols="3" class="opt-2">
-              <b-img fluid src="/pic/n1.jpg" />
-              <div class="content">
-                <span class="bg"></span>
-                <div class="d-flex flex-column align-content-center content-child">
-                  <b-img src="/pic/n1_2.png" />
-                  <span class="br">_</span>
-                  <h3>关于我们</h3>
-                  <p class="p-0 flex-grow-1 overflow-hidden">{{ info.gsjj }}</p>
-
-                  <b-button
-                    variant="outline-success"
-                    :to="hrefs.about['公司简介']"
-                    class="button"
-                    >查看详情</b-button
-                  >
-                </div>
-              </div>
-            </b-col>
-            <b-col cols="3" class="opt-2">
-              <b-img fluid src="/pic/n2.jpg" />
-              <div class="content">
-                <span class="bg"></span>
-                <div class="d-flex flex-column align-content-center content-child">
-                  <b-img src="/pic/n2_2.png" />
-                  <span class="br">_</span>
-                  <h3>新闻</h3>
-                  <p class="p-0">
-                    企业新闻
-                    <br />
-                    产品新闻
-                    <br />
-                    行业新闻
-                    <br />
-                  </p>
-                  <b-button
-                    variant="outline-success"
-                    :to="hrefs.news['全部新闻']"
-                    class="button"
-                    >查看详情</b-button
-                  >
-                </div>
-              </div>
-            </b-col>
-            <b-col cols="3" class="opt-2">
-              <b-img fluid src="/pic/n3.jpg" />
-              <div class="content">
-                <span class="bg"></span>
-                <div class="d-flex flex-column align-content-center content-child">
-                  <b-img src="/pic/n3_2.png" />
-                  <span class="br">_</span>
-                  <h3>产品线</h3>
-                  <p class="p-0">
-                    UPS电源
-                    <br />
-                    数据中心
-                    <br />
-                    机房空调
-                    <br />
-                  </p>
-                  <b-button
-                    variant="outline-success"
-                    :to="hrefs.product['所有产品']"
-                    class="button"
-                    >查看详情</b-button
-                  >
-                </div>
-              </div>
-            </b-col>
-            <b-col cols="3" class="opt-2">
-              <b-img fluid src="/pic/n4.jpg" />
-              <div class="content">
-                <span class="bg"></span>
-                <div class="d-flex flex-column align-content-center content-child">
-                  <b-img src="/pic/n4_2.png" />
-                  <span class="br">_</span>
-                  <h3>联系我们</h3>
-                  <p class="p-0">{{ info.lxwm }}</p>
-
-                  <b-button
-                    variant="outline-success"
-                    :to="hrefs.about['联系我们']"
-                    class="button"
-                    >查看详情</b-button
-                  >
-                </div>
-              </div>
-            </b-col>
-          </b-row>
-        </b-container> -->
     </b-row>
   </b-container>
 </template>
@@ -516,5 +424,15 @@ export default Vue.extend({
 
 .list-block {
   padding: 0 20%;
+}
+
+.sm-hide{
+padding: 0px 15%;
+}
+@media screen and (max-width: 480px) {
+  .sm-hide{
+    display: none;
+    padding: 0 5%;
+  }
 }
 </style>
