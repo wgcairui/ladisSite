@@ -66,7 +66,7 @@
             <b-dropdown-item v-if="showBuy" :to="about['销售服务中心']">
               {{ $t("head.azg9np") }}
             </b-dropdown-item>
-            <b-dropdown-divider />
+            <b-dropdown-divider v-if="showBuy" />
             <b-dropdown-item
               v-if="showBuy"
               href="https://leidisi.tmall.com/"
