@@ -24,7 +24,7 @@
     "@nuxtjs/component-cache": "^1.1.6",
     "@nuxtjs/proxy": "^2.0.1",
     "@nuxtjs/sitemap": "^2.4.0",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.18.1",
     "nuxt": "^2.14.7",
