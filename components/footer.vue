@@ -38,22 +38,22 @@
               </nuxt-link>
             </li>
           </ul>
-          <ul>
+          <ul v-if="showBuy">
             <li>
               <h5>{{ $t("section.21ws8d") }}</h5>
             </li>
-            <li v-if="showBuy">
+            <li>
               <nuxt-link :to="about['经销商列表']">{{ $t("section.u7wjbw") }}</nuxt-link>
             </li>
-            <li v-if="showBuy">
+            <li>
               <a href="https://lgsm.tmall.com/">{{ $t("section.6v39gj") }}</a>
             </li>
-            <li v-if="showBuy">
+            <li>
               <a href="https://leidisi.tmall.com/" target="_bank">
                 {{ $t("section.k9mydj") }}
               </a>
             </li>
-            <li v-if="showBuy">
+            <li>
               <a href="https://mall.jd.com/index-131620.html" target="_bank">
                 {{ $t("section.pfuunc") }}
               </a>
@@ -195,6 +195,8 @@ export default Vue.extend({
 .dark {
   background-color: #343a40;
 }
+
+$dark: #343a40;
 .footer-1 {
   padding-top: 1rem;
   display: flex;
@@ -233,18 +235,22 @@ export default Vue.extend({
 @media screen and (max-width: 576px) {
   .dark {
     padding: 0;
-    background-color: #fff !important;
+    background-color: $dark !important;
   }
 
   .footer-1 {
-    flex-direction: column;
+    margin-bottom: 3rem;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: unset;
     ul {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 50%;
       h5,
       a {
-        color: #000 !important;
+        color: #fff !important;
       }
     }
   }
