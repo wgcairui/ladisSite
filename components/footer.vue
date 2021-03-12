@@ -33,9 +33,9 @@
               <nuxt-link :to="support['常见问题']">{{ $t("section.o5n0th") }}</nuxt-link>
             </li>
             <li>
-              <nuxt-link v-for="tm in tmls" :key="tm.title" :to="tm.src">
+              <a v-for="tm in tmls" :key="tm.title" :href="tm.src" target="_blank">
                 {{ tm.title }}
-              </nuxt-link>
+              </a>
             </li>
           </ul>
           <ul v-if="showBuy">

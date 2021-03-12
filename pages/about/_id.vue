@@ -4,39 +4,44 @@
       <b-col cols="12" md="3">
         <about-asid />
       </b-col>
-      <b-col cols="12" md="9" class=" p-5">
+      <b-col cols="12" md="9" class="p-5">
         <div class="pt-5 border-bottom text-center">
           <h5>{{ key }}</h5>
         </div>
-        <div class=" px-5 py-3 ctlimg content-img ql-editor" v-html="body" />
+        <div class="py-3 ctlimg content-img ql-editor" v-html="body" />
       </b-col>
     </b-row>
   </b-container>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-import AboutAsid from '../../components/AboutAsid.vue'
-import { about as aboutHrefs, getKey } from '../../components/hrefs'
-import { about } from '../../types/typing'
-import aboutData from './about'
+import Vue from "vue";
+import AboutAsid from "../../components/AboutAsid.vue";
+import { about as aboutHrefs, getKey } from "../../components/hrefs";
+import { about } from "../../types/typing";
+import aboutData from "./about";
 export default Vue.extend({
   components: { AboutAsid },
-  async asyncData ({ app, params }) {
+  async asyncData({ app, params }) {
     // 获取页面主题 公司简介
-    const url = '/about/' + params.id
-    const key = getKey(aboutHrefs, url)
+    const url = "/about/" + params.id;
+    const key = getKey(aboutHrefs, url);
     // 获取body
-    const body = await app.$Api.GeneralGetInfo({ table: 'About', queryKeys: ['type'], type: key }).then((el:about[]) => {
-      return el.find(el=>el.type === key)?.content || ((aboutData as any)[key].content.body as any)[app.i18n.locale]
-    })
-    return { body, key }
+    const body = await app.$Api
+      .GeneralGetInfo({ table: "About", queryKeys: ["type"], type: key })
+      .then((el: about[]) => {
+        return (
+          el.find((el) => el.type === key)?.content ||
+          ((aboutData as any)[key].content.body as any)[app.i18n.locale]
+        );
+      });
+    return { body, key };
   },
-  head () {
+  head() {
     return {
-      title: `${this.$data.key} - ${this.$store.state.name}`
-    }
-  }
-})
+      title: `${this.$data.key} - ${this.$store.state.name}`,
+    };
+  },
+});
 </script>
 <style lang="scss">
 .content-img img {
