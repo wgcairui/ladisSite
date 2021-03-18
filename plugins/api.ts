@@ -3,16 +3,16 @@ import { Plugin } from '@nuxt/types'
 // import { NuxtHTTPInstance } from '@nuxt/http'
 import { params } from '../types/index'
 
-const MyApi: Plugin = ({ $http, store, $axios,env }, inject) => {
+const MyApi: Plugin = ({ $http, store, $axios, env }, inject) => {
 
-  
+
   /**
    * 用于向服务器请求数据
    */
   class Api {
 
-    constructor(){
-      $axios.onRequest((config)=>{
+    constructor() {
+      $axios.onRequest((config) => {
         config.headers.name = encodeURI(store.state.name)
         return config
       })
@@ -20,6 +20,14 @@ const MyApi: Plugin = ({ $http, store, $axios,env }, inject) => {
     Params(params: { [x: string]: string }) {
       const query = new URLSearchParams(params)
       return '?' + query.toString()
+    }
+
+    /**
+     * 查找产品字符串
+     * @param seach 字符串
+     */
+    async seachProducts(seach: string) {
+      return await this.post('/api/seachProducts', { seach })
     }
     /**
      * 获取数据条目
@@ -59,7 +67,7 @@ const MyApi: Plugin = ({ $http, store, $axios,env }, inject) => {
       return data
     }
 
-   post(base: string, body: any) {
+    post(base: string, body: any) {
       /* console.log({process:Boolean(process),document:document||null});
       
       if(!process){
@@ -87,7 +95,7 @@ const MyApi: Plugin = ({ $http, store, $axios,env }, inject) => {
 
 export default MyApi
 
-/* 
+/*
 import { Plugin } from '@nuxt/types'
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { params } from '../types/index'

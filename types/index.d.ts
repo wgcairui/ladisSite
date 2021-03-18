@@ -1,16 +1,17 @@
-import { DbTables } from './typing'
+import { DbTables, product } from './typing'
 interface params {
     table: DbTables
     isNews?: boolean
-    queryKeys?:string[]
-    [t:string]:any
+    queryKeys?: string[]
+    [t: string]: any
 }
 interface Api {
     GeneralGetInfo: <T = any>(params: params) => Promise<T>
     GetHomeNews: <T = any>() => Promise<T>
     GetBuyList: <T = any>(city: string) => Promise<T>
     Down: (fileName: string) => Promise<any>
-    GetContent: (link:string) => Promise<any>
+    GetContent: (link: string) => Promise<any>
+    seachProducts: (seach: string) => Promise<product[]>
 }
 
 declare module 'vue/types/vue' {

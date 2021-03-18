@@ -91,6 +91,9 @@ body,
   width: 54px;
   z-index: 10000;
 
+  ul {
+    list-style: none;
+  }
   .tels {
     position: relative;
     height: 54px;
