@@ -43,6 +43,8 @@ const MyApi: Plugin = ({ $http, store, $axios, env }, inject) => {
      */
     async GetHomeNews() {
       const data = await $http.$get('/api/GetHomeNews')// ({ url: '/api/GetHomeNews' })
+      console.log({data});
+      
       return data
     }
     /**
@@ -80,7 +82,10 @@ const MyApi: Plugin = ({ $http, store, $axios, env }, inject) => {
         console.log({ error });
         return $axios.$post(base, body)
       } */
-      return $axios.$post(base, body)
+      return $axios.$post(base, body).catch(err=>{
+        console.log("axios error");
+        return 'axios error'
+      })
 
     }
   }

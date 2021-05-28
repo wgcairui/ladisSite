@@ -55,6 +55,8 @@ export const actions: ActionTree<RootState, RootState> = {
     // console.log({location:'store',env,p:process.env});
 
     const WagentConfig = $http.$get('/config/agent?name=' + encodeURI(process.env.NAME!))
+    
+    
     const WlinkFrend = $http.$get('/config/linkFrend')
 
     await Promise.all([WagentConfig, WlinkFrend]).then(([agentConfig, linkFrend]) => {

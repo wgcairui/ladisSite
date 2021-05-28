@@ -2,6 +2,7 @@ import { NuxtConfig } from '@nuxt/types'
 import { NuxtApp } from '@nuxt/types/app'
 import axios from 'axios'
 import { params } from './types'
+// const RemoteServerAddress = 'http://127.0.0.1:7001'
 const RemoteServerAddress = 'https://www.ladishb.com/admin'
 // const RemoteServerAddress = 'http://www.ladishb.com:8006'
 //process.env.CODE_HM  = 'https://hm.baidu.com/hm.js?265ab1ae5fe5d0764570151f06dc3263'
@@ -149,7 +150,7 @@ const config: NuxtConfig = {
       browserBaseURL: process.env.BROWSER_BASE_URL
     }
   },
-  
+
 
   privateRuntimeConfig: {
     http: {
