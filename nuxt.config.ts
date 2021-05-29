@@ -2,11 +2,8 @@ import { NuxtConfig } from '@nuxt/types'
 import { NuxtApp } from '@nuxt/types/app'
 import axios from 'axios'
 import { params } from './types'
-// const RemoteServerAddress = 'http://127.0.0.1:7001'
-const RemoteServerAddress = 'https://www.ladishb.com/admin'
-// const RemoteServerAddress = 'http://www.ladishb.com:8006'
-//process.env.CODE_HM  = 'https://hm.baidu.com/hm.js?265ab1ae5fe5d0764570151f06dc3263'
-//console.log(process.env.CODE_HM);
+//const RemoteServerAddress = 'http://127.0.0.1:7001'
+const RemoteServerAddress = 'https://www.ladishb.com/site'
 
 const config: NuxtConfig = {
   telemetry: false,
@@ -134,9 +131,6 @@ const config: NuxtConfig = {
     // 路由配置
     strategy: 'no_prefix'
   },
-  /* axios: {
-    baseURL: process.env.BASE_URL, // Used as fallback if no runtime config is provided
-  }, */
   http: {
     proxy: true,
     retry: 2
@@ -159,12 +153,13 @@ const config: NuxtConfig = {
   },
 
   proxy: {
-    '/api/': {
+    /* '/api/': {
       target: RemoteServerAddress,
       pathRewrite: {
         '/api/': '/api/v2/'
       }
-    },
+    }, */
+    '/docment': RemoteServerAddress,
     '/_CMS_NEWS_IMG_': RemoteServerAddress,
     '/a_images': RemoteServerAddress,
     '/down': RemoteServerAddress,

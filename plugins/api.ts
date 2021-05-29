@@ -16,6 +16,11 @@ const MyApi: Plugin = ({ $http, store, $axios, env }, inject) => {
         config.headers.name = encodeURI(store.state.name)
         return config
       })
+
+      $axios.onRequestError(err=>{
+        console.log({err});
+        
+      })
     }
     Params(params: { [x: string]: string }) {
       const query = new URLSearchParams(params)
@@ -27,7 +32,7 @@ const MyApi: Plugin = ({ $http, store, $axios, env }, inject) => {
      * @param seach 字符串
      */
     async seachProducts(seach: string) {
-      return await this.post('/api/seachProducts', { seach })
+      return await this.post('/docment/seachProducts', { seach })
     }
     /**
      * 获取数据条目
@@ -35,14 +40,14 @@ const MyApi: Plugin = ({ $http, store, $axios, env }, inject) => {
      */
     async GeneralGetInfo(param: params) {
       // $http.setHeader('name', encodeURI(store.state.name))
-      const data = await this.post('/api/Get_arg', param)
+      const data = await this.post('/docment/Get_arg', param)
       return data
     }
     /**
      * 获取最新的新闻条目
      */
     async GetHomeNews() {
-      const data = await $http.$get('/api/GetHomeNews')// ({ url: '/api/GetHomeNews' })
+      const data = await $http.$get('/docment/GetHomeNews')// ({ url: '/api/GetHomeNews' })
       console.log({data});
       
       return data
@@ -52,7 +57,9 @@ const MyApi: Plugin = ({ $http, store, $axios, env }, inject) => {
      * @param city 代理商所在地
      */
     async GetBuyList(city: string) {
-      const data = await this.post('/api/Get_buy_li', { city })
+      console.log('sssss');
+      
+      const data = await this.post('/docment/Get_buy_li', { city })
       return data
     }
     /**
@@ -60,12 +67,12 @@ const MyApi: Plugin = ({ $http, store, $axios, env }, inject) => {
      * @param fileName 下载文件名
      */
     async Down(fileName: string) {
-      const data = await this.post('/api/Down', { fileName })
+      const data = await this.post('/docment/Down', { fileName })
       return data
     }
 
     async GetContent(link: string) {
-      const data = await this.post('/api/GetContent', { link })
+      const data = await this.post('/docment/GetContent', { link })
       return data
     }
 
