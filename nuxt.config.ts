@@ -70,6 +70,9 @@ const config: NuxtConfig = {
   sitemap: {
     hostname: "http://" + process.env.HOST,
     gzip: true,
+    exclude: [
+      '/down/**'
+    ],
     routes: async () => {
       const routs = await axios.get<router[]>(RemoteServerAddress + "/web/getRout", { headers: { name: encodeURI(process.env.NAME!) } })
       return (routs.data || []).map(el => ({
