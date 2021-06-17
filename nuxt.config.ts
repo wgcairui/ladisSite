@@ -2,8 +2,8 @@ import { NuxtConfig } from '@nuxt/types'
 import axios from "axios"
 import { router } from './types/typing'
 
-const RemoteServerAddress = 'http://127.0.0.1:7001'
-//const RemoteServerAddress = 'https://www.ladishb.com/site'
+//const RemoteServerAddress = 'http://127.0.0.1:7001'
+const RemoteServerAddress = 'https://www.ladishb.com/site'
 
 const config: NuxtConfig = {
   telemetry: false,
@@ -70,7 +70,7 @@ const config: NuxtConfig = {
   sitemap: {
     gzip: true,
     routes: async () => {
-      const routs = await axios.get<router[]>("https://www.ladishb.com/site/web/getRout", { headers: { name: encodeURI(process.env.NAME!) } })
+      const routs = await axios.get<router[]>(RemoteServerAddress + "/web/getRout", { headers: { name: encodeURI(process.env.NAME!) } })
       return (routs.data || []).map(el => ({
         url: el.rout,
         changefreq: 'daily',
