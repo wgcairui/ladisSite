@@ -1,6 +1,6 @@
 import { NuxtConfig } from '@nuxt/types'
 import axios from "axios"
-import { router } from './types/typing'
+import { Agents, router } from './types/typing'
 
 //const RemoteServerAddress = 'http://127.0.0.1:7001'
 const RemoteServerAddress = 'https://www.ladishb.com/site'
@@ -68,6 +68,7 @@ const config: NuxtConfig = {
     '@nuxtjs/axios'
   ],
   sitemap: {
+    hostname: "http://" + process.env.HOST,
     gzip: true,
     routes: async () => {
       const routs = await axios.get<router[]>(RemoteServerAddress + "/web/getRout", { headers: { name: encodeURI(process.env.NAME!) } })
