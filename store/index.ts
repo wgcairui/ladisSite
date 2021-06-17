@@ -38,7 +38,6 @@ export const mutations: MutationTree<RootState> = {
     state.showLaungua = payload.agentConfig.showLaungua || state.showLaungua
     state.showNews = payload.agentConfig.showNews || state.showNews
     state.showProduct = payload.agentConfig.showProduct || state.showProduct
-    // console.log(state)
   }
 }
 
@@ -48,22 +47,18 @@ export const actions: ActionTree<RootState, RootState> = {
    * @param param0 
    * @param param1 
    */
-  async nuxtServerInit({ commit }, { req, $http, env }: Context) {
+  async nuxtServerInit({ commit }, { req, $axios, env }: Context) {
     const forwardedHost = req.headers['x-forwarded-host']
     const host = req.headers.host?.split(':')[0]
     commit('SETHOST', { localUrl: forwardedHost || host })
-    // console.log({location:'store',env,p:process.env});
 
-    const WagentConfig = $http.$get('/config/agent?name=' + encodeURI(process.env.NAME!))
+    const WagentConfig = $axios.$get('/config/agent?name=' + encodeURI(process.env.NAME!))
     
     
-    const WlinkFrend = $http.$get('/config/linkFrend')
+    const WlinkFrend = $axios.$get('/config/linkFrend')
 
     await Promise.all([WagentConfig, WlinkFrend]).then(([agentConfig, linkFrend]) => {
-      // console.log({ name: process.env.NAME })
       commit('SETAGENTCONFIG', { agentConfig, linkFrend })
-    }).catch((e) => {
-      console.log(e)
-    })
+    }).catch((e) => {})
   }
 }

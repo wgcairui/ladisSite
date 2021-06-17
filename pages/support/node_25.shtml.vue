@@ -3,34 +3,20 @@
     <b-row no-gutters>
       <b-col cols="12" md="4">
         <b-list-group class="asid">
-          <b-list-group-item variant="info">
-            {{ $t('chang-jian-wen-ti') }}
-          </b-list-group-item>
+          <b-list-group-item variant="info">{{ $t('chang-jian-wen-ti') }}</b-list-group-item>
           <b-list-group-item v-for="(val,key) in supportAsid" :key="'asid' + key">
-            <b-button
-              v-b-toggle="'asid' + key"
-              pill
-              size="sm"
-              variant="link"
-            >
-              +
-            </b-button>
+            <b-button v-b-toggle="'asid' + key" pill size="sm" variant="link">+</b-button>
             <nuxt-link :to="val.link">
               {{
-                val.title
+              val.title
               }}
             </nuxt-link>
-            <b-collapse
-              :id="'asid' + key"
-              visible
-              accordion="my-accordion"
-              role="tabpanel"
-            >
+            <b-collapse :id="'asid' + key" visible accordion="my-accordion" role="tabpanel">
               <ul>
                 <li v-for="v1 in val.child" :key="v1.title">
                   <nuxt-link :to="v1.link">
                     {{
-                      v1.title
+                    v1.title
                     }}
                   </nuxt-link>
                 </li>
@@ -51,7 +37,7 @@
           >
             <nuxt-link :to="val.link">
               {{
-                val.title
+              val.title
               }}
             </nuxt-link>
           </b-list-group-item>
@@ -70,51 +56,47 @@
   </b-container>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-interface buyArea {
-  parentsUntil: string
-  link: string
-  parent: string
-}
-export default Vue.extend({
+  import Vue from 'vue'
+  import { supportProblem } from '~/types/typing'
+  export default Vue.extend({
 
-  async asyncData ({ app }) {
-    const supportAsid = await app.$Api.GeneralGetInfo({ table: 'Page', queryKeys: ['MainTitle'], MainTitle: 'support_problem_asid' })
-    const list = await app.$Api.GeneralGetInfo({ table: 'Support_list' })
+    async asyncData({ $Api }) {
+      const supportAsid = await $Api.getPagesType<supportProblem>('support_problem_asid')//.GeneralGetInfo({ table: 'Page', queryKeys: ['MainTitle'], MainTitle: 'support_problem_asid' })
+      const list = await $Api.getSupportLists()//.GeneralGetInfo({ table: 'Support_list' })
 
-    return { supportAsid, list }
-  },
-  data () {
-    return {
-      perPage: 10,
-      currentPage: 1
+      return { supportAsid, list }
+    },
+    data() {
+      return {
+        perPage: 10,
+        currentPage: 1
+      }
+    },
+
+    head() {
+      const [Page] = this.$data.list
+      return {
+        title: `${Page.PageTitle} - ${this.$store.state.name}`,
+        meta: [
+          {
+            name: 'keywords',
+            content: Page.Pagekeywords
+          },
+          {
+            name: 'description',
+            content: Page.Pagedescription
+          }
+        ]
+      }
     }
-  },
-
-  head () {
-    const [Page] = this.$data.list
-    return {
-      title: `${Page.PageTitle} - ${this.$store.state.name}`,
-      meta: [
-        {
-          name: 'keywords',
-          content: Page.Pagekeywords
-        },
-        {
-          name: 'description',
-          content: Page.Pagedescription
-        }
-      ]
-    }
-  }
-})
+  })
 </script>
 
 <style lang="scss" scoped>
-.asid {
-  padding: 1rem;
-  a {
-    color: black;
+  .asid {
+    padding: 1rem;
+    a {
+      color: black;
+    }
   }
-}
 </style>

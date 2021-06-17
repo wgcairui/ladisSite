@@ -22,20 +22,12 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import CardCopy from '../../components/CardCopy.vue'
-import VrAsid from '../../components/VrAsid.vue'
-import { vr } from '../../types/typing'
 import { vr as Vr, getKey } from '../../components/hrefs'
 export default Vue.extend({
-  components: {
-    CardCopy,
-    VrAsid
-  },
-  async asyncData ({ app, params, error }) {
-    const listArrays:vr[] = await app.$Api.GeneralGetInfo({ table: 'VR' })
+  async asyncData ({ $Api, params, error }) {
+    const listArrays = await $Api.getVrs()
     const key = getKey(Vr, '/360/' + params.id)
     const listArray = listArrays.filter((el) => {
-      // console.log({ name: el.name.trim(), key: `［${key}］` })
       return el.name.trim() === `［${key}］`
     })
     if (listArray?.length === 0) { return error({ statusCode: 500, message: '页面走丢了' }) }

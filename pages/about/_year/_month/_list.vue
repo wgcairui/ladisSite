@@ -26,16 +26,11 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { buyList } from '../../../../types/typing'
 export default Vue.extend({
-  async asyncData ({ app, params, error }) {
+  async asyncData ({ $Api, params, error }) {
     const link = '/about/' + Object.values(params).join('/')
     if (link.includes('undefined')) { return error({ statusCode: 505, message: link }) }
-    const list:buyList[] = await app.$Api.GeneralGetInfo({
-      table: 'Buy_list',
-      queryKeys: ['link'],
-      link
-    })
+    const list = await $Api.getBuyListLink(link)
     if (!list) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { list }
   },

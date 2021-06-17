@@ -1,28 +1,23 @@
-import { DbTables, product } from './typing'
-interface params {
-    table: DbTables
-    isNews?: boolean
-    queryKeys?: string[]
-    [t: string]: any
-}
-interface Api {
-    GeneralGetInfo: <T = any>(params: params) => Promise<T>
-    GetHomeNews: <T = any>() => Promise<T>
-    GetBuyList: <T = any>(city: string) => Promise<T>
-    Down: (fileName: string) => Promise<any>
-    GetContent: (link: string) => Promise<any>
-    seachProducts: (seach: string) => Promise<product[]>
-}
-
+import { Api } from '~/plugins/api';
 declare module 'vue/types/vue' {
     interface Vue {
         $Api: Api,
+    }
+
+    interface VueConstructor {
+        $Api: Api
+    }
+}
+
+declare module '@nuxt/vue-app' {
+    interface Context {
+        $Api: Api
     }
 }
 
 declare module '@nuxt/types' {
     interface Context {
-
+        $Api: Api
     }
     interface NuxtAppOptions {
         $Api: Api

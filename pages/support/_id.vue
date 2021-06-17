@@ -3,33 +3,20 @@
     <b-row no-gutters>
       <b-col cols="12" md="4">
         <b-list-group class="asid">
-          <b-list-group-item variant="info">
-            常见问题
-          </b-list-group-item>
+          <b-list-group-item variant="info">常见问题</b-list-group-item>
           <b-list-group-item v-for="(val,key) in supportAsid" :key="'asid' + key">
-            <b-button
-              v-b-toggle="'asid' + key"
-              pill
-              size="sm"
-              variant="link"
-            >
-              +
-            </b-button>
+            <b-button v-b-toggle="'asid' + key" pill size="sm" variant="link">+</b-button>
             <nuxt-link :to="val.link">
               {{
-                val.title
+              val.title
               }}
             </nuxt-link>
-            <b-collapse
-              :id="'asid' + key"
-              accordion="my-accordion"
-              role="tabpanel"
-            >
+            <b-collapse :id="'asid' + key" accordion="my-accordion" role="tabpanel">
               <ul>
                 <li v-for="v1 in val.child" :key="v1.title">
                   <nuxt-link :to="v1.link">
                     {{
-                      v1.title
+                    v1.title
                     }}
                   </nuxt-link>
                 </li>
@@ -50,7 +37,7 @@
           >
             <nuxt-link :to="val.link">
               {{
-                val.title
+              val.title
               }}
             </nuxt-link>
           </b-list-group-item>
@@ -69,66 +56,66 @@
   </b-container>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-import { supportList, supportProblem } from '../../types/typing'
-interface buyArea {
-  parentsUntil: string
-  link: string
-  parent: string
-}
-export default Vue.extend({
-  async asyncData ({ app, params }) {
-    const MainUrl = `/support/${params.id}`
-    const supportAsids:supportProblem[] = await app.$Api.GeneralGetInfo({ table: 'Page', queryKeys: ['MainTitle'], MainTitle: 'support_problem_asid' })
-    const list = await app.$Api.GeneralGetInfo({ table: 'Support_list', queryKeys: ['MainUrl'], MainUrl }).then(async (el:supportList[]) => {
-      if (el.length === 0) {
-        let MainParent = ''
-        supportAsids.forEach((asid) => {
-          if (asid.link === MainUrl) { MainParent = asid.title }
-        })
-        const lists = await app.$Api.GeneralGetInfo({ table: 'Support_list', queryKeys: ['MainParent'], MainParent })
-        return lists
-      } else {
-        return el
-      }
-    })
-    return { supportAsid: supportAsids, list }
-  },
-  data () {
-    return {
-      perPage: 10,
-      currentPage: 1,
-      support_list: []
-    }
-  },
-
-  created () {
-    this.slic()
-  },
-  methods: {
-    slic (title:string = '') {
-      if (title) {
-        this.support_list = this.$data.list.filter((val:buyArea) => {
-          return val.parentsUntil === title || val.parent === title
-        })
-      } else {
-        this.support_list = this.$data.list
-      }
-    }
-  },
-  head () {
-    return {
-      title: `服务支持 - ${this.$store.state.name}`
-    }
+  import Vue from 'vue'
+  import { supportList, supportProblem } from '../../types/typing'
+  interface buyArea {
+    parentsUntil: string
+    link: string
+    parent: string
   }
-})
+  export default Vue.extend({
+    async asyncData({ $Api, params }) {
+      const MainUrl = `/support/${params.id}`
+      const supportAsids = await $Api.getPagesType<supportProblem>('support_problem_asid')
+      const list = await $Api.getSupportListsType(MainUrl).then(async el => {//GeneralGetInfo({ table: 'Support_list', queryKeys: ['MainUrl'], MainUrl }).then(async (el:supportList[]) => {
+        if (el.length === 0) {
+          let MainParent = ''
+          supportAsids.forEach((asid) => {
+            if (asid.link === MainUrl) { MainParent = asid.title }
+          })
+          const lists = await $Api.getSupportType(MainParent)//GeneralGetInfo({ table: 'Support_list', queryKeys: ['MainParent'], MainParent })
+          return lists
+        } else {
+          return el
+        }
+      })
+      return { supportAsid: supportAsids, list }
+    },
+    data() {
+      return {
+        perPage: 10,
+        currentPage: 1,
+        support_list: []
+      }
+    },
+
+    created() {
+      this.slic()
+    },
+    methods: {
+      slic(title: string = '') {
+        if (title) {
+          this.support_list = this.$data.list.filter((val: buyArea) => {
+            return val.parentsUntil === title || val.parent === title
+          })
+        } else {
+          this.support_list = this.$data.list
+        }
+      }
+    },
+    head() {
+      return {
+        title: `服务支持 - ${this.$store.state.name}`
+      }
+    }
+  })
 </script>
 
 <style lang="scss" scoped>
-.asid {
-  padding: 1rem;
-  a {
-    color: black;
+  .asid {
+    padding: 1rem;
+    a {
+      color: black;
+    }
   }
-}
 </style>

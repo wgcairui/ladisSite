@@ -41,17 +41,11 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import ProductAsid from "../../components/ProductAsid.vue";
-import MyImg from "../../components/MyImg.vue";
-import { product } from "../../types/typing";
 export default Vue.extend({
-  components: { ProductAsid, MyImg },
-  async asyncData({ app, query, error }) {
+  async asyncData({ $Api, query, error }) {
     const seach = query.seach as string;
-    const all: product[] = await app.$Api.seachProducts(seach);
-    if (!all) {
-      return error({ statusCode: 500, message: "页面走丢了" });
-    }
+    const all = await $Api.getProductsReg(seach)
+    if (!all) return error({ statusCode: 500, message: "页面走丢了" });
     return { all };
   },
   data() {

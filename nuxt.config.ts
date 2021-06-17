@@ -1,9 +1,9 @@
 import { NuxtConfig } from '@nuxt/types'
-import { NuxtApp } from '@nuxt/types/app'
-import axios from 'axios'
-import { params } from './types'
-//const RemoteServerAddress = 'http://127.0.0.1:7001'
-const RemoteServerAddress = 'https://www.ladishb.com/site'
+import axios from "axios"
+import { router } from './types/typing'
+
+const RemoteServerAddress = 'http://127.0.0.1:7001'
+//const RemoteServerAddress = 'https://www.ladishb.com/site'
 
 const config: NuxtConfig = {
   telemetry: false,
@@ -38,24 +38,20 @@ const config: NuxtConfig = {
   // Customize the progress-bar color
 
   loading: { color: '#fff' },
-
+  components: true,
   // Global CSS
 
   css: ['~/assets/ladis-old.css'],
 
   // Plugins to load before mounting the App
 
-  plugins: ['~/plugins/api.ts', '~/plugins/http.ts', '~/plugins/baidu.js'],
+  plugins: ['~/plugins/api.ts', '~/plugins/baidu.js'],
 
   // Nuxt.js dev-modules
 
   buildModules: [
     // https://typescript.nuxtjs.org/guide/setup.html#installation
     '@nuxt/typescript-build'
-    // Doc: https://github.com/nuxt-community/eslint-module
-    // '@nuxtjs/eslint-module',
-    // Doc: https://github.com/nuxt-community/stylelint-module
-    // '@nuxtjs/stylelint-module'
   ],
 
   // Nuxt.js modules
@@ -68,38 +64,30 @@ const config: NuxtConfig = {
     // https://github.com/nuxt-community/sitemap-module
     '@nuxtjs/sitemap',
     //'@nuxtjs/component-cache',
-    // https://http.nuxtjs.org/setup
-    '@nuxt/http',
     '@nuxtjs/proxy',
     '@nuxtjs/axios'
   ],
   sitemap: {
     gzip: true,
-    // exclude: ['/admin/**', '/en/admin/**', '/zh/admin/**'],
-    // eslint-disable-next-line require-await
-    /* routes: async (ctx: NuxtApp) => {
+    routes: async () => {
+      const routs = await axios.get<router[]>("https://www.ladishb.com/site/web/getRout", { headers: { name: encodeURI(process.env.NAME!) } })
+      return (routs.data || []).map(el => ({
+        url: el.rout,
+        changefreq: 'daily',
+        priority: 1,
+        lastmod: '2021-06-16T13:30:00.000Z'
+      }))
 
-      console.log(Object.keys(ctx))
-      const param: params = { table: 'Router' }
-      const router = await axios.post(
-        `${RemoteServerAddress}/api/v2/Get_arg`, { params: param },{headers:{name:encodeURI(process.env.NAME!)}}
-      ).then((el) => {
-        return el.data.map((router: { rout: any }) => router.rout)
-      }).catch((err) => {
-        console.log(err)
-        return []
-      })
-      console.log({router});
-      
-      return router
-    } */
+      /* return [
+        {
+          url: '/page/3',
+          changefreq: 'daily',
+          priority: 1,
+          lastmod: '2017-06-30T13:30:00.000Z'
+        }
+      ] */
+    }
   },
-  /* optimizedImages: {
-    // 优化的图像类型
-    handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif', 'jpg'],
-    // 开启优化
-    optimizeImages: true
-  }, */
   i18n: {
     locales: [
       {
@@ -153,12 +141,7 @@ const config: NuxtConfig = {
   },
 
   proxy: {
-    /* '/api/': {
-      target: RemoteServerAddress,
-      pathRewrite: {
-        '/api/': '/api/v2/'
-      }
-    }, */
+    "/web": RemoteServerAddress,
     '/docment': RemoteServerAddress,
     '/_CMS_NEWS_IMG_': RemoteServerAddress,
     '/a_images': RemoteServerAddress,

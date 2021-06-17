@@ -40,16 +40,9 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import CardCopy from '../../components/CardCopy.vue'
-import CaseAsid from '../../components/CaseAsid.vue'
-import { cases } from '../../types/typing'
 export default Vue.extend({
-  components: {
-    CardCopy,
-    CaseAsid
-  },
-  async asyncData ({ app, error }) {
-    const listArray:cases[] = await app.$Api.GeneralGetInfo({ table: 'Case', isNews: true })
+  async asyncData ({ $Api, error }) {
+    const listArray = await $Api.getCaseLists()
     if (listArray?.length === 0) { return error({ statusCode: 500, message: '页面走丢了' }) }
     return { listArray }
   },

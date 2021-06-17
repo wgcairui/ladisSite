@@ -14,42 +14,32 @@
   </b-container>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import AboutAsid from "../../components/AboutAsid.vue";
-import { about as aboutHrefs, getKey } from "../../components/hrefs";
-import { about } from "../../types/typing";
-import aboutData from "./about";
-export default Vue.extend({
-  components: { AboutAsid },
-  async asyncData({ app }) {
-    // 获取页面主题 公司简介
-    const url = "/about/";
-    const key = getKey(aboutHrefs, url);
-    // 获取body
-    const body = await app.$Api
-      .GeneralGetInfo({ table: "About", queryKeys: ["type"], type: key })
-      .then((el: about[]) => {
-        return (
-          el.find((el) => el.type === key)?.content ||
-          ((aboutData as any)[key].content.body as any)[app.i18n.locale]
-        );
-      });
-    return { body, key };
-  },
-  head() {
-    return {
-      title: `${this.$data.key} - ${this.$store.state.name}`,
-    };
-  },
-});
+  import Vue from "vue";
+  import { about as aboutHrefs, getKey } from "../../components/hrefs";
+  import aboutData from "./about";
+  export default Vue.extend({
+    async asyncData({ $Api, app }) {
+      // 获取页面主题 公司简介
+      const url = "/about/";
+      const key = getKey(aboutHrefs, url);
+      // 获取body
+      const body = await $Api.getAboutType(key).then(el => el.content || ((aboutData as any)[key].content.body as any)[app.i18n.locale]);
+      return { body, key };
+    },
+    head() {
+      return {
+        title: `${this.$data.key} - ${this.$store.state.name}`,
+      };
+    },
+  });
 </script>
 <style lang="scss">
-.content-img img {
-  max-width: 100%;
-  margin: 10px;
-}
-#newsText img {
-  max-width: 100% !important;
-  height: auto;
-}
+  .content-img img {
+    max-width: 100%;
+    margin: 10px;
+  }
+  #newsText img {
+    max-width: 100% !important;
+    height: auto;
+  }
 </style>

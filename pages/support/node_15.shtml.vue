@@ -2,9 +2,9 @@
   <b-container>
     <b-row no-gutters>
       <b-col md="4" class="d-none d-sm-block">
-        <b-button v-b-toggle.collapse-1 block class=" mt-3">
+        <b-button v-b-toggle.collapse-1 block class="mt-3">
           {{
-            $t("_id.tgqqj4")
+          $t("_id.tgqqj4")
           }}
         </b-button>
         <b-collapse id="collapse-1" visible>
@@ -13,9 +13,7 @@
               v-for="val in supportAsid"
               :key="val.title"
               :to="val.link"
-            >
-              {{ val.title }}
-            </b-list-group-item>
+            >{{ val.title }}</b-list-group-item>
           </b-list-group>
         </b-collapse>
       </b-col>
@@ -23,7 +21,12 @@
         <b-tabs content-class="mt-3" justified>
           <b-tab v-for="[key,val] in downs" :key="key" :title="key">
             <b-list-group>
-              <b-list-group-item v-for="v1 in val" :key="v1.title" :href="v1.href" class="d-flex justify-content-between align-items-center">
+              <b-list-group-item
+                v-for="v1 in val"
+                :key="v1.title"
+                :href="v1.href"
+                class="d-flex justify-content-between align-items-center"
+              >
                 {{ v1.title }}
                 <b-badge>downLoad</b-badge>
               </b-list-group-item>
@@ -63,7 +66,7 @@
                     }}
                   </b-button>
                 </b-collapse>
-              </b-list-group-item> -->
+              </b-list-group-item>-->
             </b-list-group>
           </b-tab>
         </b-tabs>
@@ -72,51 +75,51 @@
   </b-container>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-import { support } from '../../types/typing'
-export default Vue.extend({
-  async asyncData ({ app }) {
-    const title = '证书资质'
-    const supportAsid = await app.$Api.GeneralGetInfo({ table: 'Page', queryKeys: ['MainTitle'], MainTitle: 'support_asid' })
-    const downs = await app.$Api.GeneralGetInfo({ table: 'Support', queryKeys: ['MainParent'], MainParent: title }).then((el:support[]) => {
-      const supportMap:Map<string, support[]> = new Map()
-      el.forEach((Element) => {
-        const title = Element.MainTitle as string
-        if (supportMap.has(title)) {
-          const supports = supportMap.get(title) as support[]
-          supports.push(Element)
-        } else {
-          supportMap.set(title, [Element])
-        }
+  import Vue from 'vue'
+  import { support, supportAsid } from '../../types/typing'
+  export default Vue.extend({
+    async asyncData({ $Api }) {
+      const title = '证书资质'
+      const supportAsid = await $Api.getPagesType<supportAsid>("support_asid")//.GeneralGetInfo({ table: 'Page', queryKeys: ['MainTitle'], MainTitle: 'support_asid' })
+      const downs = await $Api.getSupportType(title).then(el => {//.GeneralGetInfo({ table: 'Support', queryKeys: ['MainParent'], MainParent: title }).then((el:support[]) => {
+        const supportMap: Map<string, support[]> = new Map()
+        el.forEach((Element) => {
+          const title = Element.MainTitle as string
+          if (supportMap.has(title)) {
+            const supports = supportMap.get(title) as support[]
+            supports.push(Element)
+          } else {
+            supportMap.set(title, [Element])
+          }
+        })
+        return Array.from(supportMap)
       })
-      return Array.from(supportMap)
-    })
-    return { supportAsid, downs, title }
-  },
-  head () {
-    const [Page] = this.$data.supportAsid
-    return {
-      title: `${Page.PageTitle} - ${this.$store.state.name}`,
-      meta: [
-        {
-          name: 'keywords',
-          content: Page.Pagekeywords
-        },
-        {
-          name: 'description',
-          content: Page.Pagedescription
-        }
-      ]
+      return { supportAsid, downs, title }
+    },
+    head() {
+      const [Page] = this.$data.supportAsid
+      return {
+        title: `${Page.PageTitle} - ${this.$store.state.name}`,
+        meta: [
+          {
+            name: 'keywords',
+            content: Page.Pagekeywords
+          },
+          {
+            name: 'description',
+            content: Page.Pagedescription
+          }
+        ]
+      }
     }
-  }
-})
+  })
 </script>
 
 <style lang="scss" scoped>
-.list-group {
-  margin: 1rem 0;
-}
-.tabs {
-  margin: 1rem;
-}
+  .list-group {
+    margin: 1rem 0;
+  }
+  .tabs {
+    margin: 1rem;
+  }
 </style>
