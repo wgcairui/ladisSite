@@ -2,7 +2,7 @@ import { NuxtConfig } from '@nuxt/types'
 import axios from "axios"
 import { Agents, router } from './types/typing'
 
-//const RemoteServerAddress = 'http://127.0.0.1:7001'
+// const RemoteServerAddress = 'http://127.0.0.1:7001'
 const RemoteServerAddress = 'https://www.ladishb.com/site'
 
 const config: NuxtConfig = {

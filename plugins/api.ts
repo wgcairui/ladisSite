@@ -219,8 +219,17 @@ export class Api {
 
 
   async get<T>(path: string, data?: { [x: string]: string }) {
+    const query = [] as string[]
+    if (data) {
+      for (const key in data) {
+        query.push(`${key}=${data[key]}`)
+      }
+    }
+    const url = `/web/${path}?${encodeURI(query.join("&"))}`
+    console.log(url);
+
     try {
-      return this.ctx.$axios.$get<T>(`/web/${path}?${new URLSearchParams(data).toString()}`)
+      return this.ctx.$axios.$get<T>(url)
     } catch (err) {
       throw new Error(err.message)
     }
