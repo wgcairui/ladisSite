@@ -7,11 +7,11 @@
   "readme": "docker run -itd --restart always --name ladissite -p 80:80 -e NAME='湖北雷迪司' wgcairui/ladissite:latest",
   "scripts": {
     "dev": "cross-env NAME='湖北雷迪司' HOST='localhost' nuxt",
-    "build": "nuxt build",
+    "build": "nuxt build  --modern",
     "build:docker": "tsc nuxt.config.ts && npm run build && sudo docker build -t ladissite . && rm nuxt.config.js",
     "push:docker": "sudo docker login && sudo docker tag ladissite:latest wgcairui/ladissite:latest && sudo docker push wgcairui/ladissite:latest",
     "generate": "nuxt generate",
-    "start": "nuxt start",
+    "start": "cross-env NAME='湖北雷迪司' HOST='localhost' nuxt start ",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "lint-staged": {
@@ -19,33 +19,21 @@
     "*.{css,vue}": "stylelint"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/component-cache": "^1.1.6",
-    "@nuxtjs/proxy": "^2.0.1",
+    "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/sitemap": "^2.4.0",
-    "axios": "^0.21.1",
+    "axios": "^0.24.0",
     "bootstrap": "^4.5.3",
-    "bootstrap-vue": "^2.18.1",
-    "nuxt": "^2.14.7",
-    "nuxt-i18n": "^6.15.1"
+    "bootstrap-vue": "^2.21.2",
+    "nuxt": "^2.15.8",
+    "nuxt-i18n": "^6.28.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.7",
     "@nuxt/typescript-build": "^2.0.3",
-    "@nuxtjs/eslint-config-typescript": "^3.0.0",
-    "@nuxtjs/eslint-module": "^2.0.0",
-    "@nuxtjs/stylelint-module": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "cross-env": "^7.0.2",
-    "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-nuxt": "^1.0.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
-    "node-sass": "^4.14.1",
-    "prettier": "^2.1.2",
-    "sass-loader": "^10.0.2",
-    "stylelint": "^13.7.1"
+    "sass": "^1.43.4"
   }
 }

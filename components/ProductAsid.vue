@@ -5,7 +5,7 @@
       type="dark"
       variant="info"
       style="padding: 0"
-      class="bg-info"
+      class="bg-dark"
     >
       <b-navbar-toggle target="list-collapse" />
       <b-collapse id="list-collapse" is-nav>

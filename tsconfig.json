@@ -25,7 +25,6 @@
     "types": [
       "@nuxt/types",
       "nuxt-i18n",
-      "@nuxt/http",
       "@nuxtjs/axios"
     ]
   },

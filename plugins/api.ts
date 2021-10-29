@@ -226,7 +226,7 @@ export class Api {
       }
     }
     const url = `/web/${path}?${encodeURI(query.join("&"))}`
-    console.log(url);
+    // console.log(url);
 
     try {
       return this.ctx.$axios.$get<T>(url)
