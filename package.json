@@ -11,7 +11,7 @@
     "build:docker": "tsc nuxt.config.ts && npm run build && sudo docker build -t ladissite . && rm nuxt.config.js",
     "push:docker": "sudo docker login && sudo docker tag ladissite:latest wgcairui/ladissite:latest && sudo docker push wgcairui/ladissite:latest",
     "generate": "nuxt generate",
-    "start": "cross-env NAME='湖北雷迪司' HOST='localhost' nuxt start ",
+    "start": "nuxt start ",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "lint-staged": {
