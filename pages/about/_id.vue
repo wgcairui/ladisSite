@@ -15,7 +15,7 @@
 </template>
 <script lang="ts">
   import Vue from "vue";
-  import { about as aboutHrefs, getKey } from "../../components/hrefs";
+  import { about as aboutHrefs, getKey } from "../../static/hrefs";
   import aboutData from "./about";
   export default Vue.extend({
     async asyncData({ app, params, $Api }) {

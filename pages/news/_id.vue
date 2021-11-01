@@ -36,7 +36,7 @@
 </template>
 <script lang="ts">
   import Vue from 'vue'
-  import { news, getKey } from '../../components/hrefs'
+  import { news, getKey } from '../../static/hrefs'
   export default Vue.extend({
     async asyncData({ $Api, params, error }) {
       const url = '/news/' + params.id

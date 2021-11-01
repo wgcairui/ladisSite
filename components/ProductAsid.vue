@@ -45,7 +45,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { product } from "./hrefs";
+import { product } from "../static/hrefs";
 export default Vue.extend({
   name: "ProductAsid",
   data() {

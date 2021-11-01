@@ -59,6 +59,7 @@ const config: NuxtConfig = {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
+
     // https://nuxt-community.github.io/nuxt-i18n/
     'nuxt-i18n',
     // https://github.com/nuxt-community/sitemap-module
@@ -67,6 +68,34 @@ const config: NuxtConfig = {
     '@nuxtjs/proxy',
     '@nuxtjs/axios'
   ],
+
+  /**
+   * https://bootstrap-vue.org/docs
+   */
+  bootstrapVue: {
+    componentPlugins: [
+      'BreadcrumbPlugin',
+      'BadgePlugin',
+      'ButtonPlugin',
+      'CardPlugin',
+      'CarouselPlugin',
+      'CollapsePlugin',
+      'FormInputPlugin',
+      'ImagePlugin',
+      'InputGroupPlugin',
+      'LayoutPlugin',
+      'LinkPlugin',
+      'ListGroupPlugin',
+      'NavPlugin',
+      'NavbarPlugin',
+      'PaginationPlugin',
+      'TablePlugin',
+      'TabsPlugin',
+
+
+    ],
+    //directivePlugins: ['VBPopoverPlugin', 'VBTooltipPlugin', 'VBScrollspyPlugin']
+  },
   sitemap: {
     hostname: "http://" + process.env.HOST,
     gzip: true,

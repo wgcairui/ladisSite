@@ -61,7 +61,7 @@
 <script lang="ts">
   import Vue from 'vue'
   import { mapState } from 'vuex'
-  import { about, news } from './hrefs'
+  import { about, news } from '../static/hrefs'
   export default Vue.extend({
     data() {
       return {

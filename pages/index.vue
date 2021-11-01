@@ -163,7 +163,7 @@
 <script lang="ts">
   import Vue from "vue";
   import { mapState } from "vuex";
-  import * as hrefs from "../components/hrefs.js";
+  import * as hrefs from "../static/hrefs.js";
   export default Vue.extend({
     async asyncData({ $Api }) {
       const b1 = await $Api.getAboutType("公司简介")

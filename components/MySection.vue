@@ -159,7 +159,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import { support } from './hrefs'
+import { support } from '../static/hrefs'
 export default Vue.extend({
   computed: {
     ...mapState(['agentConfig']),

@@ -153,7 +153,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapState } from "vuex";
-import { product, support, about, news } from "./hrefs";
+import { product, support, about, news } from "../static/hrefs";
 export default Vue.extend({
   name: "LadisFooter",
   data() {

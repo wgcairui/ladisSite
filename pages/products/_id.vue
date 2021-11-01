@@ -42,7 +42,7 @@
 </template>
 <script lang="ts">
   import Vue from 'vue'
-  import { product as products, getKey } from '../../components/hrefs'
+  import { product as products, getKey } from '../../static/hrefs'
   export default Vue.extend({
     async asyncData({ $Api, params, error }) {
       const MainUrl = `/products/${params.id}`

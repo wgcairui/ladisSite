@@ -22,7 +22,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { vr as Vr, getKey } from '../../components/hrefs'
+import { vr as Vr, getKey } from '../../static/hrefs'
 export default Vue.extend({
   async asyncData ({ $Api, params, error }) {
     const listArrays = await $Api.getVrs()

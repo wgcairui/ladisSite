@@ -65,7 +65,7 @@
 </template>
 <script lang="ts">
   import Vue from 'vue'
-  import { product } from '../../../../components/hrefs'
+  import { product } from '../../../../static/hrefs'
   import '../../../../assets/css/product.css'
   export default Vue.extend({
     async asyncData({ $Api, params, error }) {

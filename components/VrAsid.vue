@@ -23,7 +23,7 @@
 </template>
 <script lang="ts">
   import Vue from 'vue'
-  import { vr } from './hrefs'
+  import { vr } from '../static/hrefs'
   export default Vue.extend({
     data() {
       return {

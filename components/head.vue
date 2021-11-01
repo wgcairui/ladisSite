@@ -171,7 +171,7 @@
 import Vue from "vue";
 import { mapState } from "vuex";
 import { NuxtVueI18n } from "nuxt-i18n/types/nuxt-i18n";
-import { news, cases, vr, product, about, support } from "./hrefs";
+import { news, cases, vr, product, about, support } from "../static/hrefs";
 export default Vue.extend({
   name: "LadisHead",
   data() {

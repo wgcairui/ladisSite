@@ -16,7 +16,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { support, about } from '../../components/hrefs'
+import { support, about } from '../../static/hrefs'
 export default Vue.extend({
   data () {
     const locale = this.$i18n.locale

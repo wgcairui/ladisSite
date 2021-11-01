@@ -13,7 +13,7 @@
 </template>
 <script lang="ts">
   import Vue from 'vue'
-  import { news } from './hrefs'
+  import { news } from '../static/hrefs'
   export default Vue.extend({
     data() {
       return {

@@ -36,7 +36,7 @@
 </template>
 <script lang="ts">
   import Vue from 'vue'
-  import { cases, getKey } from '../../components/hrefs'
+  import { cases, getKey } from '../../static/hrefs'
   export default Vue.extend({
     async asyncData({ $Api, params, error }) {
       const url = '/case/' + params.id

@@ -28,7 +28,7 @@
 </template>
 <script lang="ts">
   import Vue from 'vue'
-  import { cases } from './hrefs'
+  import { cases } from '../static/hrefs'
   export default Vue.extend({
     data() {
       return {
