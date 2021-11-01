@@ -2,8 +2,8 @@ import { NuxtConfig } from '@nuxt/types'
 import axios from "axios"
 import { router } from './types/typing'
 
- //const RemoteServerAddress = 'http://127.0.0.1:9007'
-const RemoteServerAddress = 'https://www.ladishb.com/site'
+//const RemoteServerAddress = 'http://127.0.0.1:9007'
+export const RemoteServerAddress = 'https://www.ladishb.com/site'
 
 const config: NuxtConfig = {
   telemetry: false,

@@ -1,6 +1,6 @@
 import { Plugin, Context } from '@nuxt/types'
-import { about, buy, buyList, caseList, cases, product, productList, router, support, supportAsid, supportList, vr } from '~/types/typing'
-
+import { about, buy, buyList, caseList, cases, product, productList, router, support, supportList, vr } from '~/types/typing'
+import { RemoteServerAddress } from "../nuxt.config"
 /**
    * 用于向服务器请求数据
    */
@@ -11,6 +11,8 @@ export class Api {
     this.ctx = ctx
     this.ctx.$axios.onRequest((config) => {
       config.headers.name = encodeURI(this.ctx.store.state.name)
+      config.baseURL = RemoteServerAddress
+      
       return config
     })
   }
@@ -231,7 +233,12 @@ export class Api {
     try {
       return this.ctx.$axios.$get<T>(url)
     } catch (err) {
-      throw new Error(err.message)
+      console.log({
+        err,
+        url
+      });
+
+      throw new Error('axios error')
     }
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "ladis-site",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "LADS官方网站，使用cs",
   "author": "wgcairui",
   "private": true,
