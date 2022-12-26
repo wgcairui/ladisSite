@@ -1,0 +1,54 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: clone file
+      run: |
+        git clone https://github.com/wgcairui/ladisSite.git -b master ./
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3.5.1
+      with:
+        # Set always-auth in npmrc.
+        always-auth: false
+        # Version Spec of the version to use. Examples: 12.x, 10.15.1, >=10.15.0.
+        node-version: 16.x
+
+    - uses: actions/checkout@v3
+
+    - name: build app
+      run: |
+        npm install
+        tsc nuxt.config.ts
+        npm run build
+
+    - name: Build the Docker image
+      run: |
+        ls -lha
+        docker build . --file Dockerfile --tag ladissite:latest
+
+  
+#     - name: public docker
+#       uses: manusa/actions-publish-docker@v1.1.2
+#       with:
+#         # Name of the Docker image
+#         name: wgcairui/ladissite
+#         # Username for Docker registry
+#         username: ${{secrets.docker}}
+#         # Password for Docker registry
+#         password: ${{secrets.docker_pw}}
+#         tag: latest
+
+      
