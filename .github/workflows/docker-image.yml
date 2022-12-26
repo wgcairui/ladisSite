@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
 
@@ -16,7 +16,7 @@ jobs:
 
     - name: clone file
       run: |
-        git clone https://github.com/wgcairui/ladisSite.git -b master ./
+        git clone https://github.com/wgcairui/ladisSite.git -b main ./
 
     - name: Setup Node.js environment
       uses: actions/setup-node@v3.5.1
@@ -39,7 +39,7 @@ jobs:
         ls -lha
         docker build . --file Dockerfile --tag ladissite:latest
 
-  
+
 #     - name: public docker
 #       uses: manusa/actions-publish-docker@v1.1.2
 #       with:
@@ -51,4 +51,4 @@ jobs:
 #         password: ${{secrets.docker_pw}}
 #         tag: latest
 
-      
+
