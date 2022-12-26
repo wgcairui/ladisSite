@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:12-alpine
 
 ENV NPM_CONFIG_LOGLEVEL warn
 ENV NODE_ENV=production
@@ -7,7 +7,7 @@ ENV NAME=湖北雷迪司
 COPY ["package.json", "nuxt.config.js", "/"]
 
 # Install app dependencies
-# echo https://mirrors.aliyun.com/alpine/v3.6/main/ > /etc/apk/repositories  && apk add autoconf automake libtool 
+# echo https://mirrors.aliyun.com/alpine/v3.6/main/ > /etc/apk/repositories  && apk add autoconf automake libtool
 
 RUN  npm install -g cnpm --registry=https://registry.npm.taobao.org && cnpm install --production
 # RUN  npm install -p
