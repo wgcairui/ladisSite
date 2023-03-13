@@ -9,7 +9,7 @@
     "dev": "cross-env NAME='杭州纽特电子有限公司' HOST='localhost' nuxt",
     "build": "nuxt build",
     "build:docker": "tsc nuxt.config.ts && npm run build && sudo docker build -t ladissite:zjups . && rm nuxt.config.js",
-    "push:docker": "sudo docker login && sudo docker push wgcairui/ladissite:zjups",
+    "push:docker": "docker tag ladissite:zjups wgcairui/ladissite:zjups && docker push wgcairui/ladissite:zjups",
     "generate": "nuxt generate",
     "start": "nuxt start ",
     "lint": "eslint --ext .ts,.js,.vue ."
