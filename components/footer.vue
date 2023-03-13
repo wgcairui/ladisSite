@@ -70,21 +70,6 @@
               <nuxt-link :to="news['全部新闻']">{{ $t("section.qis2vp") }}</nuxt-link>
             </li>
           </ul>
-          <ul>
-            <li>
-              <h5>{{ $t("section.ri1giq") }}</h5>
-            </li>
-            <li>
-              <a href="http://www.pesiv.com" target="_bank">
-                {{ $t("section.l7qkwb") }}
-              </a>
-            </li>
-            <!-- <li>
-                  <a href="http://116.62.48.175:81" target="_bank">{{
-                    $t('section.wkyimq')
-                  }}</a>
-                </li>-->
-          </ul>
         </b-container>
       </b-col>
     </b-row>
