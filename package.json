@@ -1,17 +1,17 @@
 {
   "name": "ladis-site",
   "version": "3.0.2",
-  "description": "LADS官方网站，使用cs",
+  "description": "LADS官方网站,使用cs",
   "author": "wgcairui",
   "private": true,
   "readme": "docker run -itd --restart always --name ladissite -p 80:80 -e NAME='杭州纽特电子有限公司' wgcairui/ladissite:latest",
   "scripts": {
     "dev": "cross-env NAME='杭州纽特电子有限公司' HOST='localhost' nuxt",
-    "build": "nuxt build",
-    "build:docker": "tsc nuxt.config.ts && npm run build && sudo docker build -t ladissite:zjups . && rm nuxt.config.js",
+    "build": "tsc nuxt.config.ts && nuxt build",
+    "build:docker": "docker buildx build -t wgcairui/ladissite:zjups --platform=linux/amd64 . --push",
     "push:docker": "docker tag ladissite:zjups wgcairui/ladissite:zjups && docker push wgcairui/ladissite:zjups",
     "generate": "nuxt generate",
-    "start": "nuxt start ",
+    "start": "cross-env NAME='杭州纽特电子有限公司' HOST='localhost' nuxt start ",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "lint-staged": {
