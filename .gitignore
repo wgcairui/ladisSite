@@ -90,3 +90,7 @@ sw.*
 *.swp
 .vscode
 store/user.ts
+lib
+mnt
+bin
+etc
