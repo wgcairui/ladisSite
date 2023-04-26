@@ -94,3 +94,4 @@ lib
 mnt
 bin
 etc
+nuxt.config.js

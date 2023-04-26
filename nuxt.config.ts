@@ -103,13 +103,23 @@ const config: NuxtConfig = {
       '/down/**'
     ],
     routes: async () => {
-      const routs = await axios.get<router[]>(RemoteServerAddress + "/web/getRout", { headers: { name: encodeURI(process.env.NAME!) } })
-      return (routs.data || []).map(el => ({
-        url: el.rout,
-        changefreq: 'daily',
-        priority: 1,
-        lastmod: '2021-06-16T13:30:00.000Z'
-      }))
+      const Name = process.env.NAME
+      console.log(`name: ${Name}`);
+
+      if(Name){
+        const routs = await axios.get<router[]>(RemoteServerAddress + "/web/getRout", { headers: { name: encodeURI(Name) } })
+        return (routs.data || []).map(el => ({
+          url: el.rout,
+          changefreq: 'daily',
+          priority: 1,
+          lastmod: '2021-06-16T13:30:00.000Z'
+        }))
+      }else{
+        console.error(`env.Name is null,envKeys:${Object.keys(process.env)}`);
+        return []
+      }
+
+
 
       /* return [
         {

@@ -12,7 +12,6 @@ export class Api {
     this.ctx.$axios.onRequest((config) => {
       config.headers.name = encodeURI(this.ctx.store.state.name)
       config.baseURL = RemoteServerAddress
-      
       return config
     })
   }
@@ -24,9 +23,9 @@ export class Api {
 
   /**
      * 获取代理商关于信息
-     * @param site 
-     * @param type 
-     * @returns 
+     * @param site
+     * @param type
+     * @returns
      */
   getAboutType(type: string) {
     return this.get<about>("getAboutType", { type })
@@ -34,7 +33,7 @@ export class Api {
 
   /**
      * 获取所有路由
-     * @returns 
+     * @returns
      */
   getRout() {
     return this.get<router[]>("getRout")
@@ -42,7 +41,7 @@ export class Api {
 
   /**
      * 获取所有vr列表
-     * @returns 
+     * @returns
      */
   getVrs() {
     return this.get<vr[]>("getVrs")
@@ -50,8 +49,8 @@ export class Api {
 
   /**
    * 获取vr页面
-   * @param link 
-   * @returns 
+   * @param link
+   * @returns
    */
   getVr(link: string) {
     return this.get<vr>("getVr", { link })
@@ -66,7 +65,7 @@ export class Api {
 
   /**
      * 获取所有经销商详细信息
-     * @returns 
+     * @returns
      */
   getBuysAll() {
     return this.get<buy[]>("getBuysAll")
@@ -74,8 +73,8 @@ export class Api {
 
   /**
      * 获取指定的经销商信息
-     * @param link 
-     * @returns 
+     * @param link
+     * @returns
      */
   getBuyListLink(link: string) {
     return this.get<buyList[]>("getBuyListLink", { link })
@@ -83,7 +82,7 @@ export class Api {
 
   /**
      * 获取所有案例列表
-     * @param company 
+     * @param company
      */
   getCaseLists() {
     return this.get<cases[]>("getCaseLists")
@@ -91,7 +90,7 @@ export class Api {
 
   /**
      * 获取指定类型案例列表
-     * @param company 
+     * @param company
      */
   async getCaseListsType(type: string) {
     return this.get<cases[]>("getCaseListsType", { type })
@@ -99,8 +98,8 @@ export class Api {
 
   /**
    * 获取指定案例
-   * @param link 
-   * @returns 
+   * @param link
+   * @returns
    */
   getCaselist(link: string) {
     return this.get<caseList>("getCaselist", { link })
@@ -108,7 +107,7 @@ export class Api {
 
   /**
      * 获取所有新闻列表
-     * @param company 
+     * @param company
      */
   getNewsLists() {
     return this.get<cases[]>("getNewsLists")
@@ -116,7 +115,7 @@ export class Api {
 
   /**
      * 获取指定类型新闻列表
-     * @param company 
+     * @param company
      */
   async getNewsListsType(type: string) {
     return this.get<cases[]>("getNewsListsType", { type })
@@ -124,8 +123,8 @@ export class Api {
 
   /**
    * 获取指定新闻
-   * @param link 
-   * @returns 
+   * @param link
+   * @returns
    */
   getNewslist(link: string) {
     return this.get<caseList>("getNewslist", { link })
@@ -133,7 +132,7 @@ export class Api {
 
   /**
      * 获取产品列表
-     * @returns 
+     * @returns
      */
   getProducts() {
     return this.get<product[]>("getProducts")
@@ -141,8 +140,8 @@ export class Api {
 
   /**
     * 获取指定产品列表
-    * @param type 
-    * @returns 
+    * @param type
+    * @returns
     */
   getProductsType(type: string) {
     return this.get<product[]>("getProductsType", { type })
@@ -151,7 +150,7 @@ export class Api {
   /**
    * 查询匹配产品信息
    * @param str 通配符
-   * @returns 
+   * @returns
    */
   getProductsReg(str: string) {
     return this.get<product[]>("getProductsReg", { str })
@@ -159,8 +158,8 @@ export class Api {
 
   /**
    * 获取指定产品信息
-   * @param link 
-   * @returns 
+   * @param link
+   * @returns
    */
   getProductList(link: string) {
     return this.get<productList>("getProductList", { link })
@@ -168,8 +167,8 @@ export class Api {
 
   /**
      * 获取侧边栏
-     * @param type 
-     * @returns 
+     * @param type
+     * @returns
      */
   getPagesType<T>(type: string) {
     return this.get<T[]>("getPagesType", { type })
@@ -177,8 +176,8 @@ export class Api {
 
   /**
    * 获取下载支持
-   * @param type 
-   * @returns 
+   * @param type
+   * @returns
    */
   getSupportType(type: string) {
     return this.get<support[]>("getSupportType", { type })
@@ -186,8 +185,8 @@ export class Api {
 
   /**
    * 获取教程支持
-   * @param type 
-   * @returns 
+   * @param type
+   * @returns
    */
   getSupportListsType(type: string) {
     return this.get<supportList[]>("getSupportListsType", { type })
@@ -195,7 +194,7 @@ export class Api {
 
   /**
    * 获取支持单例
-   * @returns 
+   * @returns
    */
   getSupportLists() {
     return this.get<supportList[]>("getSupportLists")
@@ -203,8 +202,8 @@ export class Api {
 
   /**
    * 获取支持单例
-   * @param link 
-   * @returns 
+   * @param link
+   * @returns
    */
   getSupportList(link: string) {
     return this.get<supportList>("getSupportList", { link })
@@ -212,8 +211,8 @@ export class Api {
 
   /**
    * 获取支持单例
-   * @param link 
-   * @returns 
+   * @param link
+   * @returns
    */
   getSupport(link: string) {
     return this.get<support>("getSupport", { link })
