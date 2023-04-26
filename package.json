@@ -6,10 +6,10 @@
   "private": true,
   "readme": "docker run -itd --restart always --name ladissite -p 80:80 -e NAME='湖北雷迪司' wgcairui/ladissite:latest",
   "scripts": {
-    "dev": "cross-env NAME='湖北雷迪司' HOST='localhost' nuxt",
+    "dev": "cross-env NAME='遵义雷迪司' HOST='www.zyups.cn' nuxt",
     "build": "tsc nuxt.config.ts && nuxt build",
-    "build:docker": "docker buildx build -t wgcairui/ladissite:latest --platform=linux/amd64 . --push",
-    "push:docker": "sudo docker login && sudo docker tag ladissite:latest wgcairui/ladissite:latest && sudo docker push wgcairui/ladissite:latest",
+    "build:docker": "docker buildx build -t wgcairui/ladissite:guizhou --platform=linux/amd64 . --push",
+    "push:docker": "sudo docker login && sudo docker tag ladissite:latest wgcairui/ladissite:guizhou && sudo docker push wgcairui/ladissite:guizhou",
     "generate": "nuxt generate",
     "start": "nuxt start",
     "lint": "eslint --ext .ts,.js,.vue ."

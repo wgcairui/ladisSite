@@ -2,6 +2,9 @@
 
 > My brilliant Nuxt.js project
 
+贵州小青蛙需求变更
+2023.04.26 这是百度开户那边，他要求在咱们官网上面要有这体现这个名字，就是要求改那个地方
+
 ## Build Setup
 
 ``` bash
