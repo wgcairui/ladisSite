@@ -74,7 +74,7 @@
             <li>
               <h5>{{ $t("section.ri1giq") }}</h5>
             </li>
-            <li>
+            <li v-if="showPlatform">
               <a href="http://www.pesiv.com" target="_bank">
                 {{ $t("section.l7qkwb") }}
               </a>
@@ -173,6 +173,7 @@ export default Vue.extend({
       "showBuy",
       "showCase",
       "showNews",
+      "showPlatform",
       "showLaungua",
       "linkFrend",
     ]),
