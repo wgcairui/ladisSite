@@ -28,6 +28,8 @@ export const mutations: MutationTree<RootState> = {
    * @param payload
    */
   SETAGENTCONFIG(state, payload) {
+    // console.log('payload', payload.agentConfig)
+
     state.agentConfig = payload.agentConfig
     const linkFrend = (<{ name: string }[]>payload.linkFrend).filter(
       (el) => el.name !== state.name
@@ -35,13 +37,13 @@ export const mutations: MutationTree<RootState> = {
     state.linkFrend = linkFrend
     state.hm = payload.agentConfig.hm
     state.name = payload.agentConfig.name
-    state.showBuy = payload.agentConfig.showBuy || state.showBuy
-    state.showCase = payload.agentConfig.showCase || state.showCase
-    state.showLaungua = payload.agentConfig.showLaungua || state.showLaungua
-    state.showNews = payload.agentConfig.showNews || state.showNews
+    state.showBuy = payload.agentConfig.showBuy ?? state.showBuy
+    state.showCase = payload.agentConfig.showCase ?? state.showCase
+    state.showLaungua = payload.agentConfig.showLaungua ?? state.showLaungua
+    state.showNews = payload.agentConfig.showNews ?? state.showNews
     state.showPlatform =
-      payload.agentConfig?.showPlatform || state?.showPlatform || true
-    state.showProduct = payload.agentConfig.showProduct || state.showProduct
+      payload.agentConfig?.showPlatform ?? state?.showPlatform ?? true
+    state.showProduct = payload.agentConfig.showProduct ?? state.showProduct
   },
 }
 

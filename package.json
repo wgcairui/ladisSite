@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "cross-env NAME='湖北雷迪司' HOST='localhost' nuxt",
     "build": "tsc nuxt.config.ts && nuxt build",
-    "build:docker": "docker buildx build -t wgcairui/ladissite:latest --platform=linux/amd64 . --push",
+    "build:docker": "docker buildx build -t wgcairui/ladissite:latest --platform=linux/amd64 .",
     "push:docker": "sudo docker login && sudo docker tag ladissite:latest wgcairui/ladissite:latest && sudo docker push wgcairui/ladissite:latest",
     "generate": "nuxt generate",
     "start": "nuxt start",

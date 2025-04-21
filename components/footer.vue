@@ -70,12 +70,12 @@
               <nuxt-link :to="news['全部新闻']">{{ $t("section.qis2vp") }}</nuxt-link>
             </li>
           </ul>
-          <ul>
+          <ul  v-if="showPlatform">
             <li>
               <h5>{{ $t("section.ri1giq") }}</h5>
             </li>
-            <li v-if="showPlatform">
-              <a href="http://www.pesiv.com" target="_bank">
+            <li>
+              <a href="http://uart.ladishb.com" target="_bank">
                 {{ $t("section.l7qkwb") }}
               </a>
             </li>
