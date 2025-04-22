@@ -1,8 +1,8 @@
 FROM node:16-alpine
 
 ENV NPM_CONFIG_LOGLEVEL warn
-ENV NODE_ENV=production
-ENV NAME=湖北雷迪司
+ENV NODE_ENV production
+ENV NAME 湖北雷迪司
 
 COPY ["package.json", "nuxt.config.js", "/"]
 
