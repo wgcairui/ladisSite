@@ -1,0 +1,50 @@
+# docker compose 部署 ladis-site
+# 使用：
+#   cp .env.example .env && vi .env
+#   docker compose up -d --build
+#   docker compose logs -f ladis-site
+#   docker compose restart ladis-site
+
+services:
+  ladis-site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ladissite:3.0.2
+    container_name: ladis-site
+    restart: always
+    ports:
+      # 容器内 80 端口（生产模式），宿主机可改成其他
+      - "${HTTP_PORT:-80}:80"
+    environment:
+      # 后端 API 基址（nuxt.config.ts 读 process.env.NUXT_SERVER，fallback 默认）
+      - NUXT_SERVER=${NUXT_SERVER:-https://www.ladishb.com/site}
+      # 公司名（sitemap 拉取路由时作为 name header）
+      - NAME=${NAME:-湖北雷迪司}
+      # sitemap hostname
+      - HOST=${HOST:-www.ladishb.com}
+      # nuxt 服务端/客户端 baseURL（optional）
+      - BROWSER_BASE_URL=${BROWSER_BASE_URL:-}
+      - BASE_URL=${BASE_URL:-}
+      # 监听
+      - HOST=0.0.0.0
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 768M
+        reservations:
+          cpus: "0.2"
+          memory: 128M
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"

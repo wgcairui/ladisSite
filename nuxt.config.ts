@@ -2,8 +2,10 @@ import { NuxtConfig } from '@nuxt/types'
 import axios from "axios"
 import { router } from './types/typing'
 
-//const RemoteServerAddress = 'http://127.0.0.1:9007'
-export const RemoteServerAddress = 'https://www.ladishb.com/site'
+// 后端 API 基址：优先环境变量 NUXT_SERVER，无值时 fallback
+// 部署时通过 docker-compose / .env / deploy.sh 注入
+const defaultServer = 'https://www.ladishb.com/site'
+export const RemoteServerAddress = process.env.NUXT_SERVER || defaultServer
 
 const config: NuxtConfig = {
   telemetry: false,
@@ -11,8 +13,10 @@ const config: NuxtConfig = {
   dev: process.env.NODE_ENV !== 'production',
   modern: 'server',
   server: {
-    port: process.env.NODE_ENV === 'production' ? 80 : 9005,
-    host: '0.0.0.0'
+    port: process.env.PORT
+      ? parseInt(process.env.PORT, 10)
+      : (process.env.NODE_ENV === 'production' ? 80 : 9005),
+    host: process.env.HOST || '0.0.0.0'
   },
   env: {
     serverUrl: RemoteServerAddress
