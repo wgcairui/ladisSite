@@ -94,7 +94,8 @@ cmd_install() {
   log "安装依赖..."
   npm ci --no-audit --no-fund
   log "构建..."
-  npm run build
+  # Node 22+ 默认 OpenSSL 3 + webpack 4 不兼容，需要 legacy provider
+  NODE_OPTIONS=--openssl-legacy-provider npm run build
   ok "构建完成（.nuxt/ 已就绪）"
 }
 
@@ -110,7 +111,7 @@ cmd_start() {
   fi
   if [[ ! -d .nuxt ]]; then
     warn ".nuxt 不存在，先跑 build"
-    npm run build
+    NODE_OPTIONS=--openssl-legacy-provider npm run build
   fi
   load_env
 
@@ -118,7 +119,9 @@ cmd_start() {
 
   log "启动 ladis-site（端口 ${PORT:-80}，NAME=${NAME:-未设置}）..."
   # setsid 脱离当前会话，nohup 免疫 SIGHUP，重定向到日志
+  # NODE_OPTIONS 透传给 nuxt 运行时（防止 fork-ts-checker 等子进程报 SSL 错）
   PORT="${PORT:-80}" HOST="${HOST:-0.0.0.0}" NODE_ENV=production \
+    NODE_OPTIONS=--openssl-legacy-provider \
     setsid nohup node node_modules/nuxt/bin/nuxt.js start \
       > "$LOG_FILE" 2>&1 < /dev/null &
   local pid=$!

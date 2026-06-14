@@ -28,7 +28,6 @@ CLAUDE.md
 .eslintrc*
 .prettierrc*
 .stylelintrc*
-jsconfig.json
 .eslintcache
 
 logs

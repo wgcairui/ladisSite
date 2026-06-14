@@ -7,7 +7,7 @@
   "readme": "docker run -itd --restart always --name ladissite -p 80:80 -e NAME='湖北雷迪司' wgcairui/ladissite:latest",
   "scripts": {
     "dev": "cross-env NAME='湖北雷迪司' HOST='localhost' nuxt",
-    "build": "tsc nuxt.config.ts && nuxt build",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider nuxt build",
     "build:docker": "docker build -t ladissite .",
     "generate": "nuxt generate",
     "start": "nuxt start",

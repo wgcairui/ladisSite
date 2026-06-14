@@ -8,9 +8,12 @@ RUN npm ci --no-audit --no-fund
 # ---------- Build stage ----------
 FROM node:24-alpine AS builder
 WORKDIR /app
+# Nuxt 2 用的 webpack 4 在 Node 17+ 默认 OpenSSL 3 下会报
+# ERR_OSSL_EVP_UNSUPPORTED（MD4 hash），需要 legacy provider
+ENV NODE_OPTIONS=--openssl-legacy-provider
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# nuxt.config.ts 里有 tsc nuxt.config.ts && nuxt build
+# 跑 nuxt build；nuxt.config.ts 由 Nuxt 自己的 typescript-build 链处理，不需要单独 tsc
 RUN npm run build && npm prune --omit=dev
 
 # ---------- Runner stage ----------
