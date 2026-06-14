@@ -70,7 +70,7 @@
               <nuxt-link :to="news['全部新闻']">{{ $t("section.qis2vp") }}</nuxt-link>
             </li>
           </ul>
-          <ul  v-if="showPlatform">
+          <!-- <ul>
             <li>
               <h5>{{ $t("section.ri1giq") }}</h5>
             </li>
@@ -84,7 +84,7 @@
                     $t('section.wkyimq')
                   }}</a>
                 </li>-->
-          </ul>
+          </ul> -->
         </b-container>
       </b-col>
     </b-row>
