@@ -101,7 +101,7 @@ const config: NuxtConfig = {
     //directivePlugins: ['VBPopoverPlugin', 'VBTooltipPlugin', 'VBScrollspyPlugin']
   },
   sitemap: {
-    hostname: "http://" + process.env.HOST,
+    hostname: "http://" + process.env.HOSTNAME,
     gzip: true,
     exclude: [
       '/down/**'
